@@ -11,233 +11,186 @@ namespace ConsoleUI
 
         static void Main(string[] args)
         {
-            //Test();
+            int _secim;
+            bool _loop = true;
+            //int _carModelId;
 
-            //Add Car
-            //CarManager carManager = AddCarMethod();
+            MainLogo mainLogo = new MainLogo();
+            MainMenuOperation mainMenuOperation = new MainMenuOperation();
+            BrandOperation brandOperation = new BrandOperation();
+            ColorOperation colorOperation = new ColorOperation();
+            CarOperation carOperation = new CarOperation();
+            //ModelOperation modelOperation = new ModelOperation();
+            UserOperation userOperation = new UserOperation();
+            CustomerOperation customerOperation = new CustomerOperation();
+            RentalOperation rentalOperation = new RentalOperation();
+
+            do
+            {
+                mainLogo.ProjectLogo();
+                mainMenuOperation.MainMenu();
+
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write("\n SEÇİMİNİZ : ");
+                Console.ResetColor();
+                string _tempString = Console.ReadLine();
 
 
-            //Add Brand
-            //AddBrandMethod();
+                if (_tempString == "")
+                {
+                    _secim = 0;
+                }
+                else
+                {
+                    _secim = Convert.ToInt32(_tempString);
+                }
 
-            //Add Color
-            //AddColorMethod();
+                Console.WriteLine();
 
-            //Car Detail Dto list
-            //Console.WriteLine("-----------------------------");
-            //var carDetails = carManager.GetCarDetails();
-            //foreach (var carDetail in carDetails.Data)
-            //{
-            //    Console.WriteLine("{0} - {1} - {2} \n", carDetail.CarName, carDetail.BrandName, carDetail.ColorName);
-            //}
+                switch (_secim)
+                {
+                    case 1:
+                        brandOperation.ListToBrands();
+                        Console.WriteLine();
+                        colorOperation.ListToColors();
+                        Console.WriteLine();
+                        //modelOperation.ListToModels();
+                        //Console.WriteLine();
 
-            //10.gün - ders 4
-            Brand brand1 = new Brand
-            {
-                Name = "Mercedes"
-            };
-            Brand brand2 = new Brand
-            {
-                Name = "BMW"
-            };
-            Brand brand3 = new Brand
-            {
-                Name = "Audi"
-            };
-            Color color1 = new Color();
-            color1.Name = "Red";
-            Color color2 = new Color();
-            color1.Name = "Black";
-            Color color3 = new Color();
-            color1.Name = "Blue";
-            Car car1 = new Car
-            {
-                Name = "Coupe",
-                BrandId = 1,
-                ColorId = 1,
-                DailyPrice = 100,
-                Description = "Mercedes Benz Coupe Description",
-                ModelYear = 2000
-            };
+                        //_carModelId = modelOperation.AddToModel();
+                        //carOperation.AddToCar(_carModelId);
 
-            Car car2 = new Car
-            {
-                BrandId = 2,
-                Name = "Sedan",
-                ColorId = 2,
-                DailyPrice = 200,
-                Description = "BMW Sedan Description",
-                ModelYear = 2005
-            };
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 2:
+                        carOperation.ListToCars();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 3:
+                        brandOperation.ListToBrands();
+                        carOperation.ListToCarsByBrandId();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 4:
+                        colorOperation.ListToColors();
+                        carOperation.ListToCarsByColorId();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 5:
+                        carOperation.UpdateToCar();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 6:
+                        carOperation.DeleteToCar();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 7:
+                        brandOperation.ListToBrands();
+                        brandOperation.AddToBrand();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 8:
+                        brandOperation.ListToBrands();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 9:
+                        //colorOperation.ListToColors();
+                        colorOperation.AddToColor();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 10:
+                        colorOperation.ListToColors();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 11:
+                        userOperation.AddToUser();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 12:
+                        userOperation.ListToUsers();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 13:
+                        userOperation.UpdateToUser();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 14:
+                        userOperation.DeleteToUser();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 15:
+                        userOperation.ListToUsers();
+                        Console.WriteLine();
+                        customerOperation.AddToCustomer();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 16:
+                        customerOperation.ListToCustomers();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 17:
+                        userOperation.ListToUsers();
+                        Console.WriteLine();
+                        customerOperation.ListToCustomers();
+                        Console.WriteLine();
+                        customerOperation.UpdateToCustomer();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 18:
+                        customerOperation.ListToCustomers();
+                        Console.WriteLine();
+                        customerOperation.DeleteToCustomer();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 19:
+                        carOperation.ListToCars();
+                        customerOperation.ListToCustomerDetails();
+                        Console.WriteLine();
 
-            Car car3 = new Car
-            {
-                BrandId = 3,
-                Name = "Audi A4",
-                ColorId = 3,
-                DailyPrice = 300,
-                Description = "Audi A4 Description",
-                ModelYear = 2010
-            };
-
-            UserManager userManager = new UserManager(new EfUserDal());
-            User user1 = new User
-            {
-                FirstName = "Rıdvan",
-                LastName = "Abay",
-                Email = "ridvanabay@gmail.com",
-                Password = "123"
-            };
-
-            User user2 = new User
-            {
-                FirstName = "Ramazan",
-                LastName = "Bayazit",
-                Email = "ramazanbayazit@gmail.com",
-                Password = "456"
-            };
-
-            User user3 = new User
-            {
-                FirstName = "Mert",
-                LastName = "Artan",
-                Email = "mertartan@gmail.com",
-                Password = "789"
-            };
-            userManager.Add(user1);
-            userManager.Add(user2);
-            userManager.Add(user3);
-
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            Rental rental1 = new Rental()
-            {
-                CarId = 1,
-                CustomerId = 1,
-                RentDate = DateTime.Now,
-                ReturnDate = DateTime.Now.AddDays(1)
-            };
-            rentalManager.Add(rental1);
-        }
-
-        private static void AddColorMethod()
-        {
-            Color color1 = new Color();
-            color1.Name = "Red";
-            Color color2 = new Color();
-            color1.Name = "Black";
-            Color color3 = new Color();
-            color1.Name = "Blue";
-            ColorManager colorManager = new ColorManager(new EfColorDal());
-            colorManager.Add(color1);
-            colorManager.Add(color2);
-            colorManager.Add(color3);
-        }
-
-        private static void AddBrandMethod()
-        {
-            Brand brand1 = new Brand
-            {
-                Name = "Mercedes"
-            };
-            Brand brand2 = new Brand
-            {
-                Name = "BMW"
-            };
-            Brand brand3 = new Brand
-            {
-                Name = "Audi"
-            };
-            BrandManager brandManager = new BrandManager(new EfBrandDal());
-            brandManager.Add(brand1);
-            brandManager.Add(brand2);
-            brandManager.Add(brand3);
-        }
-
-        private static CarManager AddCarMethod()
-        {
-            Car car1 = new Car
-            {
-                BrandId = 1,
-                ColorId = 1,
-                DailyPrice = 100,
-                Description = "Mercedes Benz",
-                ModelYear = 2000
-            };
-
-            Car car2 = new Car
-            {
-                BrandId = 2,
-                ColorId = 2,
-                DailyPrice = 200,
-                Description = "BMW",
-                ModelYear = 2005
-            };
-
-            Car car3 = new Car
-            {
-                BrandId = 3,
-                ColorId = 3,
-                DailyPrice = 300,
-                Description = "Audi",
-                ModelYear = 2010
-            };
-            CarManager carManager = new CarManager(new EfCarDal());
-            carManager.Add(car1);
-            carManager.Add(car2);
-            carManager.Add(car3);
-            var cars = carManager.GetAll();
-            foreach (var car in cars.Data)
-            {
-                Console.WriteLine(car.Description);
-            }
-
-            return carManager;
-        }
-
-        private static void Test()
-        {
-            Car car1 = new Car
-            {
-                Id = 1,
-                BrandId = 1,
-                ColorId = 1,
-                DailyPrice = 100,
-                Description = "Mercedes Benz",
-                ModelYear = 2000
-            };
-
-            Car car2 = new Car
-            {
-                Id = 2,
-                BrandId = 2,
-                ColorId = 2,
-                DailyPrice = 200,
-                Description = "BMW",
-                ModelYear = 2005
-            };
-
-            Car car3 = new Car
-            {
-                Id = 3,
-                BrandId = 3,
-                ColorId = 3,
-                DailyPrice = 300,
-                Description = "BMW",
-                ModelYear = 2010
-            };
-            TestContext.Add(car1);
-            TestContext.Add(car2);
-            TestContext.Add(car3);
-            TestContext.Delete(car3);
-            car1.ModelYear = 2021;
-            //TestContext.Update(car1);
-            Console.WriteLine(TestContext.GetById(1).ModelYear);
-            Console.WriteLine(TestContext.GetById(2).Description);
-            foreach (var car in TestContext.GetAll())
-            {
-                Console.WriteLine(car.Description);
-            }
-            Console.WriteLine(TestContext.GetAll().Count);
+                        rentalOperation.AddToRental();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 20:
+                        rentalOperation.ListToRentalDetails();
+                        Console.WriteLine();
+                        rentalOperation.UpdateToRentalReturnDate();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 21:
+                        rentalOperation.ListToRentalDetails();
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    default:
+                        Console.WriteLine("Hatalı seçim !!!");
+                        Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
+                        Console.ReadLine();
+                        break;
+                    case 99:
+                        _loop = false;
+                        break;
+                }
+            } while (_loop);
         }
     }
 }
