@@ -52,8 +52,8 @@ namespace ConsoleUI
                     case 1:
                         brandOperation.ListToBrands();
                         Console.WriteLine();
-                        colorOperation.ListToColors();
-                        Console.WriteLine();
+                        //colorOperation.ListToColors();
+                        //Console.WriteLine();
                         //modelOperation.ListToModels();
                         //Console.WriteLine();
 

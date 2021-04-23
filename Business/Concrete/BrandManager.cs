@@ -30,7 +30,8 @@ namespace Business.Concrete
 
         public IDataResult<List<Brand>> GetAll()
         {
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());
+            var data = _brandDal.GetAll();
+            return new SuccessDataResult<List<Brand>>(data);
         }
 
         public IDataResult<Brand> GetById(int brandId)
