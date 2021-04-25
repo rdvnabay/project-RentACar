@@ -6,6 +6,6 @@ namespace Core.Entities.Concrete
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        //public List<UserOperationClaim> UserOperationClaims { get; set; }
+        public List<UserOperationClaim> UserOperationClaims { get; set; }
     }
 }
