@@ -1,6 +1,10 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects;
+using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
@@ -21,6 +25,8 @@ namespace Business.Concrete
         }
         [SecuredOperation("admin,brand-add")]
         [ValidationAspect(typeof(BrandValidator))]
+        [CacheRemoveAspect("IBrandService.Get")]
+        [PerformanceAspect(5)]
         public IResult Add(Brand brand)
         {
             IResult result= BusinessRules.Run(CheckIfBrandNameExists(brand.Name));
@@ -38,6 +44,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [CacheAspect]
         public IDataResult<List<Brand>> GetAll()
         {
             var data = _brandDal.GetAll();
@@ -64,6 +71,15 @@ namespace Business.Concrete
                 return new ErrorResult();
             }
             return new SuccessResult();
+        }
+
+        //TODO: Örnek Transaction Kullanımı
+        [TransactionScopeAspect]
+        public IResult TransactionalOperation(Brand brand)
+        {
+            _brandDal.Update(brand);
+            _brandDal.Add(brand);
+            return new SuccessResult(Messages.ProductUpdated);
         }
     }
 }
