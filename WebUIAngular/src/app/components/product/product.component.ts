@@ -4,6 +4,7 @@ import { Todo } from 'src/app/models/todo';
 import { BrandResponseModel } from 'src/app/models/brandResponseModel';
 import { TodoResponseModel } from 'src/app/models/todoResponseModel';
 import { BrandService } from 'src/app/services/brand.service';
+import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
   selector: 'app-product',
@@ -12,7 +13,7 @@ import { BrandService } from 'src/app/services/brand.service';
 })
 export class ProductComponent implements OnInit {
   
-  apiTodoUrl= 'https://jsonplaceholder.typicode.com/todos';
+  dataLoaded=false;
   todos: Todo[] = [];
   brands: Brand[] = [];
 
@@ -25,14 +26,7 @@ export class ProductComponent implements OnInit {
   getBrands() {
     this.brandService.getBrands().subscribe(response=>{
       this.brands=response.data;
+      this.dataLoaded=true;
     })
   }
-
-  // getTodos() {
-  //   this.httpClient
-  //   .get<TodoResponseModel>(this.apiTodoUrl)
-  //   .subscribe((response) => {
-  //     this.todos = response.data;
-  //   });
-  // }
 }
