@@ -1,52 +1,38 @@
 import { Component, OnInit } from '@angular/core';
+import { Brand } from 'src/app/models/brand';
+import { Todo } from 'src/app/models/todo';
+import { BrandResponseModel } from 'src/app/models/brandResponseModel';
+import { TodoResponseModel } from 'src/app/models/todoResponseModel';
+import { BrandService } from 'src/app/services/brand.service';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit {
-  product1: any = {
-    productId: 1,
-    productName: 'Laptop',
-    price: 5000,
-    categoryId: 1,
-  };
-  product2: any = {
-    productId: 2,
-    productName: 'Mouse',
-    productPrice: 44,
-    categoryId: 1,
-  };
-  product3: any = {
-    productId: 3,
-    productName: 'Keyboard',
-    price: 100,
-    categoryId: 1,
-  };
-  product4: any = {
-    productId: 4,
-    productName: 'Phone',
-    price: 3500,
-    categoryId: 2,
-  };
-  product5: any = {
-    productId: 5,
-    productName: 'Pencil',
-    price: 20,
-    categoryId: 3,
-  };
+  
+  apiTodoUrl= 'https://jsonplaceholder.typicode.com/todos';
+  todos: Todo[] = [];
+  brands: Brand[] = [];
 
-  products = [
-    this.product1,
-    this.product2,
-    this.product3,
-    this.product4,
-    this.product5,
-  ];
-  constructor() { }
+  constructor(private brandService:BrandService) {}
 
   ngOnInit(): void {
+    this.getBrands();
   }
 
+  getBrands() {
+    this.brandService.getBrands().subscribe(response=>{
+      this.brands=response.data;
+    })
+  }
+
+  // getTodos() {
+  //   this.httpClient
+  //   .get<TodoResponseModel>(this.apiTodoUrl)
+  //   .subscribe((response) => {
+  //     this.todos = response.data;
+  //   });
+  // }
 }
