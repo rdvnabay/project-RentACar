@@ -43,10 +43,10 @@ namespace Business.Concrete
             return new SuccessDataResult<Car>();
         }
 
-        public IDataResult<List<CarForDetailDto>> GetCarDetails()
+        public IDataResult<List<CarForListDto>> GetCarDetails()
         {
             var data=_carDal.GetCarDetails();
-            return new SuccessDataResult<List<CarForDetailDto>>();
+            return new SuccessDataResult<List<CarForListDto>>();
         }
 
         public IDataResult<List<Car>> GetCarsByBrandId(int brandId)

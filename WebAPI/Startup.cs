@@ -28,6 +28,7 @@ namespace WebAPI
         {
 
             services.AddControllers();
+            services.AddAutoMapper(typeof(Startup));
             services.AddCors();
             //services.AddCors(options =>
             //{
