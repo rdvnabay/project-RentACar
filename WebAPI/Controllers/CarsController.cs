@@ -14,10 +14,10 @@ namespace WebAPI.Controllers
             _carService = carService;
         }
         
-        [HttpGet("get")]
-        public IActionResult Get(int carId)
+        [HttpGet("getallbybrand")]
+        public IActionResult GetAllByBrand(int brandId)
         {
-            var data= _carService.GetById(carId);
+            var data= _carService.GetAllByBrand(brandId);
             return Ok(data.Data);
         }
 

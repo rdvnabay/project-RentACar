@@ -12,11 +12,11 @@ todos:Todo[]=[];
   constructor(private todoService:TodoService) { }
 
   ngOnInit(): void {
-    this.getTodos();
+    this.getAll();
   }
 
-  getTodos(){
-    this.todoService.getTodos().subscribe(response=>{
+  getAll(){
+    this.todoService.getAll().subscribe(response=>{
     this.todos=response;
     })
   }

@@ -1,19 +1,13 @@
-<div *ngIf="dataLoaded==false" class="spinner-border" role="status">
-  <span class="sr-only">Yükleniyor...</span>
-</div>
+<ul class="list-group">
+  <li routerLink="car" 
+  [class]="getAllCategoryClass()">Tüm Markalar</li>
+  <li
+    *ngFor="let brand of brands"
+    (click)="setCurrentBrand(brand)"
+    routerLink="car/{{ brand.id }}"
+    [class]="getCurrentBrandClass(brand)">
+    {{ brand.name }}
+  </li>
+</ul>
 
-<table class="table">
-    <thead *ngIf="dataLoaded==true">
-<tr>
-    <th>Id</th>
-    <th>Name</th>
-</tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let brand of brands">
-            <td>{{brand.id}}</td>
-            <td>{{brand.name}}</td>
-        </tr>
-    </tbody>   
-</table>
-
+<h5 *ngIf="currentBrand">{{ currentBrand.name }}</h5>

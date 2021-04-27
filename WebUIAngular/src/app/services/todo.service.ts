@@ -12,6 +12,6 @@ export class TodoService {
   apiUrl= 'https://jsonplaceholder.typicode.com/todos';
   constructor(private httpClient:HttpClient) { }
 
-  getTodos():Observable<Todo[]> {
+  getAll():Observable<Todo[]> {
     return this.httpClient.get<Todo[]>(this.apiUrl);
   }}

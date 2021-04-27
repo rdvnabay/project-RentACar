@@ -12,11 +12,11 @@ export class ColorComponent implements OnInit {
   constructor(private colorService:ColorService) { }
 
   ngOnInit(): void {
-  this.getColors();
+  this.getAll();
   }
 
-  getColors(){
-    this.colorService.getColors().subscribe(response=>{
+  getAll(){
+    this.colorService.getAll().subscribe(response=>{
     this.colors=response.data;
     })
   }
