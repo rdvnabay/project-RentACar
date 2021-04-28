@@ -22,7 +22,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let car of cars | filterCars:filterText">
-      <td>{{ car.name }}</td>
+      <td>{{ car.id }}</td>
       <td>{{ car.dailyPrice | currency }}</td>
       <td>{{ car.dailyPrice | vatAdded: 18 | currency }}</td>
       <td><button (click)="addToCart(car)" 
@@ -30,3 +30,24 @@
     </tr>
   </tbody>
 </table>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Brand</th>
+      <th>Color</th>
+      <th>Car Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let carDetail of carDetails">
+      <td>{{ carDetail.id}}</td>
+      <td>{{ carDetail.brandName}}</td>
+      <td>{{ carDetail.colorName}}</td>
+      <td>{{ carDetail.name}}</td>
+    </tr>
+  </tbody>
+</table>
+

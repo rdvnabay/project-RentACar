@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car';
+import { CarDetail } from 'src/app/models/carDetail';
 import { CarService } from 'src/app/services/car.service';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -11,9 +12,12 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./car.component.css'],
 })
 export class CarComponent implements OnInit {
+
   cars: Car[] = [];
+  carDetails:CarDetail[]=[];
   dataLoaded:boolean=false;
   filterText:string="";
+
   constructor(
     private carService: CarService,
     private activatedRoute:ActivatedRoute,
@@ -25,7 +29,7 @@ export class CarComponent implements OnInit {
       if(params["brandId"]){
         this.getAllByBrand(params["brandId"])
       }else{
-        this.getAll()
+        this.getAllDetail()
       }
     })
   }
@@ -45,11 +49,11 @@ export class CarComponent implements OnInit {
     })
   }
 
-  // getAllDetail(){
-  //   this.carService.getAllDetail().subscribe(response=>{
-  //     this.cars=response.data;
-  //   })
-  // }
+  getAllDetail(){
+    this.carService.getAllDetail().subscribe(response=>{
+      this.carDetails=response.data;
+    })
+  }
 
   addToCart(car:Car){
     this.toastrService.success("Eklendi",car.name);
