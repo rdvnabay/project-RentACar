@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(RentACarDbContext))]
-    [Migration("20210425144812_AddedEntinty-User-OperationClaim-UserOperationClaim")]
-    partial class AddedEntintyUserOperationClaimUserOperationClaim
+    [Migration("20210428121837_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

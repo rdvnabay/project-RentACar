@@ -17,8 +17,8 @@ namespace Entities.Concrete
         public decimal DailyPrice { get; set; }
         public string Description { get; set; }
 
-        //public Brand Brand { get; set; }
-        //public Color Color { get; set; }
+        public Brand Brand { get; set; }
+        public Color Color { get; set; }
         //public List<CarImage> CarImages { get; set; }
     }
 }

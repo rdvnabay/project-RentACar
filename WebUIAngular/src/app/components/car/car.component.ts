@@ -45,6 +45,12 @@ export class CarComponent implements OnInit {
     })
   }
 
+  // getAllDetail(){
+  //   this.carService.getAllDetail().subscribe(response=>{
+  //     this.cars=response.data;
+  //   })
+  // }
+
   addToCart(car:Car){
     this.toastrService.success("Eklendi",car.name);
     this.cartService.addToCart(car);
