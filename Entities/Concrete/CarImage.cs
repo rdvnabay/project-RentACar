@@ -18,6 +18,6 @@ namespace Entities.Concrete
         public string ImagePath { get; set; }
         public DateTime Date { get; set; }
 
-        //public Car Car { get; set; }
+        public Car Car { get; set; }
     }
 }

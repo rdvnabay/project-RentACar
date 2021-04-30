@@ -7,11 +7,11 @@ import { CarService } from 'src/app/services/car.service';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
-  selector: 'app-car',
-  templateUrl: './car.component.html',
-  styleUrls: ['./car.component.css'],
+  selector: 'app-car-list',
+  templateUrl: './car-list.component.html',
+  styleUrls: ['./car-list.component.css']
 })
-export class CarComponent implements OnInit {
+export class CarListComponent implements OnInit {
 
   cars: Car[] = [];
   carDetails:CarDetail[]=[];

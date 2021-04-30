@@ -10,6 +10,7 @@ namespace Entities.Dtos
 public class RentalForListDto:IDto
     {
         public string BrandName { get; set; }
-        public string CustomerFullName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }

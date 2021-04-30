@@ -43,22 +43,10 @@ namespace Business.Concrete
             return new SuccessDataResult<Car>();
         }
 
-        public IDataResult<List<CarForListDto>> GetCarDetails()
-        {
-            var data=_carDal.GetCarDetails();
-            return new SuccessDataResult<List<CarForListDto>>(data);
-        }
-
         public IDataResult<List<Car>> GetAllByBrand(int brandId)
         {
             var data=_carDal.GetAll(c => c.BrandId == brandId);
             return new SuccessDataResult<List<Car>>(data);
-        }
-
-        public IDataResult<List<Car>> GetCarsByColorId(int colorId)
-        {
-            var data= _carDal.GetAll(c => c.ColorId == colorId);
-            return new SuccessDataResult<List<Car>>();
         }
 
         [ValidationAspect(typeof(CarValidator))]
@@ -66,6 +54,18 @@ namespace Business.Concrete
         {
             _carDal.Update(car);
             return new SuccessResult();
+        }
+
+        public IDataResult<List<Car>> GetAllByColor(int colorId)
+        {
+            var data = _carDal.GetAll(c => c.ColorId == colorId);
+            return new SuccessDataResult<List<Car>>(data);
+        }
+
+        public IDataResult<CarForListDto> GetDetails(int carId)
+        {
+            var data = _carDal.GetDetails(carId);
+            return new SuccessDataResult<CarForListDto>(data);
         }
     }
 }

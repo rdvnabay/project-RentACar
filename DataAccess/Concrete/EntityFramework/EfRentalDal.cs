@@ -9,25 +9,29 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, RentACarDbContext>, IRentalDal
     {
-        public List<RentalForListDto> GetRentalCar()
+        public List<RentalForListDto> GetRentAllByCustomer(int carId, int customerId)
         {
-            using (var context=new RentACarDbContext())
+            using (var context = new RentACarDbContext())
             {
-                var result = from r in context.Rentals
-                             join cu in context.Customers
-                             on r.CustomerId equals cu.Id
-                             join c in context.Cars
-                             on r.CarId equals c.Id
-                             join b in context.Brands
-                             on c.BrandId equals b.Id
+                var result = from rental in context.Rentals
+                             join car in context.Cars
+                             on rental.CarId equals car.Id
+                             join brand in context.Brands
+                             on car.BrandId equals brand.Id
+
+                             join customer in context.Customers
+                             on rental.CustomerId equals customer.Id
+                             join user in context.Users
+                             on customer.UserId equals user.Id
+                             where car.Id==carId && customer.Id==customerId
                              select new RentalForListDto
                              {
-                                 BrandName = b.Name,
-                                 CustomerFullName = cu.CompanyName
+                                 BrandName = brand.Name,
+                                 FirstName = user.FirstName,
+                                 LastName = user.LastName
                              };
                 return result.ToList();
             }
-            
         }
     }
 }

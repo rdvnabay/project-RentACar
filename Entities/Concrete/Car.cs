@@ -5,10 +5,10 @@ namespace Entities.Concrete
 {
     public class Car:IEntity
     {
-        //public Car()
-        //{
-        //    CarImages = new List<CarImage>();
-        //}
+        public Car()
+        {
+            CarImages = new List<CarImage>();
+        }
         public int Id { get; set; }
         public int BrandId { get; set; }
         public int ColorId { get; set; }
@@ -19,6 +19,6 @@ namespace Entities.Concrete
 
         public Brand Brand { get; set; }
         public Color Color { get; set; }
-        //public List<CarImage> CarImages { get; set; }
+        public List<CarImage> CarImages { get; set; }
     }
 }

@@ -10,13 +10,14 @@ import { NaviComponent } from './components/navi/navi.component';
 import { TodoComponent } from './components/todo/todo.component';
 import { BrandComponent } from './components/brand/brand.component';
 import { ColorComponent } from './components/color/color.component';
-import { CarComponent } from './components/car/car.component';
 import { VatAddedPipe } from './pipes/vat-added.pipe';
 import { FilterCarsPipe } from './pipes/filter-cars.pipe';
 
 import { ToastrModule } from 'ngx-toastr';
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
-import { CustomerComponent } from './components/customer/customer.component'
+import { CustomerComponent } from './components/customer/customer.component';
+import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
+import { CarListComponent } from './components/car/car-list/car-list.component'
 
 @NgModule({
   declarations: [
@@ -25,11 +26,12 @@ import { CustomerComponent } from './components/customer/customer.component'
     TodoComponent,
     BrandComponent,
     ColorComponent,
-    CarComponent,
     VatAddedPipe,
     FilterCarsPipe,
     CartSummaryComponent,
-    CustomerComponent
+    CustomerComponent,
+    CarDetailComponent,
+    CarListComponent
   ],
   imports: [
     BrowserModule,

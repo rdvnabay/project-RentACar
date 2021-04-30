@@ -21,6 +21,17 @@ namespace WebAPI.Controllers
             return Ok(data.Data);
         }
 
+        [HttpGet("getallbycolor")]
+        public IActionResult GetAllByColor(int colorId)
+        {
+            var result = _carService.GetAllByColor(colorId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
@@ -32,10 +43,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getcardetails")]
-        public IActionResult GetCarDetails()
+        [HttpGet("getdetails")]
+        public IActionResult GetDetails(int carId)
         {
-            var result = _carService.GetCarDetails();
+            var result = _carService.GetDetails(carId);
             if (result.Success)
             {
                 return Ok(result);

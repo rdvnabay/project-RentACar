@@ -34,6 +34,29 @@ namespace DataAccess.Concrete.EntityFramework
                     : result.Where(filter).ToList();
             }
         }
+
+        public CarForListDto GetDetails(int carId)
+        {
+            using (var context = new RentACarDbContext())
+            {
+                var result = from c in context.Cars
+                             join b in context.Brands
+                             on c.BrandId equals b.Id
+                             join co in context.Colors
+                             on c.ColorId equals co.Id
+                             where c.Id == carId
+                             select new CarForListDto
+                             {
+                                 Id = c.Id,
+                                 Name = c.Name,
+                                 DailyPrice = c.DailyPrice,
+                                 BrandName = b.Name,
+                                 ColorName = co.Name,
+                                 ModelYear = c.ModelYear
+                             };
+                return result.FirstOrDefault();
+            }
+        }
     }
 }
 

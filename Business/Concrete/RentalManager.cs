@@ -44,11 +44,11 @@ namespace Business.Concrete
         public IDataResult<Rental> GetById(int rentalId)
         {
             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == rentalId));
-        }
+        } 
 
-        public IDataResult<List<RentalForListDto>> GetRentalCar()
+        public IDataResult<List<RentalForListDto>> GetRentAllByCustomer(int carId, int customerId)
         {
-            var data = _rentalDal.GetRentalCar();
+            var data = _rentalDal.GetRentAllByCustomer(carId, customerId);
             return new SuccessDataResult<List<RentalForListDto>>(data);
         }
 
