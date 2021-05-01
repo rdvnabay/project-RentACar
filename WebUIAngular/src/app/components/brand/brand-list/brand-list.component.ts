@@ -3,15 +3,16 @@ import { Brand } from 'src/app/models/brand';
 import { BrandService } from 'src/app/services/brand.service';
 
 @Component({
-  selector: 'app-brand',
-  templateUrl: './brand.component.html',
-  styleUrls: ['./brand.component.css']
+  selector: 'app-brand-list',
+  templateUrl: './brand-list.component.html',
+  styleUrls: ['./brand-list.component.css']
 })
-export class BrandComponent implements OnInit {
+export class BrandListComponent implements OnInit {
 
-  dataLoaded=false;
+  dataLoaded:boolean=false;
   brands: Brand[] = [];
   currentBrand:Brand;
+  filterText:string="";
   constructor(private brandService:BrandService) { }
 
   ngOnInit() {
