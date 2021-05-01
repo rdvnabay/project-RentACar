@@ -99,19 +99,19 @@ namespace ConsoleUI
 
         public void ListToCars()
         {
-            var result = carManager.GetCarDetails();
+            //var result = carManager.GetDetails();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine(result.Message);
+            //Console.WriteLine(result.Message);
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
             Console.WriteLine(String.Format("| {0,-8}| {1,-15}| {2,-40}| {3,-10}| {4,-15}| {5,-18}| {6,-15}| {7,-15}| {8,-15}| {9,-30}|", "CAR ID", "BRAND NAME", "MODEL NAME", "COLOR NAME", "MODEL YEAR", "BODY TYPE", "FEUL", "GEAR", "DAILY PRICE", "DESCRIPTION"));
             Console.WriteLine("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
             Console.ForegroundColor = ConsoleColor.White;
 
-            foreach (var car in result.Data)
-            {
-               // Console.WriteLine(String.Format("| {0,-8}| {1,-15}| {2,-40}| {3,-10}| {4,-15}| {5,-18}| {6,-15}| {7,-15}| {8,-15}| {9,-30}|", car.CarId, car.BrandName, "Model_Name Gelecek", car.ColorName, "Model_Year_Gelecek", "Body_TypeName_Gelecek", car.FuelTypeName, car.GearTypeName, car.DailyPrice, car.Description));
-            }
+            //foreach (var car in result.Data)
+            //{
+            //   // Console.WriteLine(String.Format("| {0,-8}| {1,-15}| {2,-40}| {3,-10}| {4,-15}| {5,-18}| {6,-15}| {7,-15}| {8,-15}| {9,-30}|", car.CarId, car.BrandName, "Model_Name Gelecek", car.ColorName, "Model_Year_Gelecek", "Body_TypeName_Gelecek", car.FuelTypeName, car.GearTypeName, car.DailyPrice, car.Description));
+            //}
             Console.WriteLine("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         }
 
