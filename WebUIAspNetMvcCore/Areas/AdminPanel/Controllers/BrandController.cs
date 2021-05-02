@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("AdminPanel")]
     public class BrandController : Controller
     {
         private IBrandService _brandService;
@@ -26,7 +26,7 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
         public IActionResult Add(Brand brand)
         {
             _brandService.Add(brand);
-            return View();
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }

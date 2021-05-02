@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class DashboardController : Controller
+    [Area("AdminPanel")]
+    public class RoleManager : Controller
     {
         public IActionResult Index()
         {
