@@ -1,0 +1,32 @@
+[
+  {
+    "outputFileName": "wwwroot/css/admin-layout.min.css",
+    "inputFiles": [
+      "wwwroot/css/adminlte.min.css"
+      //"wwwroot/lib/panel/fontawesome/all.min.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": false
+    }
+  },
+
+  {
+    "outputFileName": "wwwroot/css/brand-add.min.css",
+    "inputFiles": [
+      "wwwroot/lib/panel/panel/daterangepicker/daterangepicker.css",
+      "wwwroot/lib/panel/icheck-bootstrap/icheck-bootstrap.min.css",
+      "wwwroot/lib/panel/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css",
+      "wwwroot/lib/panel/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css",
+      "wwwroot/lib/panel/select2/css/select2.min.css",
+      "wwwroot/lib/panel/select2-bootstrap4-theme/select2-bootstrap4.min.css",
+      "wwwroot/lib/panel/bootstrap4-duallistbox/bootstrap-duallistbox.min.css",
+      "wwwroot/lib/panel/bs-stepper/css/bs-stepper.min.css",
+      "wwwroot/lib/panel/dropzone/min/dropzone.min.css"
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": true
+    }
+  }
+]
