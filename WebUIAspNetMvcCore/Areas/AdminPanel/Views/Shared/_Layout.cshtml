@@ -15,6 +15,7 @@
           crossorigin="anonymous" />
     <!-- Theme style -->
     <link href="~/css/adminlte.min.css" rel="stylesheet" />
+    @RenderSection("operationClaimGetAllCss", required: false)
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -48,5 +49,7 @@
     <script src="~/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="~/js/demo.js"></script>
+
+    @RenderSection("operationClaimGetAllJs", required: false)
 </body>
 </html>
