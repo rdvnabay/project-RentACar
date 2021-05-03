@@ -11,7 +11,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, RentACarDbContext>, ICarDal
     {
-        public List<CarForListDto> GetCarDetails(Expression<Func<CarForListDto, bool>> filter = null)
+        public List<CarForListDto> GetAllDto(Expression<Func<CarForListDto, bool>> filter = null)
         {
             using (var context = new RentACarDbContext())
             {
@@ -35,6 +35,7 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
+
         public CarForListDto GetDetails(int carId)
         {
             using (var context = new RentACarDbContext())
@@ -50,6 +51,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  Id = c.Id,
                                  Name = c.Name,
                                  DailyPrice = c.DailyPrice,
+                                 Description = c.Description,
                                  BrandName = b.Name,
                                  ColorName = co.Name,
                                  ModelYear = c.ModelYear
