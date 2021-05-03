@@ -1,6 +1,6 @@
-﻿@model List<OperationClaim>
+﻿@model List<Color>
 
-@section operationClaimGetAllCss {
+@section entityGetAllCss {
     <!-- DataTables -->
     <link rel="stylesheet" href="~/lib/panel/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="~/lib/panel/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -37,24 +37,24 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Rol</th>
+                                        <th>Renk</th>
                                         <th>Diğer</th>
                                         <th>Düzenleme</th>
                                         <th>Silme</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var operationClaim in Model)
+                                    @foreach (var color in Model)
                                     {
                                         <tr>
-                                            <td>@operationClaim.Id</td>
-                                            <td>@operationClaim.Name</td>
+                                            <td>@color.Id</td>
+                                            <td>@color.Name</td>
                                             <td>-</td>
                                             <td>
-                                                <a asp-controller="OperationClaim" asp-action="Edit" class="btn btn-warning">Düzenle </a>
-                                           </td>
+                                                <a asp-controller="Color" asp-action="Edit" class="btn btn-warning">Düzenle </a>
+                                            </td>
                                             <td>
-                                                <a asp-controller="OperationClaim" asp-action="Delete" asp-route-roleId="@operationClaim.Id" class="btn btn-danger">Sil</a>
+                                                <a asp-controller="Color" asp-action="Delete" asp-route-roleId="@color.Id" class="btn btn-danger">Sil</a>
                                             </td>
                                         </tr>
                                     }
@@ -87,7 +87,7 @@
 </div>
 
 
-@section operationClaimGetAllJs {
+@section entityGetAllJs {
     <!-- DataTables  & Plugins -->
     <script src="~/lib/panel/datatables/jquery.dataTables.min.js"></script>
     <script src="~/lib/panel/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

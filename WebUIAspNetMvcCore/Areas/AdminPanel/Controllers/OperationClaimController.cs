@@ -13,10 +13,11 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             _operationClaimService = operationClaimService;
         }
 
-        public IActionResult GetAll()
+        public IActionResult List()
         {
             var model = _operationClaimService.GetAll().Data;
             return View(model);
+
         }
 
         public IActionResult Add()

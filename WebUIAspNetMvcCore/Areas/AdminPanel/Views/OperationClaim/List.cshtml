@@ -1,6 +1,6 @@
 ﻿@model List<OperationClaim>
 
-@section operationClaimGetAllCss {
+@section entityGetAllCss {
     <!-- DataTables -->
     <link rel="stylesheet" href="~/lib/panel/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="~/lib/panel/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -52,7 +52,7 @@
                                             <td>-</td>
                                             <td>
                                                 <a asp-controller="OperationClaim" asp-action="Edit" class="btn btn-warning">Düzenle </a>
-                                           </td>
+                                            </td>
                                             <td>
                                                 <a asp-controller="OperationClaim" asp-action="Delete" asp-route-roleId="@operationClaim.Id" class="btn btn-danger">Sil</a>
                                             </td>
@@ -87,7 +87,7 @@
 </div>
 
 
-@section operationClaimGetAllJs {
+@section entityGetAllJs {
     <!-- DataTables  & Plugins -->
     <script src="~/lib/panel/datatables/jquery.dataTables.min.js"></script>
     <script src="~/lib/panel/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
