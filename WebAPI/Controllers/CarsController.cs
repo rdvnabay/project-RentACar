@@ -60,9 +60,9 @@ namespace WebAPI.Controllers
            var result= _carService.Add(car);
             if (result.Success)
             {
-                return Ok(result.Message);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
         [HttpPost("update")]
