@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +17,6 @@ import { CartSummaryComponent } from './components/cart-summary/cart-summary.com
 import { CustomerComponent } from './components/customer/customer.component';
 import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
 import { CarListComponent } from './components/car/car-list/car-list.component';
-7;
 import { BrandListComponent } from './components/brand/brand-list/brand-list.component';
 import { BrandAddComponent } from './components/brand/brand-add/brand-add.component';
 import { FilterBrandsPipe } from './pipes/filter-brands.pipe';
@@ -24,6 +24,7 @@ import { FilterColorsPipe } from './pipes/filter-colors.pipe';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { CarAddComponent } from './components/car/car-add/car-add.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     HeaderComponent,
     FooterComponent,
     NavbarComponent,
+    CarAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +52,7 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     })
