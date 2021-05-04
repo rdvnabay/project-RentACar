@@ -72,8 +72,8 @@
                             <div class="card-body">
                                 <!-- select -->
 
-                                @await Component.InvokeAsync(typeof(WebUIAspNetMvcCore.Areas.AdminPanel.ViewComponents.ColorList), new { colorId = 1 })
-                                @await Component.InvokeAsync(typeof(WebUIAspNetMvcCore.Areas.AdminPanel.ViewComponents.BrandList),new {brandId=1 })
+                                @await Component.InvokeAsync(typeof(WebUIAspNetMvcCore.Areas.AdminPanel.ViewComponents.ColorList))
+                                @await Component.InvokeAsync(typeof(WebUIAspNetMvcCore.Areas.AdminPanel.ViewComponents.BrandList))
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-fill btn-success">Araç Ekle</button>

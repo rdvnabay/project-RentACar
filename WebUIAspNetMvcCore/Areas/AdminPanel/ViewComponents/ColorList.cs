@@ -11,8 +11,9 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.ViewComponents
         {
             _colorService = colorService;
         }
-        public IViewComponentResult Invoke(int colorId)
+        public IViewComponentResult Invoke()
         {
+            int colorId = 0;
             var model = _colorService.GetAll().Data;
             return View(new ColorListModel
             {

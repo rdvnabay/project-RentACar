@@ -11,8 +11,9 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.ViewComponents
         {
             _brandService = brandService;
         }
-        public IViewComponentResult Invoke(int brandId)
+        public IViewComponentResult Invoke()
         {
+            int brandId = 0;
             var model = _brandService.GetAll().Data;
             return View(new BrandListModel
             {
