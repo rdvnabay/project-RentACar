@@ -25,6 +25,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { CarAddComponent } from './components/car/car-add/car-add.component';
+import { LoginComponent } from './components/auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { CarAddComponent } from './components/car/car-add/car-add.component';
     FooterComponent,
     NavbarComponent,
     CarAddComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

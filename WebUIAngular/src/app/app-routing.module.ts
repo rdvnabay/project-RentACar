@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/auth/login/login.component';
 import { BrandListComponent } from './components/brand/brand-list/brand-list.component';
 import { CarAddComponent } from './components/car/car-add/car-add.component';
 import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'cars/brand/:brandId', component: CarListComponent },
   { path: 'cars/detail/:carId', component: CarDetailComponent },
   { path: 'car/add', component:CarAddComponent},
+  { path:'login', component:LoginComponent },
   {
     path: 'admin',
     loadChildren: () =>
