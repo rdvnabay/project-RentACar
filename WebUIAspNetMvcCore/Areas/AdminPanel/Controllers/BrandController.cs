@@ -12,9 +12,11 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
         {
             _brandService = brandService;
         }
-        public IActionResult Index()
+
+        public IActionResult List()
         {
-            return View();
+            var model = _brandService.GetAll().Data;
+            return View(model);
         }
 
         public IActionResult Add()

@@ -1,4 +1,4 @@
-﻿@model List<CarForListDto>
+﻿@model List<Brand>
 
 @section entityGetAllCss {
     <!-- DataTables -->
@@ -13,7 +13,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Tüm Araçlar</h1>
+                    <h1>Tüm Markalar</h1>
                 </div>
                 <div class="col-sm-6">
                     <partial name="Partial/_BreadCrumb" />
@@ -29,8 +29,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>
-                                <a asp-controller="Car" asp-action="Add" class="btn btn-flat btn-outline-success">Araç Ekle</a>
+                            <h3 class="card-title">
+                                <a asp-controller="Brand" asp-action="Add" class="btn btn-flat btn-outline-success">Marka Ekle</a>
                             </h3>
                         </div>
                         <!-- /.card-header -->
@@ -39,32 +39,24 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Adı</th>
-                                        <th>Özellikleri</th>
-                                        <th>Model Yılı</th>
-                                        <th>Günlük Kiralama Bedeli</th>
-                                        <th>Rengi</th>
-                                        <th>Markası</th>
-                                        <th></th>
-                                        <th></th>
+                                        <th>Marka</th>
+                                        <th>Diğer</th>
+                                        <th>Düzenleme</th>
+                                        <th>Silme</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var car in Model)
+                                    @foreach (var brand in Model)
                                     {
                                         <tr>
-                                            <td>@car.Id</td>
-                                            <td>@car.Name</td>
-                                            <td>@car.Description</td>
-                                            <td>@car.ModelYear</td>
-                                            <td>@car.DailyPrice</td>
-                                            <td>@car.ColorName</td>
-                                            <td>@car.BrandName</td>
+                                            <td>@brand.Id</td>
+                                            <td>@brand.Name</td>
+                                            <td>-</td>
                                             <td>
-                                                <a asp-controller="Car" asp-action="Edit" asp-route-carId="@car.Id" class="btn btn-warning">Düzenle </a>
+                                                <a asp-controller="Brand" asp-action="Edit" class="btn btn-warning">Düzenle </a>
                                             </td>
                                             <td>
-                                                <a asp-controller="Car" asp-action="Delete" asp-route-roleId="@car.Id" class="btn btn-danger">Sil</a>
+                                                <a asp-controller="Brand" asp-action="Delete" asp-route-roleId="@brand.Id" class="btn btn-danger">Sil</a>
                                             </td>
                                         </tr>
                                     }
@@ -73,14 +65,10 @@
                                 <tfoot>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Rol</th>
-                                        <th>Özellikleri</th>
-                                        <th>Model Yılı</th>
-                                        <th>Günlük Kiralama Bedeli</th>
-                                        <th>Rengi</th>
-                                        <th>Markası</th>
-                                        <th></th>
-                                        <th></th>
+                                        <th>Marka
+                                        <th>Diğer</th>
+                                        <th>Düzenleme</th>
+                                        <th>Silme</th>
                                     </tr>
                                 </tfoot>
                             </table>
