@@ -53,10 +53,10 @@
                                             <td>@brand.Name</td>
                                             <td>-</td>
                                             <td>
-                                                <a asp-controller="Brand" asp-action="Edit" class="btn btn-warning">Düzenle </a>
+                                                <a asp-controller="Brand" asp-action="Edit" asp-route-brandId="@brand.Id" class="btn btn-warning">Düzenle </a>
                                             </td>
                                             <td>
-                                                <a asp-controller="Brand" asp-action="Delete" asp-route-roleId="@brand.Id" class="btn btn-danger">Sil</a>
+                                                <a asp-controller="Brand" asp-action="Delete" asp-route-brandId="@brand.Id" class="btn btn-danger">Sil</a>
                                             </td>
                                         </tr>
                                     }

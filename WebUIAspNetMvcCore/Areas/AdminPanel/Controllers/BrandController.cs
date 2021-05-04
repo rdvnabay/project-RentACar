@@ -28,7 +28,31 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
         public IActionResult Add(Brand brand)
         {
             _brandService.Add(brand);
-            return RedirectToAction("Index", "Dashboard");
+            return RedirectToAction("List", "Brand");
+        }
+
+        public IActionResult Edit(int brandId)
+        {
+            var model = _brandService.GetById(brandId).Data;
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Brand brand)
+        {
+           var result= _brandService.Update(brand);
+            if (result.Success)
+            {
+                return RedirectToAction("List", "Brand");
+            }
+            return View(result);
+        }
+
+        public IActionResult Delete(int brandId)
+        {
+                var model = _brandService.GetById(brandId).Data;
+                _brandService.Delete(model);
+                return RedirectToAction("List", "Brand");
         }
     }
 }
