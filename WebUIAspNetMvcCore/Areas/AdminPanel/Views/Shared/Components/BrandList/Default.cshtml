@@ -1,0 +1,15 @@
+﻿@model BrandListModel
+@{
+    Layout = null;
+}
+
+<div class="form-group">
+    <label>Marka Seçinizi</label>
+    <select class="custom-select" asp-for="BrandId">
+        @foreach (var brand in Model.Brands)
+        {
+            <option value="@brand.Id">@brand.Name</option>
+        }
+
+    </select>
+</div>

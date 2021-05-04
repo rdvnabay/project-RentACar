@@ -17,18 +17,19 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="row">
-                <!-- left column -->
-                <div class="col-md-6">
-                    <!-- Form Element sizes -->
-                    <!-- general form elements disabled -->
-                    <div class="card card-warning">
-                        <div class="card-header">
-                            <h3 class="card-title">Araç Ekleme</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <form asp-controller="Car" asp-action="Add" method="post">
+            <form asp-controller="Car" asp-action="Add" method="post">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- Form Element sizes -->
+                        <!-- general form elements disabled -->
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                <h3 class="card-title">Araç Ekleme</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+
                                 <!-- input states -->
                                 <div class="form-group">
                                     <label class="col-form-label" asp-for="Name">
@@ -54,41 +55,42 @@
                                     </label>
                                     <input type="number" asp-for="DailyPrice" class="form-control" id="inputError" placeholder="Fiyat giriniz ...">
                                 </div>
-                            </form>
+                            </div>
+                            <!-- /.card-body -->
                         </div>
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
-                    <!-- general form elements disabled -->
+                        <!-- /.card -->
+                        <!-- general form elements disabled -->
 
-                </div>
-                <!--/.col (left) -->
-                <!-- right column -->
-                <div class="col-md-6">
-                    <!-- Form Element sizes -->
-                    <!-- general form elements disabled -->
-                    <div class="card card-warning">
-                        <form asp-controller="Car" asp-action="Add" method="post">
+                    </div>
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-6">
+                        <!-- Form Element sizes -->
+                        <!-- general form elements disabled -->
+                        <div class="card card-warning">
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <!-- select -->
 
-                                @await Component.InvokeAsync(typeof(WebUIAspNetMvcCore.Areas.AdminPanel.ViewComponents.ColorList), new { colorId = Model.ColorId })
+                                @await Component.InvokeAsync(typeof(WebUIAspNetMvcCore.Areas.AdminPanel.ViewComponents.ColorList), new { colorId = 1 })
+                                @await Component.InvokeAsync(typeof(WebUIAspNetMvcCore.Areas.AdminPanel.ViewComponents.BrandList),new {brandId=1 })
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-fill btn-success">Araç Ekle</button>
                             </div>
                             <!-- /.card-body -->
-                        </form>
-                    </div>
-                    <!-- /.card -->
-                    <!-- general form elements disabled -->
 
+                        </div>
+                        <!-- /.card -->
+                        <!-- general form elements disabled -->
+
+                    </div>
+                    <!--/.col (right) -->
                 </div>
-                <!--/.col (right) -->
-            </div>
+            </form>
             <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
+    <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
 </div>

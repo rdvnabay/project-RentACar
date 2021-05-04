@@ -69,6 +69,9 @@ namespace WebUIAspNetMvcCore
             }
 
             app.UseHttpsRedirection();
+
+            app.ConfigureCustomExceptionMiddleware();
+
             app.UseStaticFiles();
 
             app.UseRouting();

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -32,7 +33,7 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
         public IActionResult Add(Car car)
         {
             var model = _carService.Add(car);
-            return View(model);
+            return RedirectToAction("List", "Car");
         }
     }
 }
