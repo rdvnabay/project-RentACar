@@ -63,5 +63,15 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             }
             return View(result);
         }
+
+        public IActionResult GetAllByBrand(int brandId)
+        {
+            var result = _carService.GetAllByBrand(brandId);
+            if (result.Success)
+            {
+                return View(result.Data);
+            }
+            return RedirectToAction("List", "Brand");
+        }
     }
 }
