@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
 {
@@ -13,9 +14,9 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
             _brandService = brandService;
         }
 
-        public IActionResult List()
+        public async Task<IActionResult> List()
         {
-            var model = _brandService.GetAll().Data;
+            var model = await _brandService.GetAllAsync().Data;
             return View(model);
         }
 
@@ -50,9 +51,13 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
 
         public IActionResult Delete(int brandId)
         {
-                var model = _brandService.GetById(brandId).Data;
-                _brandService.Delete(model);
+            var result = _brandService.GetById(brandId);
+            if (result.Success)
+            {
+                _brandService.Delete(result.Data);
                 return RedirectToAction("List", "Brand");
+            }
+            return RedirectToAction("List", "Brand");
         }
     }
 }

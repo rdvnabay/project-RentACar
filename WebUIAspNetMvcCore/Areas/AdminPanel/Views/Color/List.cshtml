@@ -53,10 +53,10 @@
                                             <td>@color.Name</td>
                                             <td>-</td>
                                             <td>
-                                                <a asp-controller="Color" asp-action="Edit" class="btn btn-warning">Düzenle </a>
+                                                <a asp-controller="Color" asp-action="Edit" asp-route-colorId="@color.Id" class="btn btn-warning">Düzenle </a>
                                             </td>
                                             <td>
-                                                <a asp-controller="Color" asp-action="Delete" asp-route-roleId="@color.Id" class="btn btn-danger">Sil</a>
+                                                <a asp-controller="Color" asp-action="Delete" asp-route-colorId="@color.Id" class="btn btn-danger">Sil</a>
                                             </td>
                                         </tr>
                                     }
