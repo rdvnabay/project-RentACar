@@ -32,7 +32,7 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
         [HttpPost]
         public IActionResult Add(Car car)
         {
-            var model = _carService.Add(car);
+            _carService.Add(car);
             return RedirectToAction("List", "Car");
         }
     }

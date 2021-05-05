@@ -14,6 +14,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -37,6 +38,11 @@ namespace Business.Concrete
             }
             _brandDal.Add(brand);
             return new SuccessResult();
+        }
+
+        public Task<IResult> AddAsync(Brand brand)
+        {
+            throw new System.NotImplementedException();
         }
 
         public IResult Delete(Brand brand)
@@ -83,5 +89,7 @@ namespace Business.Concrete
             _brandDal.Add(brand);
             return new SuccessResult(Messages.ProductUpdated);
         }
+
+    
     }
 }
