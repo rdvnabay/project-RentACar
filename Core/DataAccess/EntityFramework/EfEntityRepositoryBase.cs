@@ -23,22 +23,35 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public void Add(IList<TEntity> entities)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task AddAsync(TEntity entity)
         {
             var context = new TContext();
-            var addedEntity = context.Entry(entity);
-            addedEntity.State = EntityState.Added;
+            await context.Set<TEntity>().AddAsync(entity);
             await context.SaveChangesAsync();
         }
 
-        public Task AddAsync(IList<TEntity> entities)
+        public void AddMultiple(IList<TEntity> entities)
         {
-            throw new NotImplementedException();
+            using (var context = new TContext())
+            {
+                foreach (var entity in entities)
+                {
+                    var addedEntity = context.Entry(entity);
+                    addedEntity.State = EntityState.Added;
+                    context.SaveChanges();
+                }
+            }
+        }
+
+      
+        public async Task AddAsync(IList<TEntity> entities)
+        {
+            var context = new TContext();
+            foreach (var entity in entities)
+            {
+                await context.Set<TEntity>().AddAsync(entity);
+                await context.SaveChangesAsync();
+            }
         }
 
         public void Delete(TEntity entity)
@@ -51,22 +64,39 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
+        public async Task DeleteAsync(TEntity entity)
+        {
+            var context = new TContext();
+            var deletedEntity = context.Entry(entity);
+            deletedEntity.State = EntityState.Deleted;
+            context.SaveChanges();
+        }
+
         public void Delete(IList<TEntity> entities)
         {
-            throw new NotImplementedException();
+            using (var context = new TContext())
+            {
+                foreach (var entity in entities)
+                {
+                    var deletedEntity = context.Entry(entity);
+                    deletedEntity.State = EntityState.Deleted;
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public async Task DeleteAsync(IList<TEntity> entities)
+        {
+            var context = new TContext();
+            foreach (var entity in entities)
+            {
+                var deletedEntity = context.Entry(entity);
+                deletedEntity.State = EntityState.Deleted;
+                context.SaveChanges();
+            }
         }
 
         public int Delete(Expression<Func<TEntity, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(TEntity entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(IList<TEntity> entities)
         {
             throw new NotImplementedException();
         }
@@ -84,6 +114,12 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
+        public Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> expression)
+        {
+            var context = new TContext();
+            return context.Set<TEntity>().FirstOrDefaultAsync(expression);
+        }
+
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
             using (var context = new TContext())
@@ -96,12 +132,10 @@ namespace Core.DataAccess.EntityFramework
 
         public Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> expression = null)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> expression)
-        {
-            throw new NotImplementedException();
+            var context = new TContext();
+            return expression == null
+                ? context.Set<TEntity>().ToListAsync()
+                : context.Set<TEntity>().Where(expression).ToListAsync();
         }
 
         public TEntity GetById(int id)
@@ -124,19 +158,37 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
+        public async Task UpdateAsync(TEntity entity)
+        {
+            var context = new TContext();
+            var updatedEntity = context.Entry(entity);
+            updatedEntity.State = EntityState.Modified;
+            context.SaveChanges();
+        }
+
         public void Update(IList<TEntity> entities)
         {
-            throw new NotImplementedException();
+            using (var context = new TContext())
+            {
+                foreach (var entity in entities)
+                {
+                    var updatedEntity = context.Entry(entity);
+                    updatedEntity.State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+            }
         }
 
-        public Task UpdateAsync(TEntity entity)
+        public async Task UpdateAsync(IList<TEntity> entities)
         {
-            throw new NotImplementedException();
-        }
+            var context = new TContext();
 
-        public Task UpdateAsync(IList<TEntity> entities)
-        {
-            throw new NotImplementedException();
+            foreach (var entity in entities)
+            {
+                var updatedEntity = context.Entry(entity);
+                updatedEntity.State = EntityState.Modified;
+                context.SaveChanges();
+            }
         }
     }
 }

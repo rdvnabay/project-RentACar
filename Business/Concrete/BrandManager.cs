@@ -40,11 +40,6 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public Task<IResult> AddAsync(Brand brand)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);
@@ -90,6 +85,10 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductUpdated);
         }
 
-    
+        public  IDataResult<Task<List<Brand>>> GetAllAsync()
+        {
+            var data = _brandDal.GetAllAsync();
+            return new SuccessDataResult<Task<List<Brand>>>(data);
+        }
     }
 }

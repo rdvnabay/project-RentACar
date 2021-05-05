@@ -17,7 +17,7 @@ namespace Core.DataAccess
 
 
         void Add(T entity);
-        void Add(IList<T> entities);
+        void AddMultiple(IList<T> entities);
 
 
         void Update(T entity);
