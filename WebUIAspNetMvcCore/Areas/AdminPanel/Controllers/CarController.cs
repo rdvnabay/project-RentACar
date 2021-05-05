@@ -73,5 +73,15 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             }
             return RedirectToAction("List", "Brand");
         }
+
+        public IActionResult GetAllByColor(int colorId)
+        {
+            var result = _carService.GetAllByColor(colorId);
+            if (result.Success)
+            {
+                return View(result.Data);
+            }
+            return RedirectToAction("List", "Color");
+        }
     }
 }

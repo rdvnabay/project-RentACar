@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace DataAccess.Abstract
 {
-    public interface ICarDal:IEntityRepository<Car>
+    public interface ICarDal:IEntityRepository<Car>,IEntityAsyncRepository<Car>
     {
         CarForListDto GetDetails(int carId);
         List<CarForListDto> GetAllDto(Expression<Func<CarForListDto, bool>> filter = null);

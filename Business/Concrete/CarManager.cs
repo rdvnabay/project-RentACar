@@ -7,6 +7,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.Dtos;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -72,6 +73,12 @@ namespace Business.Concrete
         {
             var data = _carDal.GetDetails(carId);
             return new SuccessDataResult<CarForListDto>(data);
+        }
+
+        public IDataResult<Task<List<Car>>> GetAllAsync()
+        {
+            var data = _carDal.GetAllAsync();
+            return new SuccessDataResult<Task<List<Car>>>(data);
         }
     }
 }
