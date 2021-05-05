@@ -35,5 +35,33 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             _carService.Add(car);
             return RedirectToAction("List", "Car");
         }
+
+        public IActionResult Delete(int carId)
+        {
+            var result = _carService.GetById(carId);
+            if (result.Success)
+            {
+                _carService.Delete(result.Data);
+                return RedirectToAction("List", "Car");
+            }
+            return RedirectToAction("List", "Car");
+        }
+
+        public IActionResult Edit(int carId)
+        {
+            var model = _carService.GetById(carId).Data;
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Car car)
+        {
+            var result = _carService.Update(car);
+            if (result.Success)
+            {
+                return RedirectToAction("List", "Car");
+            }
+            return View(result);
+        }
     }
 }
