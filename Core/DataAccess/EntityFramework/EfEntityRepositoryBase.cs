@@ -120,7 +120,7 @@ namespace Core.DataAccess.EntityFramework
             return context.Set<TEntity>().FirstOrDefaultAsync(expression);
         }
 
-        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
+        public virtual List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
             using (var context = new TContext())
             {
@@ -130,7 +130,7 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> expression = null)
+        public virtual Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> expression = null)
         {
             var context = new TContext();
             return expression == null

@@ -6,6 +6,7 @@ using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System.Collections.Generic;
 
 namespace Business.Concrete
@@ -35,6 +36,12 @@ namespace Business.Concrete
         {
             var data = _userDal.GetAll();
             return new SuccessDataResult<List<User>>(data);
+        }
+
+        public IDataResult<List<UserForListDto>> GetAllDto()
+        {
+            var data = _userDal.GetAllDto();
+            return new SuccessDataResult<List<UserForListDto>>(data);
         }
 
         public IDataResult<User> GetById(int userId)

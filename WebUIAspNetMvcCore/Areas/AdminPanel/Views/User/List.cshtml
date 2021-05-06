@@ -1,0 +1,135 @@
+﻿@model List<UserForListDto>
+
+@section entityGetAllCss {
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/lib/panel/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/lib/panel/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/lib/panel/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Tüm Araçlar</h1>
+                </div>
+                <div class="col-sm-6">
+                    <partial name="Partial/_BreadCrumb" />
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>
+                                <a asp-controller="User" asp-action="Add" class="btn btn-flat btn-outline-success">Kullanıcı Ekle</a>
+                            </h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Adı</th>
+                                        <th>Soyadı</th>
+                                        <th>Email</th>
+                                        <th>Durumu</th>
+                                        <th>Yetkileri</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var user in Model)
+                                    {
+                                        <tr>
+                                            <td>@user.Id</td>
+                                            <td>@user.FirstName</td>
+                                            <td>@user.LastName</td>
+                                            <td>@user.Email</td>
+                                            <td>@user.Status</td>
+                                            <td></td>
+
+                                            <td>
+                                                <a asp-controller="User" asp-action="Edit" asp-route-carId="@user.Id" class="btn btn-warning">Düzenle </a>
+                                            </td>
+                                            <td>
+                                                <a asp-controller="User" asp-action="Delete" asp-route-roleId="@user.Id" class="btn btn-danger">Sil</a>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Adı</th>
+                                        <th>Soyadı</th>
+                                        <th>Email</th>
+                                        <th>Durumu</th>
+                                        <th>Yetkileri</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+
+
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+@section entityGetAllJs {
+    <!-- DataTables  & Plugins -->
+    <script src="~/lib/panel/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/lib/panel/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/lib/panel/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/lib/panel/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/lib/panel/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/lib/panel/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/lib/panel/jszip/jszip.min.js"></script>
+    <script src="~/lib/panel/pdfmake/pdfmake.min.js"></script>
+    <script src="~/lib/panel/pdfmake/vfs_fonts.js"></script>
+    <script src="~/lib/panel/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/lib/panel/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/lib/panel/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+}

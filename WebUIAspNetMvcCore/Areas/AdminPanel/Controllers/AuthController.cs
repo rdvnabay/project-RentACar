@@ -25,11 +25,11 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
         public IActionResult Register(UserForRegisterDto model)
         {
             var userExist = _authService.UserExists(model.Email);
-            //if (!userExist.Success)
-            //{
-            //    return View(model);
-            //}
-           var registerResult = _authService.Register(model, model.Password);
+            if (!userExist.Success)
+            {
+                return View(model);
+            }
+            var registerResult = _authService.Register(model, model.Password);
             var result = _authService.CreateAccessToken(registerResult.Data);
             if (result.Success)
             {
@@ -54,6 +54,8 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
             var result = _authService.CreateAccessToken(userLogin.Data);
             if (result.Success)
             {
+                TempData["userName"] = userLogin.Data.FirstName+ " " + userLogin.Data.LastName;
+                TempData["userId"] = userLogin.Data.Id;
                 return RedirectToAction("Index", "Dashboard");
             }
             return View(model);

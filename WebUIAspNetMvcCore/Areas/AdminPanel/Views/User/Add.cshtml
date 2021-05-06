@@ -1,0 +1,95 @@
+﻿@model UserForRegisterDto
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Kullanıcı Ekleme Sayfası</h1>
+                </div>
+                <div class="col-sm-6">
+                    <partial name="Partial/_BreadCrumb" />
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <form asp-controller="User" asp-action="Add" method="post">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- Form Element sizes -->
+                        <!-- general form elements disabled -->
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                <h3 class="card-title">Kullanıcı Ekleme</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+
+                                <!-- input states -->
+                                <div class="form-group">
+                                    <label class="col-form-label" asp-for="FirstName">
+                                        Adı
+                                    </label>
+                                    <input type="text" asp-for="FirstName" class="form-control" id="inputSuccess" placeholder="Adı giriniz...">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" asp-for="LastName">
+                                        Soyadı
+                                    </label>
+                                    <input type="text" asp-for="LastName" class="form-control" id="inputWarning" placeholder="Soyadı giriniz ...">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" asp-for="Email">
+                                        E-posta Adresi
+                                    </label>
+                                    <input type="email" asp-for="Email" class="form-control" id="inputError" placeholder="E-posta adresi giriniz ...">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" asp-for="Password">
+                                        Şifre
+                                    </label>
+                                    <input type="password" asp-for="Password" class="form-control" id="inputError" placeholder="Şifre giriniz ...">
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                        <!-- general form elements disabled -->
+
+                    </div>
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-6">
+                        <!-- Form Element sizes -->
+                        <!-- general form elements disabled -->
+                        <div class="card card-warning">
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <!-- select -->
+
+                                @await Component.InvokeAsync(typeof(WebUIAspNetMvcCore.Areas.AdminPanel.ViewComponents.OperationClaimList))
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-fill btn-success">Kullanıcı Ekle</button>
+                            </div>
+                            <!-- /.card-body -->
+
+                        </div>
+                        <!-- /.card -->
+                        <!-- general form elements disabled -->
+
+                    </div>
+                    <!--/.col (right) -->
+                </div>
+            </form>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
