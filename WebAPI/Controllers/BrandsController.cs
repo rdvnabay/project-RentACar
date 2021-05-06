@@ -1,7 +1,10 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
+using Core.Utilities.Results.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading;
+using System.Collections.Generic;
 
 namespace WebAPI.Controllers
 {
@@ -10,11 +13,17 @@ namespace WebAPI.Controllers
     public class BrandsController : ControllerBase
     {
         private IBrandService _brandService;
-        public BrandsController(IBrandService brandService)
+        private IMapper _mapper;
+        public BrandsController(
+            IBrandService brandService,
+            IMapper mapper)
         {
             _brandService = brandService;
+            _mapper = mapper;
         }
 
+
+        //Methods
         [HttpGet("get")]
         public IActionResult Get(int brandId)
         {
@@ -25,8 +34,10 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _brandService.GetAll();
-            if (result.Success)
+            var data = _brandService.GetAll().Data;
+            var result = _mapper.Map<List<BrandListDto>>(data);
+
+            if (result.Count>0)
             {
                 return Ok(result);
             }

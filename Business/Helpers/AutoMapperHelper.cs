@@ -12,6 +12,8 @@ namespace Business.Helpers
             CreateMap<OperationClaim, OperationClaimListDto>().ReverseMap();
             CreateMap<Car, CarForListDto>().ReverseMap();
             CreateMap<User, UserForListDto>().ReverseMap();
+            CreateMap<Brand, BrandListDto>().ReverseMap();
+            CreateMap<Color, ColorListDto>().ReverseMap();
         }
     }
 }

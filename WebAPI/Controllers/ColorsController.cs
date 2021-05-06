@@ -1,6 +1,9 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace WebAPI.Controllers
 {
@@ -9,11 +12,16 @@ namespace WebAPI.Controllers
     public class ColorsController : ControllerBase
     {
         private IColorService _colorService;
-        public ColorsController(IColorService colorService)
+        private IMapper _mapper;
+        public ColorsController(
+            IColorService colorService,
+            IMapper mapper)
         {
             _colorService = colorService;
+            _mapper = mapper;
         }
 
+        //Methods
         [HttpGet("get")]
         public IActionResult Get(int colorId)
         {
@@ -24,8 +32,9 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _colorService.GetAll();
-            if (result.Success)
+            var data = _colorService.GetAll().Data;
+            var result = _mapper.Map<List<ColorListDto>>(data);
+            if (result.Count>0)
             {
                 return Ok(result);
             }

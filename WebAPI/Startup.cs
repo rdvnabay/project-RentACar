@@ -1,3 +1,4 @@
+using Business.Helpers;
 using Core.DependencyResolvers;
 using Core.Extensions;
 using Core.Utilities.IoC;
@@ -28,7 +29,7 @@ namespace WebAPI
         {
 
             services.AddControllers();
-            services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(typeof(AutoMapperHelper));
             services.AddCors();
             //services.AddCors(options =>
             //{
