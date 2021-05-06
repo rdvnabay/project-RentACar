@@ -1,6 +1,9 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Core.Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
 {
@@ -8,14 +11,20 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
     public class OperationClaimController : Controller
     {
         private IOperationClaimService _operationClaimService;
-        public OperationClaimController(IOperationClaimService operationClaimService)
+        private IMapper _mapper;
+        public OperationClaimController(
+            IOperationClaimService operationClaimService,
+            IMapper mapper)
         {
             _operationClaimService = operationClaimService;
+            _mapper = mapper;
         }
+
 
         public IActionResult List()
         {
-            var model = _operationClaimService.GetAll().Data;
+            var data = _operationClaimService.GetAll().Data;
+            var model = _mapper.Map<List<OperationClaimListDto>>(data);
             return View(model);
 
         }
@@ -31,11 +40,6 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             _operationClaimService.Add(model);
             return RedirectToAction("GetAll", "OperationClaim");
         }
-
-        //public IActionResult Delete()
-        //{
-        //    return View();
-        //}
 
         [HttpPost]
         public IActionResult Delete(OperationClaim model)

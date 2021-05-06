@@ -1,3 +1,4 @@
+using Business.Helpers;
 using Core.DependencyResolvers;
 using Core.Extensions;
 using Core.Utilities.IoC;
@@ -32,6 +33,7 @@ namespace WebUIAspNetMvcCore
         {
             services.AddRazorPages();
             services.AddMvc();
+            services.AddAutoMapper(typeof(AutoMapperHelper));
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 

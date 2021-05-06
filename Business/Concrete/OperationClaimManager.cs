@@ -3,6 +3,7 @@ using Core.Entities.Concrete;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,5 +36,6 @@ namespace Business.Concrete
             var data = _operationClaimDal.GetAll();
             return new SuccessDataResult<List<OperationClaim>>(data);
         }
+
     }
 }
