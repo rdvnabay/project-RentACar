@@ -19,6 +19,7 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
+        //Methods
         [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {
@@ -38,12 +39,6 @@ namespace Business.Concrete
             return new SuccessDataResult<List<User>>(data);
         }
 
-        public IDataResult<List<UserForListDto>> GetAllDto()
-        {
-            var data = _userDal.GetAllDto();
-            return new SuccessDataResult<List<UserForListDto>>(data);
-        }
-
         public IDataResult<User> GetById(int userId)
         {
             return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId));
@@ -60,6 +55,7 @@ namespace Business.Concrete
             var data = _userDal.GetClaims(user);
             return new SuccessDataResult<List<OperationClaim>>(data);
         }
+
 
         [ValidationAspect(typeof(UserValidator))]
         public IResult Update(User user)

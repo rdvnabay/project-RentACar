@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,13 +14,18 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
     {
         private IUserService _userService;
         private IAuthService _authService;
+        private IMapper _mapper;
         public UserController(
             IUserService userService,
-            IAuthService authService)
+            IAuthService authService,
+            IMapper mapper)
         {
             _userService = userService;
             _authService = authService;
+            _mapper = mapper;
         }
+
+        //Actions
         public IActionResult Profile(int userId)
         {
             var result = _userService.GetById(userId);
@@ -32,7 +38,8 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
 
         public IActionResult List()
         {
-            var model= _userService.GetAllDto().Data;
+            var data = _userService.GetAll().Data;
+            var model = _mapper.Map<List<UserForListDto>>(data);
             return View(model);
         }
 

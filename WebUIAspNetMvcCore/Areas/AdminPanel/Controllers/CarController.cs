@@ -1,11 +1,9 @@
-﻿using Business.Abstract;
-using Business.ValidationRules.FluentValidation;
+﻿using AutoMapper;
+using Business.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
 {
@@ -13,15 +11,20 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
     public class CarController : Controller
     {
         private ICarService _carService;
-        public CarController(ICarService carService)
+        private IMapper _mapper;
+        public CarController(
+            ICarService carService,
+            IMapper mapper)
         {
             _carService = carService;
+            _mapper = mapper;
         }
 
         public IActionResult List()
         {
-            var result = _carService.GetAllDto().Data;
-            return View(result);
+            var data = _carService.GetAll().Data;
+            var model = _mapper.Map<List<CarForListDto>>(data);
+            return View(model);
         }
 
         public IActionResult Add()
