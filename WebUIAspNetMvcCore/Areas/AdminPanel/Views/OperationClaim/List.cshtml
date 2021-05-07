@@ -10,16 +10,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Tüm Roller</h1>
-                </div>
-                <div class="col-sm-6">
-                    <partial name="Partial/_BreadCrumb" />
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
+        <partial name="Partial/_ContentHeader" />
     </section>
 
     <!-- Main content -->
@@ -36,7 +27,7 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>#</th>
                                         <th>Rol</th>
                                         <th>Diğer</th>
                                         <th>Düzenleme</th>
@@ -47,14 +38,14 @@
                                     @foreach (var operationClaim in Model)
                                     {
                                         <tr>
-                                            <td>@operationClaim.Id</td>
+                                            <th>@operationClaim.Id</th>
                                             <td>@operationClaim.Name</td>
                                             <td>-</td>
                                             <td>
-                                                <a asp-controller="OperationClaim" asp-action="Edit" class="btn btn-warning">Düzenle </a>
+                                                <a asp-controller="OperationClaim" asp-action="Edit" asp-route-roleId="@operationClaim.Id" class="btn btn-sm btn-warning">Düzenle </a>
                                             </td>
                                             <td>
-                                                <a asp-controller="OperationClaim" asp-action="Delete" asp-route-roleId="@operationClaim.Id" class="btn btn-danger">Sil</a>
+                                                <a asp-controller="OperationClaim" asp-action="Delete" asp-route-roleId="@operationClaim.Id" class="btn btn-sm btn-danger">Sil</a>
                                             </td>
                                         </tr>
                                     }
@@ -62,7 +53,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>#</th>
                                         <th>Rol</th>
                                         <th>Diğer</th>
                                         <th>Düzenleme</th>

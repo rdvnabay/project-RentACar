@@ -10,16 +10,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Tüm Araçlar</h1>
-                </div>
-                <div class="col-sm-6">
-                    <partial name="Partial/_BreadCrumb" />
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
+        <partial name="Partial/_ContentHeader" />
     </section>
 
     <!-- Main content -->
@@ -38,7 +29,7 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>#</th>
                                         <th>Adı</th>
                                         <th>Özellikleri</th>
                                         <th>Model Yılı</th>
@@ -53,7 +44,7 @@
                                     @foreach (var car in Model)
                                     {
                                         <tr>
-                                            <td>@car.Id</td>
+                                            <th>@car.Id</th>
                                             <td>@car.Name</td>
                                             <td>@car.Description</td>
                                             <td>@car.ModelYear</td>
@@ -61,10 +52,10 @@
                                             <td>@car.ColorName</td>
                                             <td>@car.BrandName</td>
                                             <td>
-                                                <a asp-controller="Car" asp-action="Edit" asp-route-carId="@car.Id" class="btn btn-warning">Düzenle </a>
+                                                <a asp-controller="Car" asp-action="Edit" asp-route-carId="@car.Id" class="btn btn-sm  btn-warning">Düzenle </a>
                                             </td>
                                             <td>
-                                                <a asp-controller="Car" asp-action="Delete" asp-route-roleId="@car.Id" class="btn btn-danger">Sil</a>
+                                                <a asp-controller="Car" asp-action="Delete" asp-route-roleId="@car.Id" class="btn btn-sm  btn-danger">Sil</a>
                                             </td>
                                         </tr>
                                     }
@@ -72,7 +63,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>#</th>
                                         <th>Rol</th>
                                         <th>Özellikleri</th>
                                         <th>Model Yılı</th>

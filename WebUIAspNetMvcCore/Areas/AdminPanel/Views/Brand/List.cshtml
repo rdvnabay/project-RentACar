@@ -10,86 +10,76 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Tüm Markalar</h1>
-                </div>
-                <div class="col-sm-6">
-                    <partial name="Partial/_BreadCrumb" />
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
+        <partial name="Partial/_ContentHeader" />
     </section>
-
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                <a asp-controller="Brand" asp-action="Add" class="btn btn-flat btn-outline-success">Marka Ekle</a>
-                            </h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <table id="example2" class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Marka</th>
-                                        <th>Diğer</th>
-                                        <th>Düzenleme</th>
-                                        <th>Silme</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var brand in Model)
-                                    {
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <a asp-controller="Brand" asp-action="Add" class="btn btn-flat btn-outline-success">Marka Ekle</a>
+                                </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example2" class="table table-bordered table-hover">
+                                    <thead>
                                         <tr>
-                                            <td>@brand.Id</td>
-                                            <td>
-                                                <a asp-controller="Car" asp-action="GetAllByBrand" asp-route-brandId="@brand.Id">
-                                                    @brand.Name
-                                                </a>
-                                            </td>
-                                            <td>-</td>
-                                            <td>
-                                                <a asp-controller="Brand" asp-action="Edit" asp-route-brandId="@brand.Id" class="btn btn-warning">Düzenle </a>
-                                            </td>
-                                            <td>
-                                                <a asp-controller="Brand" asp-action="Delete" asp-route-brandId="@brand.Id" class="btn btn-danger">Sil</a>
-                                            </td>
+                                            <th>#</th>
+                                            <th>Marka</th>
+                                            <th>Diğer</th>
+                                            <th>Düzenleme</th>
+                                            <th>Silme</th>
                                         </tr>
-                                    }
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var brand in Model)
+                                        {
+                                            <tr>
+                                                <th>@brand.Id</th>
+                                                <td>
+                                                    <a asp-controller="Car" asp-action="GetAllByBrand" asp-route-brandId="@brand.Id">
+                                                        @brand.Name
+                                                    </a>
+                                                </td>
+                                                <td>-</td>
+                                                <td>
+                                                    <a asp-controller="Brand" asp-action="Edit" asp-route-brandId="@brand.Id" class="btn btn-sm btn-warning">Düzenle </a>
+                                                </td>
+                                                <td>
+                                                    <a asp-controller="Brand" asp-action="Delete" asp-route-brandId="@brand.Id" class="btn btn-sm btn-danger">Sil</a>
+                                                </td>
+                                            </tr>
+                                        }
 
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Marka
-                                        <th>Diğer</th>
-                                        <th>Düzenleme</th>
-                                        <th>Silme</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Marka
+                                            <th>Diğer</th>
+                                            <th>Düzenleme</th>
+                                            <th>Silme</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
                         </div>
-                        <!-- /.card-body -->
+                        <!-- /.card -->
+
+
                     </div>
-                    <!-- /.card -->
-
-
+                    <!-- /.col -->
                 </div>
-                <!-- /.col -->
+                <!-- /.row -->
             </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+            <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
 </div>
 
 

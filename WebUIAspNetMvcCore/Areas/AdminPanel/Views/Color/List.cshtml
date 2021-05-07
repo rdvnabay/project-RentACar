@@ -10,16 +10,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Tüm Roller</h1>
-                </div>
-                <div class="col-sm-6">
-                    <partial name="Partial/_BreadCrumb" />
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
+        <partial name="Partial/_ContentHeader" />
     </section>
 
     <!-- Main content -->
@@ -38,7 +29,7 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>#</th>
                                         <th>Renk</th>
                                         <th>Diğer</th>
                                         <th>Düzenleme</th>
@@ -49,7 +40,7 @@
                                     @foreach (var color in Model)
                                     {
                                         <tr>
-                                            <td>@color.Id</td>
+                                            <th>@color.Id</th>
                                             <td>
                                                 <a asp-controller="Car" asp-action="GetAllByColor" asp-route-colorId="@color.Id">
                                                     @color.Name
@@ -57,10 +48,10 @@
                                             </td>
                                             <td>-</td>
                                             <td>
-                                                <a asp-controller="Color" asp-action="Edit" asp-route-colorId="@color.Id" class="btn btn-warning">Düzenle </a>
+                                                <a asp-controller="Color" asp-action="Edit" asp-route-colorId="@color.Id" class="btn btn-sm btn-warning">Düzenle </a>
                                             </td>
                                             <td>
-                                                <a asp-controller="Color" asp-action="Delete" asp-route-colorId="@color.Id" class="btn btn-danger">Sil</a>
+                                                <a asp-controller="Color" asp-action="Delete" asp-route-colorId="@color.Id" class="btn btn-sm btn-danger">Sil</a>
                                             </td>
                                         </tr>
                                     }
@@ -68,7 +59,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>#</th>
                                         <th>Renk</th>
                                         <th>Diğer</th>
                                         <th>Düzenleme</th>
