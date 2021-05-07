@@ -30,7 +30,7 @@ namespace WebUIAspNetMvcCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddMvc().AddFluentValidation();
+            services.AddMvc();/*.AddFluentValidation();*/
            
             services.AddAutoMapper(typeof(AutoMapperHelper));
 

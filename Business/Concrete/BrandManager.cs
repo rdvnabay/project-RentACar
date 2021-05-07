@@ -25,10 +25,10 @@ namespace Business.Concrete
         {
             _brandDal = brandDal;
         }
-        [SecuredOperation("admin,brand-add")]
+        //[SecuredOperation("admin,brand-add")]
         [ValidationAspect(typeof(BrandValidator))]
         [CacheRemoveAspect("IBrandService.Get")]
-        [PerformanceAspect(5)]
+        //[PerformanceAspect(5)]
         public IResult Add(Brand brand)
         {
             IResult result= BusinessRules.Run(CheckIfBrandNameExists(brand.Name));
