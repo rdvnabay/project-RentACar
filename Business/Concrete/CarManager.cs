@@ -26,6 +26,13 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [ValidationAspect(typeof(CarValidator))]
+        public async Task<IResult> AddAsync(Car car)
+        {
+            await _carDal.AddAsync(car);
+            return new SuccessResult();
+        }
+
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
@@ -74,5 +81,6 @@ namespace Business.Concrete
             var data = _carDal.GetAllAsync();
             return new SuccessDataResult<Task<List<Car>>>(data);
         }
+
     }
 }

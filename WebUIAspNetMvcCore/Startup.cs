@@ -1,21 +1,19 @@
 using Business.Helpers;
+using Business.ValidationRules.FluentValidation;
 using Core.DependencyResolvers;
 using Core.Extensions;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.Jwt;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebUIAspNetMvcCore
 {
@@ -32,7 +30,8 @@ namespace WebUIAspNetMvcCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddMvc();
+            services.AddMvc().AddFluentValidation();
+           
             services.AddAutoMapper(typeof(AutoMapperHelper));
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();

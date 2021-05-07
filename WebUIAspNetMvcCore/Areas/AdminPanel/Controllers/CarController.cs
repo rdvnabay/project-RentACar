@@ -1,9 +1,16 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
 using Entities.Concrete;
 using Entities.Dtos;
+using FluentValidation.Results;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
 {
@@ -11,13 +18,16 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
     public class CarController : Controller
     {
         private ICarService _carService;
+        private ICarImageService _carImageService;
         private IMapper _mapper;
         public CarController(
             ICarService carService,
+            ICarImageService carImageService,
             IMapper mapper)
         {
             _carService = carService;
             _mapper = mapper;
+            _carImageService = carImageService;
         }
 
         public IActionResult List()
@@ -33,10 +43,34 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Car car)
+        public async Task<IActionResult> Add(Car car, IFormFile[] files)
         {
-            _carService.Add(car);
-            return RedirectToAction("List", "Car");
+
+            if (!ModelState.IsValid)
+            {
+                return View(car);
+            }
+
+                _carService.Add(car);
+                foreach (var file in files)
+                {
+                    var extention = Path.GetExtension(file.FileName);
+                    var fileName = string.Format($"{DateTime.Now.Ticks}{extention}");
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\panel\\img", fileName);
+
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+                    var image = new CarImage
+                    {
+                        CarId = car.Id,
+                        Date = DateTime.Now,
+                        ImagePath = fileName
+                    };
+                    _carImageService.Add(image);
+                }
+                return RedirectToAction("List", "Car");
         }
 
         public IActionResult Delete(int carId)
@@ -65,6 +99,12 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
                 return RedirectToAction("List", "Car");
             }
             return View(result);
+        }
+
+        public IActionResult Detail(int carId)
+        {
+            var model = _carService.GetById(carId).Data;
+            return View(model);
         }
 
         public IActionResult GetAllByBrand(int brandId)

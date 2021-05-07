@@ -45,17 +45,24 @@
                                     {
                                         <tr>
                                             <th>@car.Id</th>
-                                            <td>@car.Name</td>
+                                            <td>
+                                                <a asp-controller="Car" asp-action="Detail" asp-route-carId="@car.Id">
+                                                    @car.Name
+                                                </a>
+                                    
+                                            </td>
                                             <td>@car.Description</td>
                                             <td>@car.ModelYear</td>
                                             <td>@car.DailyPrice</td>
                                             <td>@car.ColorName</td>
                                             <td>@car.BrandName</td>
                                             <td>
-                                                <a asp-controller="Car" asp-action="Edit" asp-route-carId="@car.Id" class="btn btn-sm  btn-warning">Düzenle </a>
+                                                <a asp-controller="Car" asp-action="Edit" asp-route-carId="@car.Id" 
+                                                   class="btn btn-sm  btn-warning">Düzenle </a>
                                             </td>
                                             <td>
-                                                <a asp-controller="Car" asp-action="Delete" asp-route-roleId="@car.Id" class="btn btn-sm  btn-danger">Sil</a>
+                                                <a asp-controller="Car" asp-action="Delete" asp-route-roleId="@car.Id" 
+                                                   class="btn btn-sm  btn-danger">Sil</a>
                                             </td>
                                         </tr>
                                     }
