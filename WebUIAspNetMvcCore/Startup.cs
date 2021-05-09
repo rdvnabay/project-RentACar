@@ -1,19 +1,19 @@
 using Business.Helpers;
-using Business.ValidationRules.FluentValidation;
 using Core.DependencyResolvers;
 using Core.Extensions;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.Jwt;
-using FluentValidation;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using WebUIAspNetMvcCore.Services;
 
 namespace WebUIAspNetMvcCore
 {
@@ -34,7 +34,12 @@ namespace WebUIAspNetMvcCore
            
             services.AddAutoMapper(typeof(AutoMapperHelper));
 
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+            services.AddSingleton<ITokenSessionService,TokenSessionService>();
+
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -77,6 +82,8 @@ namespace WebUIAspNetMvcCore
 
             app.UseRouting();
 
+            app.UseSession();
+
             app.UseAuthentication();
 
             app.UseAuthorization();
@@ -89,7 +96,7 @@ namespace WebUIAspNetMvcCore
                 pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
                 #endregion
 
-                #region Panel
+                #region Site
                 endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -1,10 +1,9 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Security.Jwt;
 using Entities.Dtos;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using WebUIAspNetMvcCore.Services;
 
 namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
 {
@@ -12,9 +11,14 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
     public class AuthController : Controller
     {
         private IAuthService _authService;
-        public AuthController(IAuthService authService)
+        private ITokenSessionService _tokenSessionService;
+        public AuthController(
+            IAuthService authService,
+            ITokenSessionService tokenSessionService
+            )
         {
             _authService = authService;
+            _tokenSessionService = tokenSessionService;
         }
         public IActionResult Register()
         {
@@ -54,9 +58,7 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
             var result = _authService.CreateAccessToken(userLogin.Data);
             if (result.Success)
             {
-               
-                TempData["userName"] = userLogin.Data.FirstName+ " " + userLogin.Data.LastName;
-                TempData["userId"] = userLogin.Data.Id;
+
                 return RedirectToAction("Index", "Dashboard");
             }
             return View(model);

@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Entities.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
 {
@@ -34,6 +32,11 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
                 return View(result.Data);
             }
             return RedirectToAction("Index", "Dashboard");
+        }
+
+        public IActionResult Logout()
+        {
+            return RedirectToAction("Index","Dashboard");
         }
 
         public IActionResult List()
