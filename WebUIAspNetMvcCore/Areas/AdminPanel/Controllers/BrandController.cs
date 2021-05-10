@@ -2,9 +2,15 @@
 using Business.Abstract;
 using Entities.Concrete;
 using Entities.Dtos;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using WebUIAspNetMvcCore.Areas.AdminPanel.Models;
 
 namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
 {
@@ -30,9 +36,21 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Add(Brand brand)
         {
+            //string tokenUrl = Environment.GetEnvironmentVariable("TOKEN_VALIDATE_URL");
+            string token = HttpContext.Session.GetString("token");
+            HttpClient client = new HttpClient();
+            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",token);
+          
             var result = _brandService.Add(brand);
             if (result.Success)
             {
+                var alertMessage = new AlertMessage
+                {
+                    Message = $"{brand.Name} markası eklendi.",
+                    AlertType = "success"
+                };
+                TempData["alertMessage"] = JsonConvert.SerializeObject(alertMessage);
+                //client.GetStringAsync(tokenUrl);
                 return RedirectToAction("List", "Brand");
             }
             return View(result);
@@ -57,7 +75,7 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Edit(Brand brand)
         {
-           var result= _brandService.Update(brand);
+            var result = _brandService.Update(brand);
             if (result.Success)
             {
                 return RedirectToAction("List", "Brand");

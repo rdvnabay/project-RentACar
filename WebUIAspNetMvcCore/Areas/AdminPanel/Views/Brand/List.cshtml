@@ -11,86 +11,93 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <partial name="Partial/_ContentHeader" />
+        @if (TempData["alertMessage"] != null)
+        {
+            var alertMessage = JsonConvert.DeserializeObject<AlertMessage>(TempData["alertMessage"] as String);
+            <span class="text-sm alert alert-@alertMessage.AlertType">
+                @alertMessage.Message
+            </span>
+        }
     </section>
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">
-                                    <a asp-controller="Brand" asp-action="Add" class="btn btn-flat btn-outline-success">Marka Ekle</a>
-                                </h3>
-                            </div>
-                            <!-- /.card-header -->
 
-                            @if (Model.Count > 0)
-                            {
-                                <div class="card-body">
-                                    <table id="example2" class="table table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Marka</th>
-                                                <th>Diğer</th>
-                                                <th>Düzenleme</th>
-                                                <th>Silme</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var brand in Model)
-                                            {
-                                                <tr>
-                                                    <th>@brand.Id</th>
-                                                    <td>
-                                                        <a asp-controller="Car" asp-action="GetAllByBrand" asp-route-brandId="@brand.Id">
-                                                            @brand.Name
-                                                        </a>
-                                                    </td>
-                                                    <td>-</td>
-                                                    <td>
-                                                        <a asp-controller="Brand" asp-action="Edit" asp-route-brandId="@brand.Id" class="btn btn-sm btn-warning">Düzenle </a>
-                                                    </td>
-                                                    <td>
-                                                        <a asp-controller="Brand" asp-action="Delete" asp-route-brandId="@brand.Id" class="btn btn-sm btn-danger">Sil</a>
-                                                    </td>
-                                                </tr>
-                                            }
-
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Marka
-                                                <th>Diğer</th>
-                                                <th>Düzenleme</th>
-                                                <th>Silme</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            }
-                            else
-                            {
-                        <div class="card-body">
-                            <span class="alert alert-warning text-sm">Kayıtlarda herhangi bir <strong>marka</strong> bulunamadı.</span>
+   
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <a asp-controller="Brand" asp-action="Add" class="btn btn-flat btn-outline-success">Marka Ekle</a>
+                            </h3>
                         </div>
-                            }
+                        <!-- /.card-header -->
+                        @if (Model.Count > 0)
+                        {
+                            <div class="card-body">
+                                <table id="example2" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Marka</th>
+                                            <th>Diğer</th>
+                                            <th>Düzenleme</th>
+                                            <th>Silme</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var brand in Model)
+                                        {
+                                            <tr>
+                                                <th>@brand.Id</th>
+                                                <td>
+                                                    <a asp-controller="Car" asp-action="GetAllByBrand" asp-route-brandId="@brand.Id">
+                                                        @brand.Name
+                                                    </a>
+                                                </td>
+                                                <td>-</td>
+                                                <td>
+                                                    <a asp-controller="Brand" asp-action="Edit" asp-route-brandId="@brand.Id" class="btn btn-sm btn-warning">Düzenle </a>
+                                                </td>
+                                                <td>
+                                                    <a asp-controller="Brand" asp-action="Delete" asp-route-brandId="@brand.Id" class="btn btn-sm btn-danger">Sil</a>
+                                                </td>
+                                            </tr>
+                                        }
 
-                            <!-- /.card-body -->
-                        </div>
-                                <!-- /.card -->
-
-
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Marka
+                                            <th>Diğer</th>
+                                            <th>Düzenleme</th>
+                                            <th>Silme</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
                             </div>
-                    <!-- /.col -->
+                        }
+                        else
+                        {
+                            <div class="card-body">
+                                <span class="alert alert-warning text-sm">Kayıtlarda herhangi bir <strong>marka</strong> bulunamadı.</span>
+                            </div>
+                        }
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+
+
                 </div>
-                <!-- /.row -->
+                <!-- /.col -->
             </div>
-            <!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
 </div>
 
 

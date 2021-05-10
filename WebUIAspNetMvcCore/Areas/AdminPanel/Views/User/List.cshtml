@@ -38,7 +38,7 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>#</th>
                                         <th>Adı</th>
                                         <th>Soyadı</th>
                                         <th>Email</th>
@@ -52,7 +52,7 @@
                                     @foreach (var user in Model)
                                     {
                                         <tr>
-                                            <td>@user.Id</td>
+                                            <th>@user.Id</th>
                                             <td>@user.FirstName</td>
                                             <td>@user.LastName</td>
                                             <td>@user.Email</td>
@@ -71,7 +71,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>#</th>
                                         <th>Adı</th>
                                         <th>Soyadı</th>
                                         <th>Email</th>

@@ -1,8 +1,11 @@
 ﻿using Business.Abstract;
+using Core.Extensions;
 using Core.Utilities.Security.Jwt;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using WebUIAspNetMvcCore.Services;
 
 namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
@@ -58,7 +61,12 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
             var result = _authService.CreateAccessToken(userLogin.Data);
             if (result.Success)
             {
-
+                HttpContext.Session.SetString("token", result.Data.Token);
+                string token = HttpContext.Session.GetString("token");
+                HttpClient client = new HttpClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+               
+                //TempData["tokenVal"] = HttpContext.Session.GetObject<AccessToken>("token").Token;
                 return RedirectToAction("Index", "Dashboard");
             }
             return View(model);

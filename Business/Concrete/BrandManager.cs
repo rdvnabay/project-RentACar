@@ -25,7 +25,7 @@ namespace Business.Concrete
         {
             _brandDal = brandDal;
         }
-        //[SecuredOperation("admin,brand-add")]
+        [SecuredOperation("admin")]
         [ValidationAspect(typeof(BrandValidator))]
         [CacheRemoveAspect("IBrandService.Get")]
         //[PerformanceAspect(5)]
