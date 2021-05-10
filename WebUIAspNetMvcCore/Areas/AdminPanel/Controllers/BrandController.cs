@@ -28,8 +28,12 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Add(Brand brand)
         {
-            _brandService.Add(brand);
-            return RedirectToAction("List", "Brand");
+            var result = _brandService.Add(brand);
+            if (result.Success)
+            {
+                return RedirectToAction("List", "Brand");
+            }
+            return View(result);
         }
 
         public IActionResult Edit(int brandId)
@@ -55,7 +59,6 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
             if (result.Success)
             {
                 _brandService.Delete(result.Data);
-                return RedirectToAction("List", "Brand");
             }
             return RedirectToAction("List", "Brand");
         }

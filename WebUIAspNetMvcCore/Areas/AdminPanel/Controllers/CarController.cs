@@ -87,7 +87,6 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             if (result.Success)
             {
                 _carService.Delete(result.Data);
-                return RedirectToAction("List", "Car");
             }
             return RedirectToAction("List", "Car");
         }

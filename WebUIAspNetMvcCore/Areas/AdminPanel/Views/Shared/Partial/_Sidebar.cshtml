@@ -42,7 +42,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
-                with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a asp-controller="Dashboard" asp-action="Index" class="nav-link">
                         <i class="nav-icon fas fa-home"></i>
@@ -50,7 +50,7 @@
                             Panel
                         </p>
                     </a>
-                   
+
                 </li>
                 <li class="nav-item">
                     <a asp-controller="Car" asp-action="List" class="nav-link">
@@ -59,6 +59,30 @@
                             Arabalar
                             <span class="right badge badge-danger">Yeni</span>
                         </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-controller="Brand" asp-action="List" class="nav-link">
+                        <i class="nav-icon fas fa-th-list"></i>
+                        <p>
+                            Markalar
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-controller="Color" asp-action="List" class="nav-link">
+                        <i class="nav-icon fas fa-paint-roller"></i>
+                        <p>Renkler</p>
+                    </a>
+                </li>
+
+                <li class="nav-header">AYARLAR</li>
+                <li class="nav-item">
+                    <a asp-controller="User" asp-action="List" class="nav-link">
+                        <i class="nav-icon far fa-circle text-danger"></i>
+                        <p class="text">Kullanıcılar</p>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -84,31 +108,7 @@
                         </li>
                     </ul>
                 </li>
-             
-                <li class="nav-item">
-                    <a asp-controller="Brand" asp-action="List" class="nav-link">
-                        <i class="nav-icon fas fa-th-list"></i>
-                        <p>
-                            Markalar
-                        </p>
-                    </a>
-                </li>
-           
-                <li class="nav-item">
-                    <a asp-controller="Color" asp-action="List" class="nav-link">
-                        <i class="nav-icon fas fa-paint-roller"></i>
-                        <p>Renkler</p>
-                    </a>
-                </li>
-             
-                <li class="nav-header">SETTINGS</li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-circle text-danger"></i>
-                        <p class="text">Important</p>
-                    </a>
-                </li>
-            
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

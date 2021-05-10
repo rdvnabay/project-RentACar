@@ -1,10 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
@@ -35,7 +31,7 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             var result = _colorService.Add(color);
             if (result.Success)
             {
-                return RedirectToAction("Index", "Color");
+                return RedirectToAction("List", "Color");
             }
             return View(result);
         }
@@ -46,7 +42,6 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             if (result.Success)
             {
                 _colorService.Delete(result.Data);
-                return RedirectToAction("List", "Color");
             }
             return RedirectToAction("List", "Color");
         }

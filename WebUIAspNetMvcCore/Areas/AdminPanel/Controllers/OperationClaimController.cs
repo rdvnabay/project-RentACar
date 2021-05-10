@@ -35,17 +35,41 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(OperationClaim model)
+        public IActionResult Add(OperationClaim operationClaim)
         {
-            _operationClaimService.Add(model);
-            return RedirectToAction("GetAll", "OperationClaim");
+            var result = _operationClaimService.Add(operationClaim);
+            if (result.Success)
+            {
+                return RedirectToAction("List", "OperationClaim");
+            }
+            return View(result);
+        }
+
+        public IActionResult Edit(int operationClaimId)
+        {
+            var model = _operationClaimService.GetById(operationClaimId).Data;
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Delete(OperationClaim model)
+        public IActionResult Edit(OperationClaim operationClaim)
         {
-            _operationClaimService.Delete(model);
-            return RedirectToAction("Index", "Dashboard");
+            var result = _operationClaimService.Update(operationClaim);
+            if (result.Success)
+            {
+                return RedirectToAction("List", "OperationClaim");
+            }
+            return View(operationClaim);
+        }
+
+        public IActionResult Delete(int operationClaimId)
+        {
+            var result = _operationClaimService.GetById(operationClaimId);
+            if (result.Success)
+            {
+                _operationClaimService.Delete(result.Data);
+            }
+            return RedirectToAction("List", "OperationClaim");
         }
     }
 }

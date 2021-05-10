@@ -1,4 +1,4 @@
-﻿@model Brand 
+﻿@model OperationClaim
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -21,8 +21,7 @@
                 <!-- left column -->
                 <div class="col-md-6">
                     <!-- general form elements -->
-                 <!-- general form elements -->
-                 
+                    <!-- general form elements -->
                     <!-- Input addon -->
                     <div class="card card-info">
                         <div class="card-header">
@@ -32,11 +31,12 @@
 
 
                             <p>Small <code>.input-group.input-group-sm</code></p>
-                            <form method="post" asp-controller="Brand" asp-action="Add">
+                            <form method="post" asp-controller="OperationClaim" asp-action="Edit">
                                 <div class="input-group input-group-sm">
+                                    <input type="hidden" asp-for="@Model.Id" />
                                     <input asp-for="@Model.Name" class="form-control">
                                     <span class="input-group-append">
-                                        <button type="submit" class="btn btn-info btn-flat">Marka Ekle</button>
+                                        <button type="submit" class="btn btn-info btn-flat">Güncelle</button>
                                     </span>
                                 </div>
                             </form>
@@ -45,14 +45,13 @@
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
-                  
+
 
                 </div>
                 <!--/.col (left) -->
                 <!-- right column -->
                 <div class="col-md-6">
                     <!-- Form Element sizes -->
-                
                     <!-- general form elements disabled -->
                     <div class="card card-warning">
                         <div class="card-header">
@@ -61,7 +60,7 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <form>
-                           
+
 
                                 <!-- input states -->
                                 <div class="form-group">
@@ -91,7 +90,7 @@
                     </div>
                     <!-- /.card -->
                     <!-- general form elements disabled -->
-                   
+
                 </div>
                 <!--/.col (right) -->
             </div>

@@ -3,12 +3,7 @@ using Core.Entities.Concrete;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
-using Entities.Dtos;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -37,5 +32,16 @@ namespace Business.Concrete
             return new SuccessDataResult<List<OperationClaim>>(data);
         }
 
+        public IDataResult<OperationClaim> GetById(int operationClaimId)
+        {
+            var data = _operationClaimDal.Get(x => x.Id == operationClaimId);
+            return new SuccessDataResult<OperationClaim>(data);
+        }
+
+        public IResult Update(OperationClaim operationClaim)
+        {
+            _operationClaimDal.Update(operationClaim);
+            return new SuccessResult();
+        }
     }
 }

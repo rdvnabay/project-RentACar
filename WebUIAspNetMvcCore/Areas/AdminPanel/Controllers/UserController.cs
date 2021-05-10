@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Core.Entities.Concrete;
 using Entities.Dtos;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -24,28 +24,6 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
         }
 
         //Actions
-        public IActionResult Profile(int userId)
-        {
-            var result = _userService.GetById(userId);
-            if (result.Success)
-            {
-                return View(result.Data);
-            }
-            return RedirectToAction("Index", "Dashboard");
-        }
-
-        public IActionResult Logout()
-        {
-            return RedirectToAction("Index","Dashboard");
-        }
-
-        public IActionResult List()
-        {
-            var data = _userService.GetAll().Data;
-            var model = _mapper.Map<List<UserForListDto>>(data);
-            return View(model);
-        }
-
         public IActionResult Add()
         {
             return View();
@@ -66,6 +44,54 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
                 return RedirectToAction("Index", "Dashboard");
             }
             return View(model);
+        }
+
+        public IActionResult Delete(int userId)
+        {
+            var result = _userService.GetById(userId);
+            if (result.Success)
+            {
+                _userService.Delete(result.Data);
+            }
+            return RedirectToAction("List", "User");
+        }
+
+        public IActionResult Edit(int userId)
+        {
+            var model = _userService.GetById(userId).Data;
+            return View(model);
+        }
+
+        public IActionResult Edit(User user)
+        {
+            var result = _userService.Update(user);
+            if (result.Success)
+            {
+                return RedirectToAction("List", "User");
+            }
+            return View(user);
+        }
+
+        public IActionResult List()
+        {
+            var data = _userService.GetAll().Data;
+            var model = _mapper.Map<List<UserForListDto>>(data);
+            return View(model);
+        }
+
+        public IActionResult Logout()
+        {
+            return RedirectToAction("Index", "Dashboard");
+        }
+
+        public IActionResult Profile(int userId)
+        {
+            var result = _userService.GetById(userId);
+            if (result.Success)
+            {
+                return View(result.Data);
+            }
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }
