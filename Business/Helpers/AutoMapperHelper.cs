@@ -9,14 +9,14 @@ namespace Business.Helpers
     {
         public AutoMapperHelper()
         {
-            CreateMap<OperationClaim, OperationClaimListDto>().ReverseMap();
-            CreateMap<Car, CarListDto>()
+            CreateMap<OperationClaim, OperationClaimDto>().ReverseMap();
+            CreateMap<Car, CarDto>()
                 //Todo: One to many relationship with automapper
                 .ForMember(dest => dest.BrandName, opt =>
                 {
                     opt.MapFrom(src => src.Brand.Name);
                 });
-            CreateMap<User, UserListDto>().ReverseMap();
+            CreateMap<User, UserDto>().ReverseMap();
             CreateMap<Brand, BrandDto>().ReverseMap();
             CreateMap<Color, ColorDto>().ReverseMap();
         }

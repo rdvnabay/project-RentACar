@@ -75,7 +75,7 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
         public IActionResult List()
         {
             var data = _userService.GetAll().Data;
-            var model = _mapper.Map<List<UserListDto>>(data);
+            var model = _mapper.Map<List<UserDto>>(data);
             return View(model);
         }
 

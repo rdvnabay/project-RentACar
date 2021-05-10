@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Dtos
 {
-    public class UserListDto:IDto
+    public class UserDto:IDto
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

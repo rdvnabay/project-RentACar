@@ -72,10 +72,10 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(data);
         }
 
-        public IDataResult<CarListDto> GetDetails(int carId)
+        public IDataResult<CarDto> GetDetails(int carId)
         {
             var data = _carDal.GetDetails(carId);
-            return new SuccessDataResult<CarListDto>(data);
+            return new SuccessDataResult<CarDto>(data);
         }
 
         public IDataResult<Task<List<Car>>> GetAllAsync()

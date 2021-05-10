@@ -16,7 +16,7 @@ namespace Business.Abstract
         IDataResult<List<Car>> GetAll();
         IDataResult<Task<List<Car>>> GetAllAsync();
 
-        IDataResult<CarListDto> GetDetails(int carId);
+        IDataResult<CarDto> GetDetails(int carId);
         IDataResult<List<Car>> GetAllByBrand(int brandId);
         IDataResult<List<Car>>GetAllByColor(int colorId);
         IDataResult<List<Car>>GetAllBySearch(string search);

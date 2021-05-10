@@ -19,16 +19,8 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             _operationClaimService = operationClaimService;
             _mapper = mapper;
         }
-
-
-        public IActionResult List()
-        {
-            var data = _operationClaimService.GetAll().Data;
-            var model = _mapper.Map<List<OperationClaimListDto>>(data);
-            return View(model);
-
-        }
-
+      
+        //Actions
         public IActionResult Add()
         {
             return View();
@@ -51,6 +43,16 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             return View(model);
         }
 
+        public IActionResult Delete(int operationClaimId)
+        {
+            var result = _operationClaimService.GetById(operationClaimId);
+            if (result.Success)
+            {
+                _operationClaimService.Delete(result.Data);
+            }
+            return RedirectToAction("List", "OperationClaim");
+        }
+
         [HttpPost]
         public IActionResult Edit(OperationClaim operationClaim)
         {
@@ -62,14 +64,12 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             return View(operationClaim);
         }
 
-        public IActionResult Delete(int operationClaimId)
+        public IActionResult List()
         {
-            var result = _operationClaimService.GetById(operationClaimId);
-            if (result.Success)
-            {
-                _operationClaimService.Delete(result.Data);
-            }
-            return RedirectToAction("List", "OperationClaim");
+            var data = _operationClaimService.GetAll().Data;
+            var model = _mapper.Map<List<OperationClaimDto>>(data);
+            return View(model);
+
         }
     }
 }

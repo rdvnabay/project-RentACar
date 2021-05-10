@@ -124,13 +124,13 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             if (string.IsNullOrEmpty(search))
             {
                 var data = _carService.GetAll().Data;
-                var model = _mapper.Map<List<CarListDto>>(data);
+                var model = _mapper.Map<List<CarDto>>(data);
                 return View(model);
             }
             else
             {
                 var data = _carService.GetAllBySearch(search).Data;
-                var model = _mapper.Map<List<CarListDto>>(data);
+                var model = _mapper.Map<List<CarDto>>(data);
                 return View(model);
             }
         }

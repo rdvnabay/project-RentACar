@@ -2,7 +2,7 @@
 
 namespace Entities.Dtos
 {
-    public class CarListDto:IDto
+    public class CarDto:IDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
