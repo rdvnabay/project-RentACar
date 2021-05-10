@@ -33,7 +33,7 @@ namespace WebAPI.Controllers
         public IActionResult GetAll()
         {
             var data = _colorService.GetAll().Data;
-            var result = _mapper.Map<List<ColorListDto>>(data);
+            var result = _mapper.Map<List<ColorDto>>(data);
             if (result.Count>0)
             {
                 return Ok(result);

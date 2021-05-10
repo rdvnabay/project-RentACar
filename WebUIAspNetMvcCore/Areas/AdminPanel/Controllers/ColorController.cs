@@ -1,6 +1,9 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
@@ -9,17 +12,16 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
     public class ColorController : Controller
     {
         private IColorService _colorService;
-        public ColorController(IColorService colorService)
+        private IMapper _mapper;
+        public ColorController(
+            IColorService colorService,
+            IMapper mapper)
         {
             _colorService = colorService;
+            _mapper = mapper;
         }
 
-        public async Task<IActionResult> List()
-        {
-            var model = await _colorService.GetAllAsync().Data;
-            return View(model);
-        }
-
+        //Actions
         public IActionResult Add()
         {
             return View();
@@ -61,6 +63,13 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
                 return RedirectToAction("List", "Color");
             }
             return View(result);
+        }
+
+        public async Task<IActionResult> List()
+        {
+            var data = await _colorService.GetAllAsync().Data;
+            var model = _mapper.Map<List<ColorDto>>(data);
+            return View(model);
         }
     }
 }
