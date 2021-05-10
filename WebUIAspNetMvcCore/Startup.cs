@@ -31,12 +31,12 @@ namespace WebUIAspNetMvcCore
         {
             services.AddRazorPages();
             services.AddMvc();/*.AddFluentValidation();*/
-           
+
             services.AddAutoMapper(typeof(AutoMapperHelper));
 
             services.AddDistributedMemoryCache();
             services.AddSession();
-            services.AddSingleton<ITokenSessionService,TokenSessionService>();
+            services.AddSingleton<ITokenSessionService, TokenSessionService>();
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 

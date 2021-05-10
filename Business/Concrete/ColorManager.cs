@@ -20,7 +20,7 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
-        [SecuredOperation("admin,color-add")]
+        //[SecuredOperation("admin,color-add")]
         [ValidationAspect(typeof(ColorValidator))]
         public IResult Add(Color color)
         {

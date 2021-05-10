@@ -20,7 +20,7 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        [SecuredOperation("admin,car-add")]
+        //[SecuredOperation("admin,car-add")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
@@ -84,5 +84,10 @@ namespace Business.Concrete
             return new SuccessDataResult<Task<List<Car>>>(data);
         }
 
+        public IDataResult<List<Car>> GetAllBySearch(string search)
+        {
+             var data= _carDal.GetAll(x => x.Name.ToLower().Contains(search));
+            return new SuccessDataResult<List<Car>>(data);
+        }
     }
 }

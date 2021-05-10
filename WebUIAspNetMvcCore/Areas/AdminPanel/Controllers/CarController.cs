@@ -30,11 +30,20 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             _carImageService = carImageService;
         }
 
-        public IActionResult List()
+        public IActionResult List(string search)
         {
-            var data = _carService.GetAll().Data;
-            var model = _mapper.Map<List<CarForListDto>>(data);
-            return View(model);
+            if (string.IsNullOrEmpty(search))
+            {
+                var data = _carService.GetAll().Data;
+                var model = _mapper.Map<List<CarForListDto>>(data);
+                return View(model);
+            }
+            else
+            {
+                var data = _carService.GetAllBySearch(search).Data;
+                var model = _mapper.Map<List<CarForListDto>>(data);
+                return View(model);
+            }
         }
 
         public IActionResult Add()
@@ -50,7 +59,6 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             {
                 return View(car);
             }
-
                 _carService.Add(car);
                 foreach (var file in files)
                 {
