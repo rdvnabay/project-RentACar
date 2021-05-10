@@ -9,7 +9,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, RentACarDbContext>, IRentalDal
     {
-        public List<RentalForListDto> GetRentAllByCustomer(int carId, int customerId)
+        public List<RentalListDto> GetRentAllByCustomer(int carId, int customerId)
         {
             using (var context = new RentACarDbContext())
             {
@@ -24,7 +24,7 @@ namespace DataAccess.Concrete.EntityFramework
                              join user in context.Users
                              on customer.UserId equals user.Id
                              where car.Id==carId && customer.Id==customerId
-                             select new RentalForListDto
+                             select new RentalListDto
                              {
                                  BrandName = brand.Name,
                                  FirstName = user.FirstName,

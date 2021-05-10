@@ -1,6 +1,9 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
@@ -9,17 +12,16 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
     public class BrandController : Controller
     {
         private IBrandService _brandService;
-        public BrandController(IBrandService brandService)
+        private IMapper _mapper;
+        public BrandController(
+            IBrandService brandService,
+            IMapper mapper)
         {
             _brandService = brandService;
+            _mapper = mapper;
         }
 
-        public async Task<IActionResult> List()
-        {
-            var model = await _brandService.GetAllAsync().Data;
-            return View(model);
-        }
-
+        //Actions
         public IActionResult Add()
         {
             return View();
@@ -34,6 +36,16 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
                 return RedirectToAction("List", "Brand");
             }
             return View(result);
+        }
+
+        public IActionResult Delete(int brandId)
+        {
+            var result = _brandService.GetById(brandId);
+            if (result.Success)
+            {
+                _brandService.Delete(result.Data);
+            }
+            return RedirectToAction("List", "Brand");
         }
 
         public IActionResult Edit(int brandId)
@@ -53,14 +65,11 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
             return View(result);
         }
 
-        public IActionResult Delete(int brandId)
+        public async Task<IActionResult> List()
         {
-            var result = _brandService.GetById(brandId);
-            if (result.Success)
-            {
-                _brandService.Delete(result.Data);
-            }
-            return RedirectToAction("List", "Brand");
+            var data = await _brandService.GetAllAsync().Data;
+            var model = _mapper.Map<List<BrandDto>>(data);
+            return View(model);
         }
     }
 }

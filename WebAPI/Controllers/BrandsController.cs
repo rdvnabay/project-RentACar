@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
         public IActionResult GetAll()
         {
             var data = _brandService.GetAll().Data;
-            var result = _mapper.Map<List<BrandListDto>>(data);
+            var result = _mapper.Map<List<BrandDto>>(data);
 
             if (result.Count>0)
             {

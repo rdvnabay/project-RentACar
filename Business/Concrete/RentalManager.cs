@@ -46,10 +46,10 @@ namespace Business.Concrete
             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == rentalId));
         } 
 
-        public IDataResult<List<RentalForListDto>> GetRentAllByCustomer(int carId, int customerId)
+        public IDataResult<List<RentalListDto>> GetRentAllByCustomer(int carId, int customerId)
         {
             var data = _rentalDal.GetRentAllByCustomer(carId, customerId);
-            return new SuccessDataResult<List<RentalForListDto>>(data);
+            return new SuccessDataResult<List<RentalListDto>>(data);
         }
 
         [ValidationAspect(typeof(RentalValidator))]

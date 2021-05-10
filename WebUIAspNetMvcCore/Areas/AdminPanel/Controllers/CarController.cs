@@ -30,22 +30,7 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             _carImageService = carImageService;
         }
 
-        public IActionResult List(string search)
-        {
-            if (string.IsNullOrEmpty(search))
-            {
-                var data = _carService.GetAll().Data;
-                var model = _mapper.Map<List<CarForListDto>>(data);
-                return View(model);
-            }
-            else
-            {
-                var data = _carService.GetAllBySearch(search).Data;
-                var model = _mapper.Map<List<CarForListDto>>(data);
-                return View(model);
-            }
-        }
-
+        //Actions
         public IActionResult Add()
         {
             return View();
@@ -59,26 +44,26 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             {
                 return View(car);
             }
-                _carService.Add(car);
-                foreach (var file in files)
-                {
-                    var extention = Path.GetExtension(file.FileName);
-                    var fileName = string.Format($"{DateTime.Now.Ticks}{extention}");
-                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\panel\\img", fileName);
+            _carService.Add(car);
+            foreach (var file in files)
+            {
+                var extention = Path.GetExtension(file.FileName);
+                var fileName = string.Format($"{DateTime.Now.Ticks}{extention}");
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\panel\\img", fileName);
 
-                    using (var stream = new FileStream(path, FileMode.Create))
-                    {
-                        await file.CopyToAsync(stream);
-                    }
-                    var image = new CarImage
-                    {
-                        CarId = car.Id,
-                        Date = DateTime.Now,
-                        ImagePath = fileName
-                    };
-                    _carImageService.Add(image);
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
                 }
-                return RedirectToAction("List", "Car");
+                var image = new CarImage
+                {
+                    CarId = car.Id,
+                    Date = DateTime.Now,
+                    ImagePath = fileName
+                };
+                _carImageService.Add(image);
+            }
+            return RedirectToAction("List", "Car");
         }
 
         public IActionResult Delete(int carId)
@@ -89,6 +74,12 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
                 _carService.Delete(result.Data);
             }
             return RedirectToAction("List", "Car");
+        }
+
+        public IActionResult Detail(int carId)
+        {
+            var model = _carService.GetById(carId).Data;
+            return View(model);
         }
 
         public IActionResult Edit(int carId)
@@ -106,12 +97,6 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
                 return RedirectToAction("List", "Car");
             }
             return View(result);
-        }
-
-        public IActionResult Detail(int carId)
-        {
-            var model = _carService.GetById(carId).Data;
-            return View(model);
         }
 
         public IActionResult GetAllByBrand(int brandId)
@@ -132,6 +117,22 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
                 return View(result.Data);
             }
             return RedirectToAction("List", "Color");
+        }
+
+        public IActionResult List(string search)
+        {
+            if (string.IsNullOrEmpty(search))
+            {
+                var data = _carService.GetAll().Data;
+                var model = _mapper.Map<List<CarListDto>>(data);
+                return View(model);
+            }
+            else
+            {
+                var data = _carService.GetAllBySearch(search).Data;
+                var model = _mapper.Map<List<CarListDto>>(data);
+                return View(model);
+            }
         }
     }
 }
