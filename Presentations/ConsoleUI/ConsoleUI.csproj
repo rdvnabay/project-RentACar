@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Business\Business.csproj" />
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\..\Libraries\Business\Business.csproj" />
+    <ProjectReference Include="..\..\Libraries\DataAccess\DataAccess.csproj" />
   </ItemGroup>
 
 </Project>
