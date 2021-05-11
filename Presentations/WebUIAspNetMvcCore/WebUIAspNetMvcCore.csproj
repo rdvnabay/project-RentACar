@@ -7,7 +7,6 @@
   <ItemGroup>
     <Folder Include="Areas\AdminPanel\Data\" />
     <Folder Include="wwwroot\panel\img\" />
-    <Folder Include="wwwroot\panel\js\" />
   </ItemGroup>
 
   <ItemGroup>

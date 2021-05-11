@@ -15,6 +15,7 @@
           crossorigin="anonymous" />
     <!-- Theme style -->
     <link href="~/css/adminlte.min.css" rel="stylesheet" />
+    <link href="~/panel/css/toastr.css" rel="stylesheet" />
     @RenderSection("entityGetAllCss", required: false)
 
 </head>
@@ -49,8 +50,10 @@
     <script src="~/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="~/js/demo.js"></script>
+    <script src="~/panel/js/toastr.js/toastr.min.js"></script>
 
     @RenderSection("entityGetAllJs", required: false)
-    @RenderSection("entityValidationJs",required:false)
+    @RenderSection("entityValidationJs", required: false)
+    @RenderSection("toastrScript", required:false)
 </body>
 </html>
