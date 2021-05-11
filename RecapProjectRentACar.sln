@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{DA7B661B-CF49-4F93-A724-CCFE2CD9C257}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Libraries\Entities\Entities.csproj", "{DA7B661B-CF49-4F93-A724-CCFE2CD9C257}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{2DC0B30A-66D2-439F-9CA6-7369BA4DC08C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "Libraries\DataAccess\DataAccess.csproj", "{2DC0B30A-66D2-439F-9CA6-7369BA4DC08C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{CF196DD3-57C1-47EF-842F-C4A28F77D8D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Libraries\Business\Business.csproj", "{CF196DD3-57C1-47EF-842F-C4A28F77D8D5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{573988AF-96AD-4050-A7A3-A711FC1F163B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Libraries\Core\Core.csproj", "{573988AF-96AD-4050-A7A3-A711FC1F163B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI", "ConsoleUI\ConsoleUI.csproj", "{34EF2A6C-D362-4301-A84F-AD1A4C22D115}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI", "Presentations\ConsoleUI\ConsoleUI.csproj", "{34EF2A6C-D362-4301-A84F-AD1A4C22D115}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{210F1F70-FFF5-45E7-A850-26A4955F32AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "Presentations\WebAPI\WebAPI.csproj", "{210F1F70-FFF5-45E7-A850-26A4955F32AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebUIAspNetMvcCore", "WebUIAspNetMvcCore\WebUIAspNetMvcCore.csproj", "{FCABBA41-A31F-40B3-B84B-4E1369065342}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebUIAspNetMvcCore", "Presentations\WebUIAspNetMvcCore\WebUIAspNetMvcCore.csproj", "{FCABBA41-A31F-40B3-B84B-4E1369065342}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

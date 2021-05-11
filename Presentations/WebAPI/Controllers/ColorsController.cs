@@ -32,12 +32,15 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var data = _colorService.GetAll().Data;
-            var result = _mapper.Map<List<ColorDto>>(data);
-            if (result.Count>0)
+            var result = _colorService.GetAll();
+            //var result = _mapper.Map<List<ColorDto>>(data);
+            //if (result.Count>0)
+            //{
+            if (result.Success)
             {
                 return Ok(result);
             }
+            //}
             return BadRequest(result);
         }
 
