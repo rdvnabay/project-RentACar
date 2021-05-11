@@ -7,8 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TodoComponent } from './components/todo/todo.component';
-import { ColorComponent } from './components/color/color.component';
 import { VatAddedPipe } from './pipes/vat-added.pipe';
 import { FilterCarsPipe } from './pipes/filter-cars.pipe';
 
@@ -29,8 +27,6 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent,
-    ColorComponent,
     VatAddedPipe,
     FilterCarsPipe,
     CartSummaryComponent,
@@ -43,7 +39,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     FooterComponent,
     NavbarComponent,
     CarAddComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
