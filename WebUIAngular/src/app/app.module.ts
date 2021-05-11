@@ -17,8 +17,6 @@ import { CartSummaryComponent } from './components/cart-summary/cart-summary.com
 import { CustomerComponent } from './components/customer/customer.component';
 import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
 import { CarListComponent } from './components/car/car-list/car-list.component';
-import { BrandListComponent } from './components/brand/brand-list/brand-list.component';
-import { BrandAddComponent } from './components/brand/brand-add/brand-add.component';
 import { FilterBrandsPipe } from './pipes/filter-brands.pipe';
 import { FilterColorsPipe } from './pipes/filter-colors.pipe';
 import { HeaderComponent } from './shared/components/header/header.component';
@@ -39,8 +37,6 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     CustomerComponent,
     CarDetailComponent,
     CarListComponent,
-    BrandListComponent,
-    BrandAddComponent,
     FilterBrandsPipe,
     FilterColorsPipe,
     HeaderComponent,
@@ -51,14 +47,14 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
-    })
+    }),
+    AppRoutingModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true

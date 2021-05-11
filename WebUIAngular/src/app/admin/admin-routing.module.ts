@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { BrandAddComponent } from './components/brand/brand-add/brand-add.component';
+import { BrandListComponent } from './components/brand/brand-list/brand-list.component';
 
-const routes: Routes = [
-  { path: 'admin',component: AdminComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  {path:'**',component:AdminComponent}
-];
+const routes: Routes = [{ path: '', component: AdminComponent,
+children:[
+  { path:'brand-add',component:BrandAddComponent },
+  { path:'brand-list',component:BrandListComponent }
+]
+}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AdminRoutingModule {}
+export class AdminRoutingModule { }
