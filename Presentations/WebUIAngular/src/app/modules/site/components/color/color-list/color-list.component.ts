@@ -5,7 +5,7 @@ import { ColorService } from 'src/app/services/color.service';
 @Component({
   selector: 'app-color-list',
   templateUrl: './color-list.component.html',
-  styleUrls: ['./color-list.component.css']
+  styleUrls: []
 })
 export class ColorListComponent implements OnInit {
 

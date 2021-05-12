@@ -7,7 +7,7 @@ import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-cart-summary',
   templateUrl: './cart-summary.component.html',
-  styleUrls: ['./cart-summary.component.css']
+  styleUrls: []
 })
 export class CartSummaryComponent implements OnInit {
   cartItems:CartItem[];
@@ -18,7 +18,7 @@ export class CartSummaryComponent implements OnInit {
   ngOnInit(): void {
     this.getCart();
   }
- 
+
   getCart(){
    this.cartItems=this.cartService.listCart();
   }

@@ -7,7 +7,7 @@ import { BrandService } from 'src/app/services/brand.service';
 @Component({
   selector: 'app-brand-list',
   templateUrl: './brand-list.component.html',
-  styleUrls: ['./brand-list.component.css'],
+  styleUrls: []
 })
 export class BrandListComponent implements OnInit {
   brands: Brand[] = [];

@@ -9,7 +9,7 @@ import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-car-list',
   templateUrl: './car-list.component.html',
-  styleUrls: ['./car-list.component.css']
+  styleUrls: []
 })
 export class CarListComponent implements OnInit {
 
