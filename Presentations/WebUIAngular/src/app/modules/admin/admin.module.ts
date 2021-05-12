@@ -11,6 +11,7 @@ import { BrandListComponent } from './components/brand-list/brand-list.component
 import { AdminContentHeaderComponent } from './shared/admin-content-header/admin-content-header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { BrandDeleteComponent } from './components/brand-delete/brand-delete.component';
 
 
 
@@ -22,7 +23,8 @@ import { ToastrModule } from 'ngx-toastr';
     AdminNavbarComponent,
     AdminSidebarComponent,
     AdminFooterComponent,
-    AdminContentHeaderComponent
+    AdminContentHeaderComponent,
+    BrandDeleteComponent
   ],
   imports: [
     CommonModule,

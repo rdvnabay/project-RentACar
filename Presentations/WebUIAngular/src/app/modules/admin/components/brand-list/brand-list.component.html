@@ -39,10 +39,10 @@
                                               </td>
                                               <td>-</td>
                                               <td>
-                                                  <a routerLink="brand-edit/1" class="btn btn-sm btn-warning">Düzenle </a>
+                                                <a routerLink="brand-delete/1" class="btn btn-sm btn-danger">Düzenle</a>
                                               </td>
                                               <td>
-                                                  <a routerLink="brand-delete/1" class="btn btn-sm btn-danger">Sil</a>
+                                                <button (click)="delete(brand.id)" class="btn btn-sm btn-warning">Sil</button>
                                               </td>
                                           </tr>
                                   </tbody>
@@ -59,7 +59,7 @@
                           </div>
 
                           <div class="card-body">
-                              <span class="alert alert-warning text-sm">Kayıtlarda herhangi bir <strong>marka</strong> bulunamadı.</span>
+                              <span *ngIf="brands.length==0" class="alert alert-warning text-sm">Kayıtlarda herhangi bir <strong>marka</strong> bulunamadı.</span>
                           </div>
                       <!-- /.card-body -->
                   </div>
