@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-color-delete',
-  templateUrl: './color-delete.component.html',
+  selector: 'app-car-list',
+  templateUrl: './car-list.component.html',
   styleUrls: []
 })
-export class ColorDeleteComponent implements OnInit {
+export class CarListComponent implements OnInit {
 
   constructor() { }
 

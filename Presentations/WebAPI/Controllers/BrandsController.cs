@@ -27,8 +27,8 @@ namespace WebAPI.Controllers
         [HttpGet("get")]
         public IActionResult Get(int brandId)
         {
-            var data = _brandService.GetById(brandId);
-            return Ok(data.Data);
+            var result = _brandService.GetById(brandId);
+            return Ok(result);
         }
 
         [HttpGet("getall")]

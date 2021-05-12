@@ -1,0 +1,77 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <app-admin-content-header></app-admin-content-header>
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-12">
+                  <div class="card">
+                      <div class="card-header">
+                          <h3 class="card-title">
+                              <a routerLink="brand-add" class="btn btn-flat btn-outline-success">Marka Ekle</a>
+                          </h3>
+                      </div>
+                      <!-- /.card-header -->
+
+                          <div class="card-body">
+                              <table id="example2" class="table table-bordered table-hover">
+                                  <thead>
+                                      <tr>
+                                          <th>#</th>
+                                          <th>Renk</th>
+                                          <th>Diğer</th>
+                                          <th>Düzenleme</th>
+                                          <th>Silme</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                          <tr *ngFor="let color of colors">
+                                              <th>{{color.id}}</th>
+                                              <td>
+                                                  <a routerLink="">
+                                                      {{color.name}}
+                                                  </a>
+                                              </td>
+                                              <td>-</td>
+                                              <td>
+                                                <a routerLink="color-edit/{{color.id}}" class="btn btn-sm btn-warning">Düzenle</a>
+                                              </td>
+                                              <td>
+                                                <button (click)="delete(color)" class="btn btn-sm btn-danger">Sil</button>
+                                              </td>
+                                          </tr>
+                                  </tbody>
+                                  <tfoot>
+                                      <tr>
+                                          <th>#</th>
+                                          <th>Marka
+                                          <th>Diğer</th>
+                                          <th>Düzenleme</th>
+                                          <th>Silme</th>
+                                      </tr>
+                                  </tfoot>
+                              </table>
+                          </div>
+
+                          <div class="card-body">
+                              <span *ngIf="colors.length==0" class="alert alert-warning text-sm">Kayıtlarda herhangi bir <strong>marka</strong> bulunamadı.</span>
+                          </div>
+                      <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+
+
+              </div>
+              <!-- /.col -->
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>

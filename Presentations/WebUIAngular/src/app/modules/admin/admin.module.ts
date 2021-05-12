@@ -20,6 +20,8 @@ import { CarAddComponent } from './components/car-add/car-add.component';
 import { CarEditComponent } from './components/car-edit/car-edit.component';
 import { CarDeleteComponent } from './components/car-delete/car-delete.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
+import { ColorListComponent } from './components/color-list/color-list.component';
+import { CarListComponent } from './components/car-list/car-list.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { CarDetailComponent } from './components/car-detail/car-detail.component
     CarAddComponent,
     CarEditComponent,
     CarDeleteComponent,
-    CarDetailComponent
+    CarDetailComponent,
+    ColorListComponent,
+    CarListComponent
   ],
   imports: [
     CommonModule,
