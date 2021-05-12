@@ -1,15 +1,41 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder,FormGroup,FormControl,Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { BrandService } from 'src/app/services/brand.service';
 
 @Component({
   selector: 'app-brand-add',
   templateUrl: './brand-add.component.html',
-  styleUrls: ['./brand-add.component.css']
+  styleUrls: []
 })
 export class BrandAddComponent implements OnInit {
-
-  constructor() { }
+  brandAddForm: FormGroup;
+  constructor(
+    private brandService: BrandService,
+    private formBuilder: FormBuilder,
+    private toastrService: ToastrService
+  ) {}
 
   ngOnInit(): void {
+    this.createBrandForm();
   }
 
+  add(){
+    if(this.brandAddForm.valid){
+      console.log(this.brandAddForm.value)
+      let loginModel=Object.assign({},this.brandAddForm.value);
+
+      this.brandService.add(loginModel).subscribe(response=>{
+        this.toastrService.success('Marka eklendi','Başarılı');
+      },responseError=>{
+        this.toastrService.error(responseError.error);
+      })
+    }
+  }
+
+  createBrandForm() {
+    this.brandAddForm=this.formBuilder.group({
+      name: ['', Validators.required],
+    });
+  }
 }

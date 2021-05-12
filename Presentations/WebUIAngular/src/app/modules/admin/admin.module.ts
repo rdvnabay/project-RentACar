@@ -9,6 +9,8 @@ import { AdminFooterComponent } from './shared/admin-footer/admin-footer.compone
 import { BrandAddComponent } from './components/brand-add/brand-add.component';
 import { BrandListComponent } from './components/brand-list/brand-list.component';
 import { AdminContentHeaderComponent } from './shared/admin-content-header/admin-content-header.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -24,7 +26,12 @@ import { AdminContentHeaderComponent } from './shared/admin-content-header/admin
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    })
   ]
 })
 export class AdminModule { }
