@@ -1,17 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CarService } from 'src/app/services/car.service';
 
 @Component({
   selector: 'app-car-add',
   templateUrl: './car-add.component.html',
-  styleUrls: ['./car-add.component.css'],
+  styleUrls: ['./car-add.component.css']
 })
 export class CarAddComponent implements OnInit {
   carAddForm: FormGroup;
@@ -35,14 +30,14 @@ export class CarAddComponent implements OnInit {
           for (let i = 0; i <responseError.error.ValidationErrors.length; i++) {
             this.toastrService.error(responseError.error.ValidationErrors[i].ErrorMessage
               ,"Doğrulama hatası")
-          }       
-        } 
+          }
+        }
       })
-      
+
     }else{
       this.toastrService.error("Formunuz eksik","Dikkat")
     }
-    
+
   }
 
   createCarAddForm() {

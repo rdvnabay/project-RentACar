@@ -19,8 +19,6 @@ import { FilterBrandsPipe } from './pipes/filter-brands.pipe';
 import { FilterColorsPipe } from './pipes/filter-colors.pipe';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { CarAddComponent } from './components/car/car-add/car-add.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
@@ -37,8 +35,6 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     FilterColorsPipe,
     HeaderComponent,
     FooterComponent,
-    NavbarComponent,
-    CarAddComponent,
     LoginComponent
   ],
   imports: [

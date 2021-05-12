@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
-import { CarAddComponent } from './components/car/car-add/car-add.component';
 import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
 import { CarListComponent } from './components/car/car-list/car-list.component';
 import { LoginGuard } from './guards/login.guard';

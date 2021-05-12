@@ -6,17 +6,24 @@ import { AdminLayoutComponent } from './shared/admin-layout/admin-layout.compone
 import { BrandAddComponent } from './components/brand/brand-add/brand-add.component';
 import { BrandListComponent } from './components/brand/brand-list/brand-list.component';
 import { ColorAddComponent } from './components/color/color-add/color-add.component';
+import { CarAddComponent } from './components/car/car-add/car-add.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
     BrandAddComponent,
     BrandListComponent,
     ColorAddComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    CarAddComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }
