@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BrandAddComponent } from './components/brand/brand-add/brand-add.component';
-import { BrandListComponent } from './components/brand/brand-list/brand-list.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { BrandListComponent } from './components/brand-list/brand-list.component';
 import { AdminLayoutComponent } from './shared/admin-layout/admin-layout.component';
 
 

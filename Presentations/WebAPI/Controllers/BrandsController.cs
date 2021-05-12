@@ -34,10 +34,10 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var data = _brandService.GetAll().Data;
-            var result = _mapper.Map<List<BrandDto>>(data);
+            var result = _brandService.GetAll();
+            //var result = _mapper.Map<List<BrandDto>>(data);
 
-            if (result.Count>0)
+            if (result.Success)
             {
                 return Ok(result);
             }

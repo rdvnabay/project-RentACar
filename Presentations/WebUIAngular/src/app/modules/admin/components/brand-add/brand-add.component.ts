@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'admin-brand-add',
+  selector: 'app-brand-add',
   templateUrl: './brand-add.component.html',
   styleUrls: ['./brand-add.component.css']
 })
