@@ -12,6 +12,7 @@ import { AdminContentHeaderComponent } from './shared/admin-content-header/admin
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrandEditComponent } from './components/brand-edit/brand-edit.component';
+import { BrandDetailComponent } from './components/brand-detail/brand-detail.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { BrandEditComponent } from './components/brand-edit/brand-edit.component
     AdminSidebarComponent,
     AdminFooterComponent,
     AdminContentHeaderComponent,
-    BrandEditComponent
+    BrandEditComponent,
+    BrandDetailComponent
   ],
   imports: [
     CommonModule,

@@ -32,4 +32,9 @@ export class BrandService {
     let newPath = this.apiUrl + 'getall';
     return this.httpClient.get<ListResponseModel<Brand>>(newPath);
   }
+
+  getById(brandId:number):Observable<SingleResponseModel<Brand>>{
+let newPath=this.apiUrl+'get?brandId='+brandId;
+return this.httpClient.get<SingleResponseModel<Brand>>(newPath);
+  }
 }
