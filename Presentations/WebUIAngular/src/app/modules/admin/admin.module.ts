@@ -13,6 +13,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrandEditComponent } from './components/brand-edit/brand-edit.component';
 import { BrandDetailComponent } from './components/brand-detail/brand-detail.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { ColorEditComponent } from './components/color-edit/color-edit.component';
+import { ColorDeleteComponent } from './components/color-delete/color-delete.component';
+import { CarAddComponent } from './components/car-add/car-add.component';
+import { CarEditComponent } from './components/car-edit/car-edit.component';
+import { CarDeleteComponent } from './components/car-delete/car-delete.component';
+import { CarDetailComponent } from './components/car-detail/car-detail.component';
 
 
 @NgModule({
@@ -25,7 +32,14 @@ import { BrandDetailComponent } from './components/brand-detail/brand-detail.com
     AdminFooterComponent,
     AdminContentHeaderComponent,
     BrandEditComponent,
-    BrandDetailComponent
+    BrandDetailComponent,
+    ColorAddComponent,
+    ColorEditComponent,
+    ColorDeleteComponent,
+    CarAddComponent,
+    CarEditComponent,
+    CarDeleteComponent,
+    CarDetailComponent
   ],
   imports: [
     CommonModule,
