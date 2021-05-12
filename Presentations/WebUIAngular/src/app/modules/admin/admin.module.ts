@@ -8,6 +8,9 @@ import { BrandListComponent } from './components/brand/brand-list/brand-list.com
 import { ColorAddComponent } from './components/color/color-add/color-add.component';
 import { CarAddComponent } from './components/car/car-add/car-add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminNavbarComponent } from './shared/admin-navbar/admin-navbar.component';
+import { AdminSidebarComponent } from './shared/admin-sidebar/admin-sidebar.component';
+import { AdminFooterComponent } from './shared/admin-footer/admin-footer.component';
 
 
 
@@ -17,7 +20,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrandListComponent,
     ColorAddComponent,
     AdminLayoutComponent,
-    CarAddComponent
+    CarAddComponent,
+    AdminNavbarComponent,
+    AdminSidebarComponent,
+    AdminFooterComponent
   ],
   imports: [
     CommonModule,
