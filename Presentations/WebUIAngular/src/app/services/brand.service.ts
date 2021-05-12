@@ -18,8 +18,13 @@ export class BrandService {
     return this.httpClient.post<ResponseModel>(newPath, brand);
   }
 
-  delete(brandId:number):Observable<ResponseModel>{
-    let newPath=this.apiUrl+'delete?brandId='+brandId;
+  delete(brand:Brand):Observable<ResponseModel>{
+    let newPath=this.apiUrl+'delete';
+    return this.httpClient.post<ResponseModel>(newPath,brand);
+  }
+
+  edit(brandId:number):Observable<ResponseModel>{
+    let newPath=this.apiUrl+'update?brandId='+brandId;
     return this.httpClient.post<ResponseModel>(newPath,brandId);
   }
 

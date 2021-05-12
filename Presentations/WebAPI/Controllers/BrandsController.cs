@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
         [HttpPost("add")]
         public IActionResult Add(Brand brand)
         {
-            var result=_brandService.Add(brand);
+            var result = _brandService.Add(brand);
             if (result.Success)
             {
                 return Ok(result);
@@ -63,15 +63,18 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(int brandId)
+        public IActionResult Delete(Brand brand)
         {
-            var result = _brandService.GetById(brandId);
+            //var result = _brandService.GetById(brandId);
+
+            var result = _brandService.Delete(brand);
             if (result.Success)
             {
-                _brandService.Delete(result.Data);
                 return Ok();
             }
             return BadRequest();
+
+
         }
     }
 }

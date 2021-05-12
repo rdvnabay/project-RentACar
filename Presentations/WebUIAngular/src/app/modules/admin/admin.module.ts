@@ -11,8 +11,7 @@ import { BrandListComponent } from './components/brand-list/brand-list.component
 import { AdminContentHeaderComponent } from './shared/admin-content-header/admin-content-header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-import { BrandDeleteComponent } from './components/brand-delete/brand-delete.component';
-
+import { BrandEditComponent } from './components/brand-edit/brand-edit.component';
 
 
 @NgModule({
@@ -24,7 +23,7 @@ import { BrandDeleteComponent } from './components/brand-delete/brand-delete.com
     AdminSidebarComponent,
     AdminFooterComponent,
     AdminContentHeaderComponent,
-    BrandDeleteComponent
+    BrandEditComponent
   ],
   imports: [
     CommonModule,

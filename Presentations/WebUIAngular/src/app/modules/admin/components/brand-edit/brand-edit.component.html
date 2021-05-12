@@ -1,0 +1,48 @@
+@model Brand
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <app-admin-content-header></app-admin-content-header>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <!-- general form elements -->
+                    <!-- Input addon -->
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Input Addon</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Small <code>.input-group.input-group-sm</code></p>
+                            <form [formGroup]="brandEditForm">
+                                <div class="input-group input-group-sm">
+                                    <input formControlName="name" class="form-control" id="name">
+                                    <span class="input-group-append">
+                                        <button id="brand-add" class="btn btn-info btn-flat" (click)="edit()">Marka Ekle</button>
+                                    </span>
+                                </div>
+                            </form>
+                            <!-- /input-group -->
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!--/.col (left) -->
+                <!-- right column -->
+                <div class="col-md-6">
+
+                </div>
+                <!--/.col (right) -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
