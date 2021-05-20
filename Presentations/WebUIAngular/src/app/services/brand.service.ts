@@ -23,7 +23,7 @@ export class BrandService {
     return this.httpClient.post<ResponseModel>(newPath,brand);
   }
 
-  edit(brandId:number):Observable<ResponseModel>{
+  update(brandId:number):Observable<ResponseModel>{
     let newPath=this.apiUrl+'update?brandId='+brandId;
     return this.httpClient.post<ResponseModel>(newPath,brandId);
   }

@@ -44,7 +44,7 @@ export class BrandEditComponent implements OnInit {
       console.log(this.brandEditForm.value)
       let brandModel=Object.assign({},this.brandEditForm.value);
 
-      this.brandService.edit(brandModel).subscribe(response=>{
+      this.brandService.update(brandModel).subscribe(response=>{
         this.toastrService.info('Marka güncellendi','Başarılı');
         this.router.navigateByUrl('admin');
       },responseError=>{

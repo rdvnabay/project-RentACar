@@ -15,6 +15,17 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
         {
             _cache = ServiceTool.ServiceProvider.GetService<IMemoryCache>();
         }
+      
+        public void Add(string key, object data)
+        {
+            _cache.Set(key, data);
+        }
+
+        public void Add(string key, object data, int duration)
+        {
+            _cache.Set(key, data, TimeSpan.FromMinutes(duration));
+        }
+
         public T Get<T>(string key)
         {
             return _cache.Get<T>(key);
@@ -23,11 +34,6 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
         public object Get(string key)
         {
             return _cache.Get(key);
-        }
-
-        public void Add(string key, object data, int duration)
-        {
-            _cache.Set(key, data, TimeSpan.FromMinutes(duration));
         }
 
         public bool IsAdd(string key)
@@ -60,5 +66,7 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
                 _cache.Remove(key);
             }
         }
+
+      
     }
 }
