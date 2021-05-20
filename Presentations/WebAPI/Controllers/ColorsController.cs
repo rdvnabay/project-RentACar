@@ -1,9 +1,7 @@
-﻿using AutoMapper;
-using Business.Abstract;
+﻿using Business.Abstract;
 using Entities.Concrete;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace WebAPI.Controllers
 {
@@ -12,16 +10,31 @@ namespace WebAPI.Controllers
     public class ColorsController : ControllerBase
     {
         private IColorService _colorService;
-        private IMapper _mapper;
         public ColorsController(
-            IColorService colorService,
-            IMapper mapper)
+            IColorService colorService)
         {
             _colorService = colorService;
-            _mapper = mapper;
         }
 
         //Methods
+        [HttpPost("add")]
+        public IActionResult Add(ColorAddDto colorAddDto)
+        {
+            var result= _colorService.Add(colorAddDto);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("delete")]
+        public IActionResult Delete(Color color)
+        {
+            _colorService.Delete(color);
+            return Ok();
+        }
+
         [HttpGet("get")]
         public IActionResult Get(int colorId)
         {
@@ -33,35 +46,17 @@ namespace WebAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _colorService.GetAll();
-            //var result = _mapper.Map<List<ColorDto>>(data);
-            //if (result.Count>0)
-            //{
             if (result.Success)
             {
                 return Ok(result);
             }
-            //}
             return BadRequest(result);
-        }
-
-        [HttpPost("add")]
-        public IActionResult Add(Color color)
-        {
-            _colorService.Add(color);
-            return Ok();
         }
 
         [HttpPost("update")]
         public IActionResult Update(Color color)
         {
             _colorService.Update(color);
-            return Ok();
-        }
-
-        [HttpPost("delete")]
-        public IActionResult Delete(Color color)
-        {
-            _colorService.Delete(color);
             return Ok();
         }
     }

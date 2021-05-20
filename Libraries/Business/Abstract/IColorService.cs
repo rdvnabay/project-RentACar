@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Results.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -7,11 +8,13 @@ namespace Business.Abstract
 {
     public interface IColorService
     {
-        IResult Add(Color color);
-        IResult Update(Color color);
+        IResult Add(ColorAddDto colorAddDto);
         IResult Delete(Color color);
-        IDataResult<Color> GetById(int colorId);
-        IDataResult<List<Color>> GetAll();
+        IDataResult<List<ColorDto>> GetAll();
         IDataResult<Task<List<Color>>> GetAllAsync();
+        IDataResult<Color> GetById(int colorId);
+        IResult Update(Color color);
+
+     
     }
 }

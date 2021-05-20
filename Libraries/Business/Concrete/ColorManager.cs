@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Business.BusinessAspects;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -6,6 +7,7 @@ using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,16 +16,21 @@ namespace Business.Concrete
     public class ColorManager : IColorService
     {
         private IColorDal _colorDal;
+        private IMapper _mapper;
 
-        public ColorManager(IColorDal colorDal)
+        public ColorManager(
+            IColorDal colorDal,
+            IMapper mapper)
         {
             _colorDal = colorDal;
+            _mapper = mapper;
         }
 
         //[SecuredOperation("admin,color-add")]
         [ValidationAspect(typeof(ColorValidator))]
-        public IResult Add(Color color)
+        public IResult Add(ColorAddDto colorAddDto)
         {
+            var color = _mapper.Map<Color>(colorAddDto);
             _colorDal.Add(color);
             return new SuccessResult();
         }
@@ -34,10 +41,11 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IDataResult<List<Color>> GetAll()
+        public IDataResult<List<ColorDto>> GetAll()
         {
-            var data= _colorDal.GetAll();
-            return new SuccessDataResult<List<Color>>(data);
+            var colors= _colorDal.GetAll();
+            var colorsDto = _mapper.Map<List<ColorDto>>(colors);
+            return new SuccessDataResult<List<ColorDto>>(colorsDto);
         }
 
         public IDataResult<Task<List<Color>>> GetAllAsync()
