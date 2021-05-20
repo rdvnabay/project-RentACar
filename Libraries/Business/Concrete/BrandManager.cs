@@ -21,13 +21,12 @@ namespace Business.Concrete
     {
         IBrandDal _brandDal;
         IMapper _mapper;
-        public BrandManager(
-            IBrandDal brandDal,
-            IMapper mapper)
+        public BrandManager(IBrandDal brandDal, IMapper mapper)
         {
             _brandDal = brandDal;
             _mapper = mapper;
         }
+
         //[SecuredOperation("admin")]
         [ValidationAspect(typeof(BrandValidator))]
         [CacheRemoveAspect("IBrandService.Get")]
@@ -65,10 +64,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<BrandDto>>(brandsDto);
         }
 
-        public IDataResult<Brand> GetById(int brandId)
+        public IDataResult<BrandDto> GetById(int brandId)
         {
-            var data = _brandDal.Get(b => b.Id == brandId);
-            return new SuccessDataResult<Brand>(data);
+            var brand = _brandDal.Get(b => b.Id == brandId);
+            var brandDto = _mapper.Map<BrandDto>(brand);
+            return new SuccessDataResult<BrandDto>(brandDto);
         }
 
         [ValidationAspect(typeof(BrandValidator))]
