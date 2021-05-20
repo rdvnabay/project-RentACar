@@ -51,10 +51,11 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
-        public IDataResult<List<Brand>> GetAll()
+        public IDataResult<List<BrandDto>> GetAll()
         {
-            var data = _brandDal.GetAll();
-            return new SuccessDataResult<List<Brand>>(data);
+            var brands = _brandDal.GetAll();
+            var brandsDto = _mapper.Map<List<BrandDto>>(brands);
+            return new SuccessDataResult<List<BrandDto>>(brandsDto);
         }
 
         public IDataResult<Brand> GetById(int brandId)

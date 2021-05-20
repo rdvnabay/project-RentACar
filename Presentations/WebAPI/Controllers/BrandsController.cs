@@ -11,13 +11,10 @@ namespace WebAPI.Controllers
     public class BrandsController : ControllerBase
     {
         private IBrandService _brandService;
-        private IMapper _mapper;
         public BrandsController(
-            IBrandService brandService,
-            IMapper mapper)
+            IBrandService brandService)
         {
             _brandService = brandService;
-            _mapper = mapper;
         }
 
 
@@ -33,8 +30,6 @@ namespace WebAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _brandService.GetAll();
-            //var result = _mapper.Map<List<BrandDto>>(data);
-
             if (result.Success)
             {
                 return Ok(result);

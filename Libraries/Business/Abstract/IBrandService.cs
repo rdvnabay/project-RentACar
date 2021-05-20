@@ -12,7 +12,7 @@ namespace Business.Abstract
         IResult Update(Brand brand);
         IResult Delete(Brand brand);
         IDataResult<Brand> GetById(int brandId);
-        IDataResult<List<Brand>> GetAll();
+        IDataResult<List<BrandDto>> GetAll();
         IDataResult<Task<List<Brand>>> GetAllAsync();
     }
 }
