@@ -61,8 +61,9 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(ColorValidator))]
-        public IResult Update(Color color)
+        public IResult Update(ColorDto colorDto)
         {
+            var color = _mapper.Map<Color>(colorDto);
             _colorDal.Update(color);
             return new SuccessResult();
         }

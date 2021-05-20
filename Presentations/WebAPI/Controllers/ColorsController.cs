@@ -54,10 +54,14 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Color color)
+        public IActionResult Update(ColorDto colorDto)
         {
-            _colorService.Update(color);
-            return Ok();
+           var result= _colorService.Update(colorDto);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Business.Abstract
         IDataResult<List<ColorDto>> GetAll();
         IDataResult<Task<List<Color>>> GetAllAsync();
         IDataResult<Color> GetById(int colorId);
-        IResult Update(Color color);
+        IResult Update(ColorDto colorDto);
 
      
     }
