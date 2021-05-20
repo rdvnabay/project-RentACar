@@ -27,8 +27,8 @@ export class BrandListComponent implements OnInit {
     });
   }
 
-  delete(brand: Brand) {
-    this.brandService.delete(brand).subscribe(response => {
+  delete(brandId: number) {
+    this.brandService.delete(brandId).subscribe(response => {
       // this.brands.splice((brandId-1),1);
       this.toastrService.warning('Marka silindi', 'Başarılı');
       this.router.navigateByUrl('');
