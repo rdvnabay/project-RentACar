@@ -35,8 +35,9 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult Delete(Color color)
+        public IResult Delete(ColorDto colorDto)
         {
+            var color = _mapper.Map<Color>(colorDto);
             _colorDal.Delete(color);
             return new SuccessResult();
         }
