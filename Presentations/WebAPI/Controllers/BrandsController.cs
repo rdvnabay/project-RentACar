@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Core.Utilities.Results.Abstract;
 using Entities.Concrete;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace WebAPI.Controllers
 {
@@ -45,9 +43,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Brand brand)
+        public IActionResult Add(BrandAddDto brandAddDto)
         {
-            var result = _brandService.Add(brand);
+            var result = _brandService.Add(brandAddDto);
             if (result.Success)
             {
                 return Ok(result);

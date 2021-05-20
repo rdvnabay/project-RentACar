@@ -1,10 +1,8 @@
-﻿using Business.Abstract;
-using Business.BusinessAspects;
+﻿using AutoMapper;
+using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
-using Core.Aspects.Autofac;
 using Core.Aspects.Autofac.Caching;
-using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
@@ -12,6 +10,7 @@ using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,16 +20,21 @@ namespace Business.Concrete
     public class BrandManager : IBrandService
     {
         IBrandDal _brandDal;
-        public BrandManager(IBrandDal brandDal)
+        IMapper _mapper;
+        public BrandManager(
+            IBrandDal brandDal,
+            IMapper mapper)
         {
             _brandDal = brandDal;
+            _mapper = mapper;
         }
         //[SecuredOperation("admin")]
         [ValidationAspect(typeof(BrandValidator))]
         [CacheRemoveAspect("IBrandService.Get")]
         //[PerformanceAspect(5)]
-        public IResult Add(Brand brand)
+        public IResult Add(BrandAddDto brandAddDto)
         {
+            var brand = _mapper.Map<Brand>(brandAddDto);
             IResult result= BusinessRules.Run(CheckIfBrandNameExists(brand.Name));
             if (result!=null)
             {

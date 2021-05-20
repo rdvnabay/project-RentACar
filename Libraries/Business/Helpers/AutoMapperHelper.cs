@@ -18,6 +18,7 @@ namespace Business.Helpers
                 });
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<Brand, BrandDto>().ReverseMap();
+            CreateMap<Brand, BrandAddDto>().ReverseMap();
             CreateMap<Color, ColorDto>().ReverseMap();
         }
     }
