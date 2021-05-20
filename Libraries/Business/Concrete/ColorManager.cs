@@ -48,10 +48,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ColorDto>>(colorsDto);
         }
 
-        public IDataResult<Task<List<Color>>> GetAllAsync()
+        public async Task<IDataResult<List<ColorDto>>> GetAllAsync()
         {
-            var data = _colorDal.GetAllAsync();
-            return new SuccessDataResult<Task<List<Color>>>(data);
+            var colors = await _colorDal.GetAllAsync();
+            var colorsDto = _mapper.Map<List<ColorDto>>(colors);
+            return new SuccessDataResult<List<ColorDto>>(colorsDto);
         }
 
         public IDataResult<Color> GetById(int colorId)

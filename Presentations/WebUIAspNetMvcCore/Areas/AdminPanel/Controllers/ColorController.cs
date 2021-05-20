@@ -12,13 +12,10 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
     public class ColorController : Controller
     {
         private IColorService _colorService;
-        private IMapper _mapper;
         public ColorController(
-            IColorService colorService,
-            IMapper mapper)
+            IColorService colorService)
         {
             _colorService = colorService;
-            _mapper = mapper;
         }
 
         //Actions
@@ -65,10 +62,9 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             return View(result);
         }
 
-        public async Task<IActionResult> List()
+        public IActionResult List()
         {
-            var data = await _colorService.GetAllAsync().Data;
-            var model = _mapper.Map<List<ColorDto>>(data);
+            var model = _colorService.GetAll().Data;
             return View(model);
         }
     }

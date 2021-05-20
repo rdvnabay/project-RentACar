@@ -11,7 +11,7 @@ namespace Business.Abstract
         IResult Add(ColorAddDto colorAddDto);
         IResult Delete(Color color);
         IDataResult<List<ColorDto>> GetAll();
-        IDataResult<Task<List<Color>>> GetAllAsync();
+        Task<IDataResult<List<ColorDto>>> GetAllAsync();
         IDataResult<Color> GetById(int colorId);
         IResult Update(ColorDto colorDto);
 
