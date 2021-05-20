@@ -11,7 +11,7 @@ namespace Business.Abstract
         IResult Add(BrandAddDto brandAddDto);
         IResult Delete(Brand brand);
         IDataResult<List<BrandDto>> GetAll();
-        IDataResult<Task<List<Brand>>> GetAllAsync();
+        Task<IDataResult<List<BrandDto>>> GetAllAsync();
         IDataResult<Brand> GetById(int brandId);
         IResult Update(BrandDto brandDto);
 

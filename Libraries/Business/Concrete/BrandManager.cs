@@ -58,6 +58,13 @@ namespace Business.Concrete
             return new SuccessDataResult<List<BrandDto>>(brandsDto);
         }
 
+        public async Task<IDataResult<List<BrandDto>>> GetAllAsync()
+        {
+            var brands = await _brandDal.GetAllAsync();
+            var brandsDto = _mapper.Map<List<BrandDto>>(brands);
+            return new SuccessDataResult<List<BrandDto>>(brandsDto);
+        }
+
         public IDataResult<Brand> GetById(int brandId)
         {
             var data = _brandDal.Get(b => b.Id == brandId);
@@ -91,10 +98,6 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductUpdated);
         }
 
-        public  IDataResult<Task<List<Brand>>> GetAllAsync()
-        {
-            var data = _brandDal.GetAllAsync();
-            return new SuccessDataResult<Task<List<Brand>>>(data);
-        }
+       
     }
 }

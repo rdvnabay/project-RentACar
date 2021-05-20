@@ -18,13 +18,10 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
     public class BrandController : Controller
     {
         private IBrandService _brandService;
-        private IMapper _mapper;
         public BrandController(
-            IBrandService brandService,
-            IMapper mapper)
+            IBrandService brandService)
         {
             _brandService = brandService;
-            _mapper = mapper;
         }
 
         //Actions
@@ -34,19 +31,19 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Brand brand)
+        public IActionResult Add(BrandAddDto brandAddDto)
         {
             //string tokenUrl = Environment.GetEnvironmentVariable("TOKEN_VALIDATE_URL");
             string token = HttpContext.Session.GetString("token");
             HttpClient client = new HttpClient();
             //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",token);
           
-            var result = _brandService.Add(brand);
+            var result = _brandService.Add(brandAddDto);
             if (result.Success)
             {
                 var alertMessage = new AlertMessage
                 {
-                    Message = $"{brand.Name} markası eklendi.",
+                    Message = $"{brandAddDto.Name} markası eklendi.",
                     AlertType = "success"
                 };
                 TempData["alertMessage"] = JsonConvert.SerializeObject(alertMessage);
@@ -73,9 +70,9 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Brand brand)
+        public IActionResult Edit(BrandDto brandDto)
         {
-            var result = _brandService.Update(brand);
+            var result = _brandService.Update(brandDto);
             if (result.Success)
             {
                 return RedirectToAction("List", "Brand");
@@ -83,11 +80,10 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
             return View(result);
         }
 
-        public async Task<IActionResult> List()
+        public IActionResult List()
         {
-            var data = await _brandService.GetAllAsync().Data;
-            var model = _mapper.Map<List<BrandDto>>(data);
-            return View(model);
+            var data = _brandService.GetAll().Data;
+            return View(data);
         }
     }
 }

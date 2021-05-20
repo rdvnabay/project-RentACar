@@ -28,9 +28,9 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Color color)
+        public IActionResult Add(ColorAddDto colorAddDto)
         {
-            var result = _colorService.Add(color);
+            var result = _colorService.Add(colorAddDto);
             if (result.Success)
             {
                 return RedirectToAction("List", "Color");
@@ -55,9 +55,9 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Color color)
+        public IActionResult Edit(ColorDto colorDto)
         {
-            var result = _colorService.Update(color);
+            var result = _colorService.Update(colorDto);
             if (result.Success)
             {
                 return RedirectToAction("List", "Color");

@@ -1,4 +1,5 @@
 ﻿using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Models
     public class BrandListModel
     {
         public int BrandId { get; set; }
-        public List<Brand> Brands { get; set; }
+        public List<BrandDto> Brands { get; set; }
     }
 }

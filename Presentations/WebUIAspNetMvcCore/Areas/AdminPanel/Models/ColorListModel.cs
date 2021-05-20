@@ -1,4 +1,5 @@
 ﻿using Entities.Concrete;
+using Entities.Dtos;
 using System.Collections.Generic;
 
 namespace WebUIAspNetMvcCore.Areas.AdminPanel.Models
@@ -6,6 +7,6 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Models
     public class ColorListModel
     {
         public int ColorId { get; set; }
-        public List<Color> Colors { get; set; }
+        public List<ColorDto> Colors { get; set; }
     }
 }
