@@ -55,10 +55,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ColorDto>>(colorsDto);
         }
 
-        public IDataResult<Color> GetById(int colorId)
+        public IDataResult<ColorDto> GetById(int colorId)
         {
-            var data= _colorDal.Get(c => c.Id == colorId);
-            return new SuccessDataResult<Color>(data);
+            var color= _colorDal.Get(c => c.Id == colorId);
+            var colorDto = _mapper.Map<ColorDto>(color);
+            return new SuccessDataResult<ColorDto>(colorDto);
         }
 
         [ValidationAspect(typeof(ColorValidator))]

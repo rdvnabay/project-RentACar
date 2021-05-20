@@ -12,9 +12,7 @@ namespace Business.Abstract
         IResult Delete(Color color);
         IDataResult<List<ColorDto>> GetAll();
         Task<IDataResult<List<ColorDto>>> GetAllAsync();
-        IDataResult<Color> GetById(int colorId);
+        IDataResult<ColorDto> GetById(int colorId);
         IResult Update(ColorDto colorDto);
-
-     
     }
 }

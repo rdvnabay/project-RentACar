@@ -38,8 +38,12 @@ namespace WebAPI.Controllers
         [HttpGet("get")]
         public IActionResult Get(int colorId)
         {
-            var data = _colorService.GetById(colorId);
-            return Ok(data.Data);
+            var result = _colorService.GetById(colorId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
         [HttpGet("getall")]
