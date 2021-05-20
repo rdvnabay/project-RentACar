@@ -65,8 +65,9 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(BrandValidator))]
-        public IResult Update(Brand brand)
+        public IResult Update(BrandDto brandDto)
         {
+            var brand = _mapper.Map<Brand>(brandDto);
             _brandDal.Update(brand);
             return new SuccessResult();
         }
