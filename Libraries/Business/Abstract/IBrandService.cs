@@ -9,7 +9,7 @@ namespace Business.Abstract
     public interface IBrandService
     {
         IResult Add(BrandAddDto brandAddDto);
-        IResult Delete(Brand brand);
+        IResult Delete(BrandDto brandDto);
         IDataResult<List<BrandDto>> GetAll();
         Task<IDataResult<List<BrandDto>>> GetAllAsync();
         IDataResult<BrandDto> GetById(int brandId);

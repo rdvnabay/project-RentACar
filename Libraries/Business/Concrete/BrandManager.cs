@@ -43,8 +43,9 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult Delete(Brand brand)
+        public IResult Delete(BrandDto brandDto)
         {
+            var brand = _mapper.Map<Brand>(brandDto);
             _brandDal.Delete(brand);
             return new SuccessResult();
         }
