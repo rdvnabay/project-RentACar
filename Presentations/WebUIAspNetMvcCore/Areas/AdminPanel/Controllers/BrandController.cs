@@ -65,8 +65,12 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
 
         public IActionResult Edit(int brandId)
         {
-            var model = _brandService.GetById(brandId).Data;
-            return View(model);
+            var result = _brandService.GetById(brandId);
+            if (result.Success)
+            {
+                return View(result.Data);
+            }
+            return View(result.Message);
         }
 
         [HttpPost]
