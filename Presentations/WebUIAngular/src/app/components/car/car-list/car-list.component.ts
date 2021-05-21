@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car';
 import { CarDetail } from 'src/app/models/carDetail';
+import { CarDto } from 'src/app/models/dtos/carDto';
 import { CarService } from 'src/app/services/car.service';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -36,7 +37,7 @@ export class CarListComponent implements OnInit {
 
   getAll() {
     this.carService.getAll().subscribe(response => {
-      this.cars = response.data;
+      // this.cars = response.data;
       this.dataLoaded=true;
       console.log(response.data);
     });

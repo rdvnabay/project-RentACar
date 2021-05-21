@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  Validators,
+import { FormBuilder, FormGroup, FormControl, Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -51,9 +47,7 @@ export class CarAddComponent implements OnInit {
 
   add() {
     if (this.carAddForm.valid) {
-      console.log(this.carAddForm.value);
       let carAddDtoModel = Object.assign({}, this.carAddForm.value);
-
       this.carService.add(carAddDtoModel).subscribe(
         response => {
           this.toastrService.success('Araç eklendi', 'Başarılı');
@@ -61,8 +55,7 @@ export class CarAddComponent implements OnInit {
         },
         responseError => {
           this.toastrService.error(responseError.error);
-        }
-      );
+        });
     }
   }
 

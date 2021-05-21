@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Car } from 'src/app/models/car';
+import { CarDto } from 'src/app/models/dtos/carDto';
+import { CarService } from 'src/app/services/car.service';
 
 @Component({
   selector: 'app-car-list',
@@ -8,14 +9,21 @@ import { Car } from 'src/app/models/car';
 })
 export class CarListComponent implements OnInit {
 
-  cars:Car[]=[];
-  constructor() { }
+  cars:CarDto[]=[];
+  constructor(private carService:CarService) { }
 
   ngOnInit(): void {
+    this.getAll();
   }
 
 
   delete(carId:number){
 
+  }
+
+  getAll(){
+return this.carService.getAll().subscribe(response=>{
+this.cars=response.data;
+})
   }
 }

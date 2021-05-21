@@ -7,6 +7,7 @@ import { CarDetail } from '../models/carDetail';
 import { ResponseModel } from '../models/responseModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
 import { CarAddDto } from '../models/dtos/carAddDto';
+import { CarDto } from '../models/dtos/carDto';
 
 @Injectable({
   providedIn: 'root',
@@ -25,9 +26,9 @@ add(carAddDto:CarAddDto):Observable<ResponseModel>{
     return this.httpClient.get<SingleResponseModel<Car>>(newPath);
   }
 
-  getAll(): Observable<ListResponseModel<Car>> {
+  getAll(): Observable<ListResponseModel<CarDto>> {
     let newPath = this.apiUrl + 'getall';
-    return this.httpClient.get<ListResponseModel<Car>>(newPath);
+    return this.httpClient.get<ListResponseModel<CarDto>>(newPath);
   }
 
   getAllByBrand(brandId: number): Observable<ListResponseModel<Car>> {

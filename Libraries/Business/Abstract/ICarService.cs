@@ -13,8 +13,8 @@ namespace Business.Abstract
         IResult Update(Car car);
         IResult Delete(Car car);
         IDataResult<Car> GetById(int carId);
-        IDataResult<List<Car>> GetAll();
-        IDataResult<Task<List<Car>>> GetAllAsync();
+        IDataResult<List<CarDto>> GetAll();
+        Task<IDataResult<List<Car>>> GetAllAsync();
 
         IDataResult<CarDto> GetDetails(int carId);
         IDataResult<List<Car>> GetAllByBrand(int brandId);

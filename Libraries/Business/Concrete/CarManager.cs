@@ -45,10 +45,10 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IDataResult<List<Car>> GetAll()
+        public IDataResult<List<CarDto>> GetAll()
         {
-            var data=_carDal.GetAll();
-            return new SuccessDataResult<List<Car>>(data);
+            var car=_carDal.GetAllDto();
+            return new SuccessDataResult<List<CarDto>>(car);
         }
 
         public IDataResult<Car> GetById(int carId)
@@ -82,10 +82,10 @@ namespace Business.Concrete
             return new SuccessDataResult<CarDto>(data);
         }
 
-        public IDataResult<Task<List<Car>>> GetAllAsync()
+        public async Task<IDataResult<List<Car>>> GetAllAsync()
         {
-            var data = _carDal.GetAllAsync();
-            return new SuccessDataResult<Task<List<Car>>>(data);
+            var data = await _carDal.GetAllAsync();
+            return new SuccessDataResult<List<Car>>(data);
         }
 
         public IDataResult<List<Car>> GetAllBySearch(string search)
