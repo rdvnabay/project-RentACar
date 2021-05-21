@@ -8,7 +8,7 @@ namespace Business.Abstract
 {
     public interface ICarService
     {
-        IResult Add(Car car);
+        IResult Add(CarAddDto carAddDto);
         Task<IResult> AddAsync(Car car);
         IResult Update(Car car);
         IResult Delete(Car car);

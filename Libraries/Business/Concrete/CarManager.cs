@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Business.BusinessAspects;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -15,15 +16,18 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
-        public CarManager(ICarDal carDal)
+        IMapper _mapper;
+        public CarManager(ICarDal carDal, IMapper mapper)
         {
             _carDal = carDal;
+            _mapper = mapper;
         }
 
         //[SecuredOperation("admin,car-add")]
         [ValidationAspect(typeof(CarValidator))]
-        public IResult Add(Car car)
+        public IResult Add(CarAddDto carAddDto)
         {
+            var car = _mapper.Map<Car>(carAddDto);
             _carDal.Add(car);
             return new SuccessResult();
         }
