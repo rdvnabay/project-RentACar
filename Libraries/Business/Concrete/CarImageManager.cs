@@ -23,13 +23,14 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CarImageValidator))]
-        public IResult Add(CarImage carImage)
+        public IResult Add(CarImageAddDto carImageAddDto)
         {
-            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImage.CarId));
+            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImageAddDto.CarId));
             if (result != null)
             {
                 return result;
             }
+            var carImage = _mapper.Map<CarImage>(carImageAddDto);
             _carImageDal.Add(carImage);
             return new SuccessResult();
         }

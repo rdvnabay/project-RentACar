@@ -7,7 +7,7 @@ namespace Business.Abstract
 {
     public interface ICarImageService
     {
-        IResult Add(CarImage carImage);
+        IResult Add(CarImageAddDto carImageAddDto);
         IResult Update(CarImageDto carImageDto);
         IResult Delete(CarImageDto carImageDto);
 
