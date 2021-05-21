@@ -24,7 +24,7 @@ namespace Business.Concrete
         }
 
         //[SecuredOperation("admin,car-add")]
-        [ValidationAspect(typeof(CarValidator))]
+        //[ValidationAspect(typeof(CarValidator))]
         public IResult Add(CarAddDto carAddDto)
         {
             var car = _mapper.Map<Car>(carAddDto);

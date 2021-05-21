@@ -1,95 +1,100 @@
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <app-admin-content-header></app-admin-content-header>
-    </section>
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <app-admin-content-header></app-admin-content-header>
+  </section>
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <form asp-controller="Car" asp-action="Add" method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <!-- left column -->
-                    <div class="col-md-6">
-                        <!-- Form Element sizes -->
-                        <!-- general form elements disabled -->
-                        <div class="card card-warning">
-                            <div class="card-header">
-                                <h3 class="card-title">Araç Ekleme</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <!-- input states -->
-                                <div class="form-group">
-                                    <label class="col-form-label" asp-for="Name">
-                                        Araba Adı
-                                    </label>
-                                    <input type="text" asp-for="Name" class="form-control" placeholder="Araba adı giriniz...">
-                                    <span asp-validation-for="Name" class="text-sm text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-form-label" asp-for="Description">
-                                        Açıklama
-                                    </label>
-                                    <input type="text" asp-for="Description" class="form-control" placeholder="Açıklama giriniz ...">
-                                    <span asp-validation-for="Description" class="text-sm text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-form-label" asp-for="ModelYear">
-                                        Model Yılı
-                                    </label>
-                                    <input type="number" asp-for="ModelYear" class="form-control" placeholder="Yıl giriniz ...">
-                                    <span asp-validation-for="ModelYear" class="text-sm text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-form-label" asp-for="DailyPrice">
-                                        Günlük Kiralama Ücreti
-                                    </label>
-                                    <input type="number" asp-for="DailyPrice" class="form-control" placeholder="Fiyat giriniz ..." required>
-                                    <span asp-validation-for="DailyPrice" class="text-sm text-danger"></span>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-                        <!-- general form elements disabled -->
-
-                    </div>
-                    <!--/.col (left) -->
-                    <!-- right column -->
-                    <div class="col-md-6">
-                        <!-- Form Element sizes -->
-                        <!-- general form elements disabled -->
-                        <div class="card card-warning">
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <!-- select -->
-
-                                <app-partial-brand-list></app-partial-brand-list>
-                                <app-partial-color-list></app-partial-color-list>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile" name="files" multiple>
-                                    <label class="custom-file-label" for="customFile">Resim Yükle</label>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-fill btn-success">Araç Ekle</button>
-                            </div>
-                            <!-- /.card-body -->
-
-                        </div>
-                        <!-- /.card -->
-                        <!-- general form elements disabled -->
-
-                    </div>
-                    <!--/.col (right) -->
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <form [formGroup]="carAddForm">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- Form Element sizes -->
+            <!-- general form elements disabled -->
+            <div class="card card-warning">
+              <div class="card-header">
+                <h3 class="card-title">Araç Ekleme</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <!-- input states -->
+                <div class="form-group">
+                  <label class="col-form-label"> Araba Adı </label>
+                  <input type="text" formControlName="name" class="form-control" placeholder="Araba adı giriniz..." />
                 </div>
-            </form>
-            <!-- /.row -->
+                <div class="form-group">
+                  <label class="col-form-label"> Açıklama </label>
+                  <input type="text" formControlName="description" class="form-control"
+                    placeholder="Açıklama giriniz ..." />
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label"> Model Yılı </label>
+                  <input type="number" formControlName="modelYear" class="form-control" placeholder="Yıl giriniz ..." />
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label"> Günlük Kiralama Ücreti </label>
+                  <input type="number" formControlName="dailyPrice" class="form-control" placeholder="Fiyat giriniz ..."
+                    required />
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- general form elements disabled -->
+          </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+            <!-- Form Element sizes -->
+            <!-- general form elements disabled -->
+            <div class="card card-warning">
+              <!-- /.card-header -->
+              <div class="card-body">
+                <!-- select -->
+
+                <div class="form-group">
+                  <label>Marka Seçinizi</label>
+                  <select class="custom-select" formControlName="brandId">
+                    <option *ngFor="let brand of brands" [ngValue]="brand.id">
+                      {{ brand.name }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Renk Seçinizi</label>
+                  <select class="custom-select" formControlName="colorId">
+                    <option *ngFor="let color of colors" [value]="color.id">
+                      {{ color.name }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="customFile" name="files" multiple />
+                  <label class="custom-file-label" for="customFile">Resim Yükle</label>
+                </div>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-info btn-flat" (click)="add()">
+                  Araç Ekle
+                </button>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- general form elements disabled -->
+          </div>
+          <!--/.col (right) -->
         </div>
-        <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+      </form>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
 </div>
 
 <!-- @section entityValidationJs{
