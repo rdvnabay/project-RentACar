@@ -20,6 +20,8 @@ namespace Business.Helpers
             CreateMap<Brand, BrandDto>().ReverseMap();
             CreateMap<Brand, BrandAddDto>().ReverseMap();
 
+            CreateMap<CarImage, CarImageDto>().ReverseMap();
+
             CreateMap<Color, ColorDto>().ReverseMap();
             CreateMap<Color, ColorAddDto>().ReverseMap();
         }
