@@ -14,7 +14,7 @@ import { AdminLayoutComponent } from './shared/admin-layout/admin-layout.compone
 
 const routes: Routes = [{ path: '', component: AdminLayoutComponent,
 children:[
-  { path:'',component:BrandListComponent },
+  // { path:'',component:BrandListComponent },
 
   { path:'brand-add',component:BrandAddComponent },
   { path:'brand-edit/:brandId',component:BrandEditComponent },

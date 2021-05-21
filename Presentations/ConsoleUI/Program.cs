@@ -50,7 +50,7 @@ namespace ConsoleUI
                 switch (_secim)
                 {
                     case 1:
-                        brandOperation.ListToBrands();
+                        //brandOperation.ListToBrands();
                         Console.WriteLine();
                         //colorOperation.ListToColors();
                         //Console.WriteLine();
@@ -69,13 +69,13 @@ namespace ConsoleUI
                         Console.ReadLine();
                         break;
                     case 3:
-                        brandOperation.ListToBrands();
+                        //brandOperation.ListToBrands();
                         carOperation.ListToCarsByBrandId();
                         Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
                         Console.ReadLine();
                         break;
                     case 4:
-                        colorOperation.ListToColors();
+                        //colorOperation.ListToColors();
                         carOperation.ListToCarsByColorId();
                         Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
                         Console.ReadLine();
@@ -91,24 +91,24 @@ namespace ConsoleUI
                         Console.ReadLine();
                         break;
                     case 7:
-                        brandOperation.ListToBrands();
-                        brandOperation.AddToBrand();
+                        //brandOperation.ListToBrands();
+                        //brandOperation.AddToBrand();
                         Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
                         Console.ReadLine();
                         break;
                     case 8:
-                        brandOperation.ListToBrands();
+                        //brandOperation.ListToBrands();
                         Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
                         Console.ReadLine();
                         break;
                     case 9:
                         //colorOperation.ListToColors();
-                        colorOperation.AddToColor();
+                        //colorOperation.AddToColor();
                         Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
                         Console.ReadLine();
                         break;
                     case 10:
-                        colorOperation.ListToColors();
+                        //colorOperation.ListToColors();
                         Console.Write("\nMenüye dönmek için ENTER tuşuna basınız....");
                         Console.ReadLine();
                         break;
