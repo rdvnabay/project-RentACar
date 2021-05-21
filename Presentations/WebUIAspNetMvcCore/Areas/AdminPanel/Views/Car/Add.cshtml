@@ -3,16 +3,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Araç Ekleme Sayfası</h1>
-                </div>
-                <div class="col-sm-6">
-                    <partial name="Partial/_BreadCrumb" />
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
+        <partial name="Partial/_ContentHeader" />
     </section>
 
     <!-- Main content -->
@@ -30,7 +21,6 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                @*<input type="hidden" asp-for="Id">*@
                                 <!-- input states -->
                                 <div class="form-group">
                                     <label class="col-form-label" asp-for="Name">

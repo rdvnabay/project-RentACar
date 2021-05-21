@@ -1,0 +1,6 @@
+<div class="form-group">
+    <label>Renk Seçinizi</label>
+    <select class="custom-select" asp-for="ColorId">
+            <option *ngFor="let color of colors" value="{{color.name}}">{{color.name}}</option>
+    </select>
+</div>

@@ -1,1 +1,99 @@
-<p>car-add works!</p>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <app-admin-content-header></app-admin-content-header>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <form asp-controller="Car" asp-action="Add" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- Form Element sizes -->
+                        <!-- general form elements disabled -->
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                <h3 class="card-title">Araç Ekleme</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <!-- input states -->
+                                <div class="form-group">
+                                    <label class="col-form-label" asp-for="Name">
+                                        Araba Adı
+                                    </label>
+                                    <input type="text" asp-for="Name" class="form-control" placeholder="Araba adı giriniz...">
+                                    <span asp-validation-for="Name" class="text-sm text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" asp-for="Description">
+                                        Açıklama
+                                    </label>
+                                    <input type="text" asp-for="Description" class="form-control" placeholder="Açıklama giriniz ...">
+                                    <span asp-validation-for="Description" class="text-sm text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" asp-for="ModelYear">
+                                        Model Yılı
+                                    </label>
+                                    <input type="number" asp-for="ModelYear" class="form-control" placeholder="Yıl giriniz ...">
+                                    <span asp-validation-for="ModelYear" class="text-sm text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" asp-for="DailyPrice">
+                                        Günlük Kiralama Ücreti
+                                    </label>
+                                    <input type="number" asp-for="DailyPrice" class="form-control" placeholder="Fiyat giriniz ..." required>
+                                    <span asp-validation-for="DailyPrice" class="text-sm text-danger"></span>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                        <!-- general form elements disabled -->
+
+                    </div>
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-6">
+                        <!-- Form Element sizes -->
+                        <!-- general form elements disabled -->
+                        <div class="card card-warning">
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <!-- select -->
+
+                                <app-partial-brand-list></app-partial-brand-list>
+                                <app-partial-color-list></app-partial-color-list>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile" name="files" multiple>
+                                    <label class="custom-file-label" for="customFile">Resim Yükle</label>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-fill btn-success">Araç Ekle</button>
+                            </div>
+                            <!-- /.card-body -->
+
+                        </div>
+                        <!-- /.card -->
+                        <!-- general form elements disabled -->
+
+                    </div>
+                    <!--/.col (right) -->
+                </div>
+            </form>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<!-- @section entityValidationJs{
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+    <script src="~/panel/js/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/panel/js/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+} -->

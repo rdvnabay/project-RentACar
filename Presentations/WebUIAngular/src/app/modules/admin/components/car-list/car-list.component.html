@@ -1,1 +1,77 @@
-<p>car-list works!</p>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <app-admin-content-header></app-admin-content-header>
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-12">
+                  <div class="card">
+                      <div class="card-header">
+                          <h3 class="card-title">
+                              <a routerLink="car-add" class="btn btn-flat btn-outline-success">Araç Ekle</a>
+                          </h3>
+                      </div>
+                      <!-- /.card-header -->
+
+                          <div class="card-body">
+                              <table id="example2" class="table table-bordered table-hover">
+                                  <thead>
+                                      <tr>
+                                          <th>#</th>
+                                          <th>Marka</th>
+                                          <th>Model</th>
+                                          <th>Yılı</th>
+                                          <th>Rengi</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                          <tr *ngFor="let car of cars">
+                                              <th>{{car.id}}</th>
+                                              <td>
+                                                  <a routerLink="">
+                                                      {{car.name}}
+                                                  </a>
+                                              </td>
+                                              <td>-</td>
+                                              <td>
+                                                <a routerLink="car-edit/{{car.id}}" class="btn btn-sm btn-warning">Düzenle</a>
+                                              </td>
+                                              <td>
+                                                <button (click)="delete(car.id)" class="btn btn-sm btn-danger">Sil</button>
+                                              </td>
+                                          </tr>
+                                  </tbody>
+                                  <tfoot>
+                                      <tr>
+                                        <th>#</th>
+                                        <th>Marka</th>
+                                        <th>Model</th>
+                                        <th>Yılı</th>
+                                        <th>Rengi</th>
+                                      </tr>
+                                  </tfoot>
+                              </table>
+                          </div>
+
+                          <div class="card-body">
+                              <span *ngIf="cars.length==0" class="alert alert-warning text-sm">Kayıtlarda herhangi bir <strong>araç</strong> bulunamadı.</span>
+                          </div>
+                      <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+
+
+              </div>
+              <!-- /.col -->
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>

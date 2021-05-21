@@ -1,0 +1,6 @@
+<div class="form-group">
+    <label>Marka Seçinizi</label>
+    <select class="custom-select" asp-for="BrandId">
+            <option *ngFor="let brand of brands" value="{{brand.name}}">{{brand.name}}</option>
+    </select>
+</div>

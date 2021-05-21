@@ -22,6 +22,8 @@ import { CarDeleteComponent } from './components/car-delete/car-delete.component
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { ColorListComponent } from './components/color-list/color-list.component';
 import { CarListComponent } from './components/car-list/car-list.component';
+import { PartialBrandListComponent } from './shared/partial-brand-list/partial-brand-list.component';
+import { PartialColorListComponent } from './shared/partial-color-list/partial-color-list.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { CarListComponent } from './components/car-list/car-list.component';
     CarDeleteComponent,
     CarDetailComponent,
     ColorListComponent,
-    CarListComponent
+    CarListComponent,
+    PartialBrandListComponent,
+    PartialColorListComponent
   ],
   imports: [
     CommonModule,

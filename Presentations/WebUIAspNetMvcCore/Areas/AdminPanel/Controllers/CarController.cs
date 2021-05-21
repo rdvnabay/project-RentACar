@@ -44,7 +44,7 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             {
                 return View(car);
             }
-            _carService.Add(car);
+            await _carService.AddAsync(car);
             foreach (var file in files)
             {
                 var extention = Path.GetExtension(file.FileName);
@@ -61,7 +61,8 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
                     Date = DateTime.Now,
                     ImagePath = fileName
                 };
-                _carImageService.Add(image);
+                //TODO: BAKILACAK
+                //_carImageService.Add(image);
             }
             return RedirectToAction("List", "Car");
         }
