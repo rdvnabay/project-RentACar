@@ -25,11 +25,9 @@ namespace WebAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _customerService.GetAll();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return result.Success
+               ? Ok(result)
+               : BadRequest(result);
         }
 
         [HttpPost("add")]

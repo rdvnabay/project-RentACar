@@ -21,55 +21,45 @@ namespace WebAPI.Controllers
         public IActionResult Add(ColorAddDto colorAddDto)
         {
             var result = _colorService.Add(colorAddDto);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return result.Success
+               ? Ok(result)
+               : BadRequest(result);
         }
 
         [HttpDelete("delete")]
         public IActionResult Delete(ColorDto colorDto)
         {
             var result = _colorService.Delete(colorDto);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return result.Success
+               ? Ok(result)
+               : BadRequest(result);
         }
 
         [HttpGet("get")]
         public IActionResult Get(int colorId)
         {
             var result = _colorService.GetById(colorId);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return result.Success
+               ? Ok(result)
+               : BadRequest(result);
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
             var result = _colorService.GetAll();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return result.Success
+                ? Ok(result)
+                : BadRequest(result);
         }
 
         [HttpPut("update")]
         public IActionResult Update(ColorDto colorDto)
         {
             var result = _colorService.Update(colorDto);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return result.Success
+              ? Ok(result)
+              : BadRequest(result);
         }
     }
 }

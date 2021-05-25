@@ -19,11 +19,9 @@ namespace WebAPI.Controllers
         public IActionResult Add(CarImageAddDto carImageAddDto)
         {
             var result = _carImageService.Add(carImageAddDto);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return result.Success
+               ? Ok(result)
+               : BadRequest(result);
         }
 
         [HttpPost("remove/{carId}")]
@@ -31,22 +29,18 @@ namespace WebAPI.Controllers
         {
             var carImage = _carImageService.GetByCarId(carId).Data;
             var result = _carImageService.Delete(carImage);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return result.Success
+               ? Ok(result)
+               : BadRequest(result);
         }
 
         [HttpGet("images/{carId}")]
         public IActionResult GetImagesByCarId(int carId)
         {
             var result = _carImageService.GetImagesByCarId(carId);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return result.Success
+                ? Ok(result)
+                : BadRequest(result);
         }
     }
 }

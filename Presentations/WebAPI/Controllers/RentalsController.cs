@@ -25,22 +25,18 @@ namespace WebAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _rentalService.GetAll();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return result.Success
+               ? Ok(result)
+               : BadRequest(result);
         }
 
         [HttpGet("getrentallbycustomer")]
         public IActionResult GetRentAllByCustomer(int carId,int customerId)
         {
             var result = _rentalService.GetRentAllByCustomer(carId, customerId);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return result.Success
+               ? Ok(result)
+               : BadRequest(result);
         }
 
         [HttpPost("add")]
