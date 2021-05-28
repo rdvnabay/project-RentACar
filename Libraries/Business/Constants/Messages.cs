@@ -18,5 +18,6 @@ namespace Business.Constants
         public static string ProductUpdated = "Ürün Güncellendi";
         public static string NameAlreadyExist= "Name Already Exist";
         public static string Added= "Added";
+        public static string Deleted="Deleted";
     }
 }
