@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\Translates\Queries\" />
     <Folder Include="Handlers\Translates\ValidationRules\" />
   </ItemGroup>
 
