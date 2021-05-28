@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Business.Constants
+﻿namespace Business.Constants
 {
     public static class Messages
     {
@@ -19,5 +13,7 @@ namespace Business.Constants
         public static string NameAlreadyExist= "Name Already Exist";
         public static string Added= "Added";
         public static string Deleted="Deleted";
+        public static string Updated = "Updated";
+
     }
 }
