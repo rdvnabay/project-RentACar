@@ -18,4 +18,9 @@
     <PackageReference Include="MediatR" Version="9.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Handlers\Translates\Queries\" />
+    <Folder Include="Handlers\Translates\ValidationRules\" />
+  </ItemGroup>
+
 </Project>
