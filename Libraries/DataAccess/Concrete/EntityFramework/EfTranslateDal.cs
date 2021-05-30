@@ -12,6 +12,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfTranslateDal : EfEntityRepositoryBase<Translate, RentACarDbContext>, ITranslateDal
     {
+        public EfTranslateDal(RentACarDbContext context) : base(context) { }
         public async Task<List<TranslateDto>> GetTranslateDto()
         {
             using (var context=new RentACarDbContext())

@@ -11,6 +11,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfLanguageDal : EfEntityRepositoryBase<Language, RentACarDbContext>, ILanguageDal
     {
+        public EfLanguageDal(RentACarDbContext context) : base(context) { }
         public async Task<List<SelectionItem>> GetLanguagesLookUp()
         {
             using (var context = new RentACarDbContext())

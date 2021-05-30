@@ -11,6 +11,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfUserDal : EfEntityRepositoryBase<User, RentACarDbContext>, IUserDal
     {
+        public EfUserDal(RentACarDbContext context) : base(context) { }
         public List<OperationClaim> GetClaims(User user)
         {
             using (var context = new RentACarDbContext())

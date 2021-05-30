@@ -6,5 +6,6 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfBrandDal:EfEntityRepositoryBase<Brand,RentACarDbContext>,IBrandDal
     {
+        public EfBrandDal(RentACarDbContext context) : base(context) { }
     }
 }
