@@ -35,6 +35,7 @@ namespace Business.Handlers.Brands.Commands
                     Name = request.Name
                 };
                 _brandDal.Add(addedBrand);
+               //await _brandDal.SaveChangesAsync();
                 return new SuccessResult(Messages.Added);
             }
         }
