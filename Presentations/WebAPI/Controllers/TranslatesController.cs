@@ -1,38 +1,27 @@
-﻿using Business.Handlers.Languages.Queries;
+﻿using Business.Handlers.Translates.Commands;
+using Business.Handlers.Translates.Queries;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Business.Handlers.Languages.Commands;
+using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LanguagesController : ControllerBase
+    public class TranslatesController : ControllerBase
     {
         private IMediator _mediator;
         protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
 
-        [HttpGet("getlookupwithcode")]
-        public async Task<IActionResult> GetLookUpWithCode()
+        [HttpGet("gettranslatesbylang")]
+        public async Task<IActionResult> GetTranslatesByLang(string language)
         {
-            var result = await Mediator.Send(new GetLanguagesLookUpWithCodeQuery());
+            var result = await Mediator.Send(new GetTranslatesByLangQuery() { Language = language });
             if (result.Success)
             {
-                return Ok(result.Data);
-            }
-            return BadRequest(result.Message);
-        }
-
-        [HttpGet("getlookup")]
-        public async Task<IActionResult> GetLookUpList()
-        {
-            var result = await Mediator.Send(new GetLanguagesLookUpQuery());
-            if (result.Success)
-            {
-                return Ok(result.Data);
+                return Ok(result.Message);
             }
             return BadRequest(result.Message);
         }
@@ -40,7 +29,18 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public async Task<IActionResult> GetList()
         {
-            var result = await Mediator.Send(new GetLanguageQuery());
+            var result = await Mediator.Send(new GetTranslatesQuery());
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.Message);
+        }
+
+        [HttpGet("gettranslatelistdto")]
+        public async Task<IActionResult> GetTranslateListDto()
+        {
+            var result = await Mediator.Send(new GetTranslateListDtoQuery());
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -49,9 +49,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyid")]
-        public async Task<IActionResult> GetById(int languageId)
+        public async Task<IActionResult> GetById(int translateId)
         {
-            var result = await Mediator.Send(new GetLanguageQuery { Id = languageId });
+            var result = await Mediator.Send(new GetTranslateQuery { Id = translateId });
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -59,11 +59,10 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] CreateLanguageCommand createLanguage)
+        public async Task<IActionResult> Add([FromBody] CreateTranslateCommand createTranslate)
         {
-            var result = await Mediator.Send(createLanguage);
+            var result = await Mediator.Send(createTranslate);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -72,9 +71,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateLanguageCommand updateLanguage)
+        public async Task<IActionResult> Update([FromBody] UpdateTranslateCommand updateTranslate)
         {
-            var result = await Mediator.Send(updateLanguage);
+            var result = await Mediator.Send(updateTranslate);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -83,9 +82,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] DeleteLanguageCommand deleteLanguage)
+        public async Task<IActionResult> Delete([FromBody] DeleteTranslateCommand deleteTranslate)
         {
-            var result = await Mediator.Send(deleteLanguage);
+            var result = await Mediator.Send(deleteTranslate);
             if (result.Success)
             {
                 return Ok(result.Message);
