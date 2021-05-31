@@ -4,6 +4,7 @@ using Core.Extensions;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.Jwt;
+using DataAccess.Concrete.EntityFramework;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -34,7 +35,7 @@ namespace WebAPI
             services.AddControllers();
             services.AddAutoMapper(typeof(AutoMapperHelper));
             services.AddMediatR(typeof(Startup));
-
+            services.AddDbContext<RentACarDbContext>();
             services.AddCors();
             //services.AddCors(options =>
             //{
