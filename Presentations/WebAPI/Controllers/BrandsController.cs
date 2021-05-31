@@ -1,8 +1,9 @@
-﻿using AutoMapper;
-using Business.Abstract;
-using Entities.Concrete;
+﻿using Business.Abstract;
 using Entities.Dtos;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
@@ -10,6 +11,9 @@ namespace WebAPI.Controllers
     [ApiController]
     public class BrandsController : ControllerBase
     {
+        private IMediator _mediator;
+        protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
+
         private IBrandService _brandService;
         public BrandsController(
             IBrandService brandService)
@@ -19,47 +23,50 @@ namespace WebAPI.Controllers
 
         //Methods
         [HttpPost("add")]
-        public IActionResult Add(BrandAddDto brandAddDto)
+        public async Task<IActionResult> Add([FromBody] BrandAddDto brandAddDto)
         {
-            var result = _brandService.Add(brandAddDto);
-            return result.Success ? Ok(result) : BadRequest(result);
+            var result = await _brandService.AddAsync(brandAddDto);
+            return result.Success 
+                ? Ok(result.Message) 
+                : BadRequest(result.Message);
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(int brandId)
-        {
-            var brand = _brandService.GetById(brandId).Data;
-            var result = _brandService.Delete(brand);
+        public async Task<IActionResult> Delete(int brandId)
+        { 
+            //TODO: GetById Asenkron
+            var brand = _brandService.GetById(brandId);
+            var result = await _brandService.DeleteAsync(brand);
             return result.Success 
-                ? Ok(result) 
-                : BadRequest(result);
+                ? Ok(result.Message) 
+                : BadRequest(result.Message);
         }
 
         [HttpGet("get")]
-        public IActionResult Get(int brandId)
+        public async Task<IActionResult> Get(int brandId)
         {
-            var result = _brandService.GetById(brandId);
+            var result = await _brandService.GetByIdAsync(brandId);
             return result.Success 
                 ? Ok(result) 
                 : BadRequest(result);
         }
 
         [HttpGet("getall")]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var result = _brandService.GetAll();
+            var result = await _brandService.GetAllAsync();
             return result.Success
               ? Ok(result)
               : BadRequest(result);
         }
 
         [HttpPut("update")]
-        public IActionResult Update(BrandDto brandDto)
+        public async Task<IActionResult> Update([FromBody] BrandDto brandDto)
         {
-           var result = _brandService.Update(brandDto);
+           var result = await _brandService.UpdateAsync(brandDto);
             return result.Success
-               ? Ok(result)
-               : BadRequest(result);
+               ? Ok(result.Message)
+               : BadRequest(result.Message);
         }
     }
 }

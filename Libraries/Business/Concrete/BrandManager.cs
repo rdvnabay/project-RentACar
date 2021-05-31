@@ -40,14 +40,26 @@ namespace Business.Concrete
                 return result;
             }
             _brandDal.Add(brand);
-            return new SuccessResult();
+            return new SuccessResult(Messages.Added);
+        }
+        public async Task<IResult> AddAsync(BrandAddDto brandAddDto)
+        {
+            var brand = _mapper.Map<Brand>(brandAddDto);
+            await _brandDal.AddAsync(brand);
+            return new SuccessResult(Messages.Added);
         }
 
         public IResult Delete(BrandDto brandDto)
         {
             var brand = _mapper.Map<Brand>(brandDto);
             _brandDal.Delete(brand);
-            return new SuccessResult();
+            return new SuccessResult(Messages.Deleted);
+        }
+        public async Task<IResult> DeleteAsync(BrandDto brandDto)
+        {
+            var brand = _mapper.Map<Brand>(brandDto);
+            await _brandDal.DeleteAsync(brand);
+            return new SuccessResult(Messages.Deleted);
         }
 
         [CacheAspect]
@@ -57,29 +69,42 @@ namespace Business.Concrete
             var brandsDto = _mapper.Map<List<BrandDto>>(brands);
             return new SuccessDataResult<List<BrandDto>>(brandsDto);
         }
-
         public async Task<IDataResult<List<BrandDto>>> GetAllAsync()
         {
             var brands = await _brandDal.GetAllAsync();
             var brandsDto = _mapper.Map<List<BrandDto>>(brands);
             return new SuccessDataResult<List<BrandDto>>(brandsDto);
         }
-
         public IDataResult<BrandDto> GetById(int brandId)
         {
             var brand = _brandDal.Get(b => b.Id == brandId);
             var brandDto = _mapper.Map<BrandDto>(brand);
             return new SuccessDataResult<BrandDto>(brandDto);
         }
+        public async Task<IDataResult<BrandDto>> GetByIdAsync(int brandId)
+        {
+            var brand = await _brandDal.GetAsync(x => x.Id == brandId);
+            var brandDto = _mapper.Map<BrandDto>(brand);
+            return new SuccessDataResult<BrandDto>(brandDto);
+        }
 
+  
         [ValidationAspect(typeof(BrandValidator))]
         public IResult Update(BrandDto brandDto)
         {
             var brand = _mapper.Map<Brand>(brandDto);
             _brandDal.Update(brand);
-            return new SuccessResult();
+            return new SuccessResult(Messages.Updated);
+        }
+        public async Task<IResult> UpdateAsync(BrandDto brandDto)
+        {
+            var brand = _mapper.Map<Brand>(brandDto);
+            await _brandDal.UpdateAsync(brand);
+            return new SuccessResult(Messages.Updated);
         }
 
+
+        //Business Rules
         public IResult CheckIfBrandNameExists(string brandName)
         {
             var result = _brandDal.GetAll(b => b.Name == brandName).Any();
@@ -90,7 +115,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        //TODO: Örnek Transaction Kullanımı
+        //Transaction
         [TransactionScopeAspect]
         public IResult TransactionalOperation(Brand brand)
         {
@@ -98,7 +123,5 @@ namespace Business.Concrete
             _brandDal.Add(brand);
             return new SuccessResult(Messages.ProductUpdated);
         }
-
-       
     }
 }
