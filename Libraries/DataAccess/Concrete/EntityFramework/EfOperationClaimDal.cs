@@ -9,6 +9,6 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfOperationClaimDal : EfEntityRepositoryBase<OperationClaim, RentACarDbContext>, IOperationClaimDal
     {
-        public EfOperationClaimDal(RentACarDbContext context) : base(context) { }
+       public EfOperationClaimDal(RentACarDbContext context) : base(context) { }
     }
 }
