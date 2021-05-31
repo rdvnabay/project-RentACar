@@ -9,12 +9,14 @@ namespace Business.Abstract
     public interface IBrandService
     {
         IResult Add(BrandAddDto brandAddDto);
+        Task<IResult> AddAsync(BrandAddDto brandAddDto);
         IResult Delete(BrandDto brandDto);
+        Task<IResult> DeleteAsync(BrandDto brandDto);
         IDataResult<List<BrandDto>> GetAll();
         Task<IDataResult<List<BrandDto>>> GetAllAsync();
         IDataResult<BrandDto> GetById(int brandId);
+        Task<IDataResult<BrandDto>> GetByIdAsync(int brandId);
         IResult Update(BrandDto brandDto);
-
-
+        Task<IResult> UpdateAsync(BrandDto brandDto);
     }
 }

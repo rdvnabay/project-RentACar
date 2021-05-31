@@ -40,6 +40,7 @@ namespace Business.Handlers.Languages.Commands
                 };
 
                  _languageDal.Add(addedLanguage);
+                
                 return new SuccessResult(Messages.Added);
             }
         }

@@ -9,12 +9,9 @@ using System.Threading.Tasks;
 
 namespace Business.Handlers.Brands.Queries
 {
-    public class GetBrandsQuery:IRequest<IDataResult<IEnumerable<Brand>>>
+    public class GetBrandsQuery:IRequest<IDataResult<List<Brand>>>
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-
-        public class GetBrandsQueryHandler : IRequestHandler<GetBrandsQuery, IDataResult<IEnumerable<Brand>>>
+        public class GetBrandsQueryHandler : IRequestHandler<GetBrandsQuery, IDataResult<List<Brand>>>
         {
             private readonly IMediator _mediator;
             private readonly IBrandDal _brandDal;
@@ -24,10 +21,10 @@ namespace Business.Handlers.Brands.Queries
                 _mediator = mediator;
                 _brandDal = brandDal;
             }
-            public async Task<IDataResult<IEnumerable<Brand>>> Handle(GetBrandsQuery request, CancellationToken cancellationToken)
+            public async Task<IDataResult<List<Brand>>> Handle(GetBrandsQuery request, CancellationToken cancellationToken)
             {
                 var brands = await _brandDal.GetAllAsync();
-                return new SuccessDataResult<IEnumerable<Brand>>(brands);
+                return new SuccessDataResult<List<Brand>>(brands);
             }
         }
     }
