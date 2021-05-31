@@ -20,45 +20,34 @@ namespace Core.DataAccess.EntityFramework
         }
         public void Add(TEntity entity)
         {
-            using (var context = new TContext())
-            {
-                context.Add(entity);
-                context.SaveChanges();
-            }
+                _context.Add(entity);
+                _context.SaveChanges();
         }
         public async Task AddAsync(TEntity entity)
         {
-            var context = new TContext();
-            await context.Set<TEntity>().AddAsync(entity);
-            await context.SaveChangesAsync();
+            await _context.Set<TEntity>().AddAsync(entity);
+            await _context.SaveChangesAsync();
         }
         public void AddMultiple(IList<TEntity> entities)
         {
-            using (var context = new TContext())
-            {
                 foreach (var entity in entities)
                 {
-                    context.Add(entity);
-                    context.SaveChanges();
+                    _context.Add(entity);
+                    _context.SaveChanges();
                 }
-            }
         }
         public async Task AddAsync(IList<TEntity> entities)
         {
-            var context = new TContext();
             foreach (var entity in entities)
             {
-                await context.Set<TEntity>().AddAsync(entity);
-                await context.SaveChangesAsync();
+                await _context.Set<TEntity>().AddAsync(entity);
+                await _context.SaveChangesAsync();
             }
         }
         public void Delete(TEntity entity)
         {
-            using (var context = new TContext())
-            {
-                context.Remove(entity);
-                context.SaveChanges();
-            }
+                _context.Remove(entity);
+                _context.SaveChanges();
         }
         public async Task DeleteAsync(TEntity entity)
         {
@@ -67,13 +56,10 @@ namespace Core.DataAccess.EntityFramework
         }
         public void Delete(IList<TEntity> entities)
         {
-            using (var context = new TContext())
-            {
                 foreach (var entity in entities)
                 {
-                    context.Remove(entity);
-                    context.SaveChanges();
-                }
+                    _context.Remove(entity);
+                    _context.SaveChanges();
             }
         }
         public async Task DeleteAsync(IList<TEntity> entities)
@@ -94,31 +80,23 @@ namespace Core.DataAccess.EntityFramework
         }
         public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
-            using (var context = new TContext())
-            {
-                return context.Set<TEntity>().FirstOrDefault(filter);
-            }
+                return _context.Set<TEntity>().FirstOrDefault(filter);
         }
         public Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> expression)
         {
-            var context = new TContext();
-            return context.Set<TEntity>().FirstOrDefaultAsync(expression);
+            return _context.Set<TEntity>().FirstOrDefaultAsync(expression);
         }
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
-        {
-            using (var context = new TContext())
-            {
+        { 
                 return filter == null
-                    ? context.Set<TEntity>().ToList()
-                    : context.Set<TEntity>().Where(filter).ToList();
-            }
+                    ? _context.Set<TEntity>().ToList()
+                    : _context.Set<TEntity>().Where(filter).ToList();
         }
         public async Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> expression = null)
         {
-            var context = new TContext();
             return expression == null
-                ? await context.Set<TEntity>().ToListAsync()
-                : await context.Set<TEntity>().Where(expression).ToListAsync();
+                ? await _context.Set<TEntity>().ToListAsync()
+                : await _context.Set<TEntity>().Where(expression).ToListAsync();
         }
         public TEntity GetById(int id)
         {
@@ -166,17 +144,11 @@ namespace Core.DataAccess.EntityFramework
         }
         public int SaveChanges()
         {
-            using (var context = new TContext())
-            {
-                return context.SaveChanges();
-            }
+                return _context.SaveChanges();
         }
         public async Task<int> SaveChangesAsync()
         {
-            using (var context = new TContext())
-            {
-                return await context.SaveChangesAsync();
-            }
+                return await _context.SaveChangesAsync();
         }
     }
 }
