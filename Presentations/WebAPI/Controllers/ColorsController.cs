@@ -2,6 +2,7 @@
 using Entities.Concrete;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
@@ -18,45 +19,45 @@ namespace WebAPI.Controllers
 
         //Methods
         [HttpPost("add")]
-        public IActionResult Add(ColorAddDto colorAddDto)
+        public async Task<IActionResult> Add(ColorAddDto colorAddDto)
         {
-            var result = _colorService.Add(colorAddDto);
+            var result = await _colorService.AddAsync(colorAddDto);
             return result.Success
                ? Ok(result)
                : BadRequest(result);
         }
 
         [HttpDelete("delete")]
-        public IActionResult Delete(ColorDto colorDto)
+        public async Task<IActionResult> Delete(ColorDto colorDto)
         {
-            var result = _colorService.Delete(colorDto);
+            var result = await _colorService.DeleteAsync(colorDto);
             return result.Success
                ? Ok(result)
                : BadRequest(result);
         }
 
         [HttpGet("get")]
-        public IActionResult Get(int colorId)
+        public async Task<IActionResult> Get(int colorId)
         {
-            var result = _colorService.GetById(colorId);
+            var result = await _colorService.GetByIdAsync(colorId);
             return result.Success
                ? Ok(result)
                : BadRequest(result);
         }
 
         [HttpGet("getall")]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var result = _colorService.GetAll();
+            var result = await _colorService.GetAllAsync();
             return result.Success
                 ? Ok(result)
                 : BadRequest(result);
         }
 
         [HttpPut("update")]
-        public IActionResult Update(ColorDto colorDto)
+        public async Task<IActionResult> Update([FromBody] ColorDto colorDto)
         {
-            var result = _colorService.Update(colorDto);
+            var result = await _colorService.UpdateAsync(colorDto);
             return result.Success
               ? Ok(result)
               : BadRequest(result);
