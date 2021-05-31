@@ -19,7 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\Brands\Queries\" />
+    <Folder Include="Handlers\Cars\Queries\" />
+    <Folder Include="Handlers\OperationClaims\" />
+    <Folder Include="Handlers\Rentals\" />
   </ItemGroup>
 
 </Project>

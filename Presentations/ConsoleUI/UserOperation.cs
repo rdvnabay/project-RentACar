@@ -8,7 +8,7 @@ namespace ConsoleUI
 {
     public class UserOperation
     {
-        UserManager userManager = new UserManager(new EfUserDal());
+        UserManager userManager = new UserManager(new EfUserDal(new RentACarDbContext()));
         public void DeleteToUser()
         {
             int _deleteUserId;

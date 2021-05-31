@@ -7,7 +7,7 @@ namespace ConsoleUI
 {
     public class CustomerOperation
     {
-        CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+        CustomerManager customerManager = new CustomerManager(new EfCustomerDal(new RentACarDbContext()));
         public void ListToCustomers()
         {
             var result = customerManager.GetAll();

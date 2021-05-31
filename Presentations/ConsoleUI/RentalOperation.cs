@@ -7,7 +7,7 @@ namespace ConsoleUI
 {
     public class RentalOperation
     {
-        RentalManager rentalManager = new RentalManager(new EfRentalDal());
+        RentalManager rentalManager = new RentalManager(new EfRentalDal(new RentACarDbContext()));
 
         public void AddToRental()
         {
