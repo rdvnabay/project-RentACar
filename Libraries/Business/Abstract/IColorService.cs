@@ -9,8 +9,8 @@ namespace Business.Abstract
     {
         IResult Add(ColorAddDto colorAddDto);
         Task<IResult> AddAsync(ColorAddDto colorAddDto);
-        IResult Delete(ColorDto colorDto);
-        Task<IResult> DeleteAsync(ColorDto colorDto);
+        IResult DeleteById(int colorId);
+        Task<IResult> DeleteByIdAsync(int colorId);
         IDataResult<List<ColorDto>> GetAll();
         Task<IDataResult<List<ColorDto>>> GetAllAsync();
         IDataResult<ColorDto> GetById(int colorId);

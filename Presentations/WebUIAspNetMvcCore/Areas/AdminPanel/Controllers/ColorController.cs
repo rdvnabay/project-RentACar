@@ -40,7 +40,7 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             var result = _colorService.GetById(colorId);
             if (result.Success)
             {
-                _colorService.Delete(result.Data);
+                _colorService.DeleteById(colorId);
             }
             return RedirectToAction("List", "Color");
         }

@@ -40,17 +40,17 @@ namespace Business.Concrete
             await _colorDal.AddAsync(color);
             return new SuccessResult(Messages.Added);
         }
-        public IResult Delete(ColorDto colorDto)
+        public IResult DeleteById(int colorId)
         {
-            var color = _mapper.Map<Color>(colorDto);
+            var color = _colorDal.Get(x => x.Id == colorId);
             _colorDal.Delete(color);
             return new SuccessResult();
         }
-        public async Task<IResult> DeleteAsync(ColorDto colorDto)
+        public async Task<IResult> DeleteByIdAsync(int colorId)
         {
-            var color = _mapper.Map<Color>(colorDto);
+            var color = await _colorDal.GetAsync(x => x.Id == colorId);
             await _colorDal.DeleteAsync(color);
-            return new SuccessResult(Messages.Deleted);
+            return new SuccessResult();
         }
         public IDataResult<List<ColorDto>> GetAll()
         {

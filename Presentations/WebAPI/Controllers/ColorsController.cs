@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
 
         //Methods
         [HttpPost("add")]
-        public async Task<IActionResult> Add(ColorAddDto colorAddDto)
+        public async Task<IActionResult> Add([FromBody] ColorAddDto colorAddDto)
         {
             var result = await _colorService.AddAsync(colorAddDto);
             return result.Success
@@ -27,9 +27,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete(ColorDto colorDto)
+        public async Task<IActionResult> Delete(int  colorId)
         {
-            var result = await _colorService.DeleteAsync(colorDto);
+            var result = await _colorService.DeleteByIdAsync(colorId);
             return result.Success
                ? Ok(result)
                : BadRequest(result);
