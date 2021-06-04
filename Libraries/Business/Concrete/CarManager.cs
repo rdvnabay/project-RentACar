@@ -127,5 +127,12 @@ namespace Business.Concrete
             }
             return new SuccessResult();
         }
+
+        public async Task<IResult> UpdateAsync(CarUpdateDto carUpdateDto)
+        {
+            var car = _mapper.Map<Car>(carUpdateDto);
+            await _carDal.UpdateAsync(car);
+            return new SuccessResult();
+        }
     }
 }

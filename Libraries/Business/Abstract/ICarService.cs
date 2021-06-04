@@ -11,6 +11,7 @@ namespace Business.Abstract
         IResult Add(CarAddDto carAddDto);
         Task<IResult> AddAsync(CarAddDto carAddDto);
         IResult Update(Car car);
+        Task<IResult> UpdateAsync(CarUpdateDto carUpdateDto);
         IResult Delete(Car car);
         Task<IResult> DeleteByIdAsync(int carId);
         IDataResult<Car> GetById(int carId);

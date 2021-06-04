@@ -69,9 +69,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Car car)
+        public async Task<IActionResult> Update(CarUpdateDto carUpdateDto)
         {
-            var result = _carService.Update(car);
+            var result = await _carService.UpdateAsync(carUpdateDto);
             return result.Success
                 ? Ok(result)
                 : BadRequest(result);
