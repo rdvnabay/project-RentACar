@@ -2,6 +2,7 @@
 using Entities.Concrete;
 using Entities.Dtos.Customer;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
@@ -16,40 +17,48 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("get")]
-        public IActionResult Get(int userId)
+        public async Task<IActionResult> Get(int userId)
         {
-            var data = _customerService.GetById(userId);
-            return Ok(data.Data);
+            var result = await _customerService.GetByIdAsync(userId);
+            return result.Success
+                ? Ok(result)
+                : BadRequest(result);
         }
 
         [HttpGet("getall")]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var result = _customerService.GetAll();
+            var result = await _customerService.GetAllAsync();
             return result.Success
                ? Ok(result)
                : BadRequest(result);
         }
 
         [HttpPost("add")]
-        public IActionResult Add(CustomerAddDto customerAddDto)
+        public async Task<IActionResult> Add([FromBody] CustomerAddDto customerAddDto)
         {
-            _customerService.Add(customerAddDto);
-            return Ok();
+            var result = await _customerService.AddAsync(customerAddDto);
+            return result.Success
+               ? Ok(result)
+               : BadRequest(result);
         }
 
-        [HttpPost("update")]
-        public IActionResult Update(Customer customer)
+        [HttpPut("update")]
+        public async Task<IActionResult> Update([FromBody] Customer customer)
         {
-            _customerService.Update(customer);
-            return Ok();
+            var result = await _customerService.UpdateAsync(customer);
+            return result.Success
+               ? Ok(result)
+               : BadRequest(result);
         }
 
-        [HttpPost("delete")]
-        public IActionResult Delete(Customer customer)
+        [HttpDelete("delete")]
+        public async Task<IActionResult> Delete(int userId)
         {
-            _customerService.Delete(customer);
-            return Ok();
+            var result = await _customerService.DeleteByIdAsync(userId);
+            return result.Success
+                ? Ok(result)
+                : BadRequest(result);
         }
     }
 }

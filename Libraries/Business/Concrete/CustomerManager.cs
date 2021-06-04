@@ -8,6 +8,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.Dtos.Customer;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -19,6 +20,8 @@ namespace Business.Concrete
         {
             _customerDal = customerDal;
         }
+
+        //Command
         //[ValidationAspect(typeof(CustomerValidator))]
         public IResult Add(CustomerAddDto customerAddDto)
         {
@@ -26,30 +29,56 @@ namespace Business.Concrete
             _customerDal.Add(customer);
             return new SuccessResult();
         }
-
-        public IResult Delete(Customer customer)
+        public async Task<IResult> AddAsync(CustomerAddDto customerAddDto)
         {
+            var customer = _mapper.Map<Customer>(customerAddDto);
+            await _customerDal.AddAsync(customer);
+            return new SuccessResult();
+        }
+        public IResult DeleteById(int userId)
+        {
+            var customer = _customerDal.Get(x => x.UserId == userId);
             _customerDal.Delete(customer);
             return new SuccessResult();
         }
-
-        public IDataResult<List<Customer>> GetAll()
+        public async Task<IResult> DeleteByIdAsync(int userId)
         {
-            var data = _customerDal.GetAll();
-            return new SuccessDataResult<List<Customer>>(data);
+            var customer = _customerDal.Get(x => x.UserId == userId);
+            await _customerDal.DeleteAsync(customer);
+            return new SuccessResult();
         }
-
-        public IDataResult<Customer> GetById(int customerId)
-        {
-            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.Id == customerId));
-        }
-
 
         [ValidationAspect(typeof(CustomerValidator))]
         public IResult Update(Customer customer)
         {
             _customerDal.Update(customer);
             return new SuccessResult();
+        }
+        public async Task<IResult> UpdateAsync(Customer customer)
+        {
+            await _customerDal.UpdateAsync(customer);
+            return new SuccessResult();
+        }
+
+        //Query
+        public IDataResult<List<Customer>> GetAll()
+        {
+            var customers = _customerDal.GetAll();
+            return new SuccessDataResult<List<Customer>>(customers);
+        }
+        public async Task<IDataResult<List<Customer>>> GetAllAsync()
+        {
+            var customers = await  _customerDal.GetAllAsync();
+            return new SuccessDataResult<List<Customer>>(customers);
+        }
+        public IDataResult<Customer> GetById(int customerId)
+        {
+            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.Id == customerId));
+        }
+        public async Task<IDataResult<Customer>> GetByIdAsync(int userId)
+        {
+            var customer = await _customerDal.GetAsync(x=>x.UserId==userId);
+            return new SuccessDataResult<Customer>(customer);
         }
     }
 }
