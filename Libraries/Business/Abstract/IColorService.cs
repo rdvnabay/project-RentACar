@@ -16,6 +16,6 @@ namespace Business.Abstract
         IDataResult<ColorDto> GetById(int colorId);
         Task<IDataResult<ColorDto>> GetByIdAsync(int colorId);
         IResult Update(ColorDto colorDto);
-        Task<IResult>UpdateAsync(ColorDto colorDto);
+        Task<IResult>UpdateAsync(ColorUpdateDto colorUpdateDto);
     }
 }

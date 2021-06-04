@@ -28,14 +28,18 @@ namespace Business.Helpers
             CreateMap<CarImage, CarImageDto>().ReverseMap();
             CreateMap<CarImage, CarImageAddDto>().ReverseMap();
             CreateMap<CarImage, CarImageUpdateDto>().ReverseMap();
-          
-            CreateMap<User, UserDto>().ReverseMap();
+
             CreateMap<Color, ColorDto>().ReverseMap();
             CreateMap<Color, ColorAddDto>().ReverseMap();
+            CreateMap<Color, ColorUpdateDto>().ReverseMap();
+
+       
+          
             CreateMap<Customer, CustomerAddDto>().ReverseMap();
             CreateMap<OperationClaim, OperationClaimDto>().ReverseMap();
             CreateMap<Rental, RentalAddDto>().ReverseMap();
             CreateMap<Rental, RentalListDto>().ReverseMap();
+            CreateMap<User, UserDto>().ReverseMap();
 
             CreateMap<CarAddDto, CarImageAddDto>().ReverseMap();
 

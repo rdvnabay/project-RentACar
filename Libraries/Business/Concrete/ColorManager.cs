@@ -84,9 +84,9 @@ namespace Business.Concrete
             _colorDal.Update(color);
             return new SuccessResult();
         }
-        public async Task<IResult> UpdateAsync(ColorDto colorDto)
+        public async Task<IResult> UpdateAsync(ColorUpdateDto colorUpdateDto)
         {
-            var color = _mapper.Map<Color>(colorDto);
+            var color = _mapper.Map<Color>(colorUpdateDto);
             await _colorDal.UpdateAsync(color);
             return new SuccessResult(Messages.Updated);
         }

@@ -54,9 +54,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] ColorDto colorDto)
+        public async Task<IActionResult> Update([FromBody] ColorUpdateDto colorUpdateDto)
         {
-            var result = await _colorService.UpdateAsync(colorDto);
+            var result = await _colorService.UpdateAsync(colorUpdateDto);
             return result.Success
               ? Ok(result)
               : BadRequest(result);
