@@ -3,6 +3,7 @@ using Core.Entities.Concrete;
 using Entities.Concrete;
 using Entities.Dtos.Car;
 using Entities.Dtos.Brand;
+using Entities.Dtos.CarImage;
 using Entities.Dtos;
 
 namespace Business.Helpers

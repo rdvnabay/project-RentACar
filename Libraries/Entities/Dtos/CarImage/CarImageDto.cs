@@ -1,7 +1,7 @@
 ﻿using Core.Entities;
 using System;
 
-namespace Entities.Dtos
+namespace Entities.Dtos.CarImage
 {
     public class CarImageDto:IDto
     {

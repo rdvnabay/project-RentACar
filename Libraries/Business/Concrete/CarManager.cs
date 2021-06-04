@@ -2,13 +2,12 @@
 using Business.Abstract;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
-using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using Entities.Dtos;
 using Entities.Dtos.Car;
+using Entities.Dtos.CarImage;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
