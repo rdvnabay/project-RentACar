@@ -111,11 +111,8 @@ namespace Core.DataAccess.EntityFramework
         }
         public void Update(TEntity entity)
         {
-            using (var context = new TContext())
-            {
-                context.Update(entity);
-                context.SaveChanges();
-            }
+                _context.Update(entity);
+                _context.SaveChanges();
         }
         public async Task UpdateAsync(TEntity entity)
         {
