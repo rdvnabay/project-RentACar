@@ -8,6 +8,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.Dtos.Rental;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -35,10 +36,10 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IDataResult<List<RentalListDto>> GetAll()
+        public IDataResult<List<RentalDto>> GetAll()
         {
             var data = _rentalDal.GetAllDto();
-            return new SuccessDataResult<List<RentalListDto>>(data);
+            return new SuccessDataResult<List<RentalDto>>(data);
         }
 
         public IDataResult<Rental> GetById(int rentalId)
@@ -46,16 +47,23 @@ namespace Business.Concrete
             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == rentalId));
         } 
 
-        public IDataResult<List<RentalListDto>> GetRentAllByCustomer(int carId, int customerId)
+        public IDataResult<List<RentalDto>> GetRentAllByCustomer(int carId, int customerId)
         {
             var data = _rentalDal.GetRentAllByCustomer(carId, customerId);
-            return new SuccessDataResult<List<RentalListDto>>(data);
+            return new SuccessDataResult<List<RentalDto>>(data);
         }
 
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
+            return new SuccessResult();
+        }
+
+        public async Task<IResult> UpdateAsync(RentalUpdateDto rentalUpdateDto)
+        {
+            var rental = _mapper.Map<Rental>(rentalUpdateDto);
+            await _rentalDal.UpdateAsync(rental);
             return new SuccessResult();
         }
     }

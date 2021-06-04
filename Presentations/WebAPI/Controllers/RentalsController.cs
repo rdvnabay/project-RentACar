@@ -2,6 +2,7 @@
 using Entities.Concrete;
 using Entities.Dtos.Rental;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
@@ -32,7 +33,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getrentallbycustomer")]
-        public IActionResult GetRentAllByCustomer(int carId,int customerId)
+        public IActionResult GetRentAllByCustomer(int carId, int customerId)
         {
             var result = _rentalService.GetRentAllByCustomer(carId, customerId);
             return result.Success
@@ -48,10 +49,12 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Rental rental)
+        public async Task<IActionResult> Update(RentalUpdateDto rentalUpdateDto)
         {
-            _rentalService.Update(rental);
-            return Ok();
+            var result = await _rentalService.UpdateAsync(rentalUpdateDto);
+            return result.Success
+                ? Ok(result)
+                : BadRequest(result);
         }
 
         [HttpPost("delete")]

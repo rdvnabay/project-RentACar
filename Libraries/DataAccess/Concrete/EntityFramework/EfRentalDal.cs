@@ -11,7 +11,7 @@ namespace DataAccess.Concrete.EntityFramework
     {
         public EfRentalDal(RentACarDbContext context) : base(context) { }
 
-        public List<RentalListDto> GetAllDto()
+        public List<RentalDto> GetAllDto()
         {
             using (var context = new RentACarDbContext())
             {
@@ -25,7 +25,7 @@ namespace DataAccess.Concrete.EntityFramework
                              on rental.CustomerId equals customer.Id
                              join user in context.Users
                              on customer.Id equals user.Id
-                             select new RentalListDto
+                             select new RentalDto
                              {
                                  BrandName = brand.Name,
                                  FirstName = user.FirstName,
@@ -35,7 +35,7 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public List<RentalListDto> GetRentAllByCustomer(int carId, int customerId)
+        public List<RentalDto> GetRentAllByCustomer(int carId, int customerId)
         {
             using (var context = new RentACarDbContext())
             {
@@ -50,7 +50,7 @@ namespace DataAccess.Concrete.EntityFramework
                              join user in context.Users
                              on customer.Id equals user.Id
                              where car.Id == carId && customer.Id == customerId
-                             select new RentalListDto
+                             select new RentalDto
                              {
                                  BrandName = brand.Name,
                                  FirstName = user.FirstName,

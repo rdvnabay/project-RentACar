@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace DataAccess.Abstract
 {
-    public interface IRentalDal : IEntityRepository<Rental>
+    public interface IRentalDal : IEntityRepository<Rental>,IEntityAsyncRepository<Rental>
     {
-        List<RentalListDto> GetRentAllByCustomer(int carId, int customerId);
-        List<RentalListDto> GetAllDto();
+        List<RentalDto> GetRentAllByCustomer(int carId, int customerId);
+        List<RentalDto> GetAllDto();
     }
 }
