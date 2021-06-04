@@ -102,9 +102,9 @@ namespace Business.Concrete
             _brandDal.Update(brand);
             return new SuccessResult(Messages.Updated);
         }
-        public async Task<IResult> UpdateAsync(BrandDto brandDto)
+        public async Task<IResult> UpdateAsync(BrandUpdateDto brandUpdateDto)
         {
-            var brand = _mapper.Map<Brand>(brandDto);
+            var brand = _mapper.Map<Brand>(brandUpdateDto);
             await _brandDal.UpdateAsync(brand);
             return new SuccessResult(Messages.Updated);
         }

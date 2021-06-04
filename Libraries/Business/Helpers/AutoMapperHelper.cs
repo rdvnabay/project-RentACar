@@ -16,8 +16,10 @@ namespace Business.Helpers
     {
         public AutoMapperHelper()
         {
-            CreateMap<Brand, BrandDto>().ReverseMap();
             CreateMap<Brand, BrandAddDto>().ReverseMap();
+            CreateMap<Brand, BrandDto>().ReverseMap();
+            CreateMap<Brand, BrandUpdateDto>().ReverseMap();
+          
             CreateMap<Car, CarDto>().ReverseMap();
             CreateMap<Car, CarAddDto>().ReverseMap();
             CreateMap<Car, CarDetailDto>().ReverseMap();

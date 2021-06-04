@@ -18,7 +18,7 @@ namespace Business.Abstract
         IDataResult<BrandDto> GetById(int brandId);
         Task<IDataResult<BrandDto>> GetByIdAsync(int brandId);
         IResult Update(BrandDto brandDto);
-        Task<IResult> UpdateAsync(BrandDto brandDto);
+        Task<IResult> UpdateAsync(BrandUpdateDto brandUpdateDto);
         Task<IResult> DeleteByIdAsync(int brandId);
     }
 }

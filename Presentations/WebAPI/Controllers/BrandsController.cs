@@ -60,9 +60,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] BrandDto brandDto)
+        public async Task<IActionResult> Update([FromBody] BrandUpdateDto brandUpdateDto)
         {
-           var result = await _brandService.UpdateAsync(brandDto);
+           var result = await _brandService.UpdateAsync(brandUpdateDto);
             return result.Success
                ? Ok(result)
                : BadRequest(result);
