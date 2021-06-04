@@ -10,10 +10,10 @@
         public static string UserAlreadyExists = "Böyle bir kullanıcı zaten mevcut";
         public static string AccessTokenCreated = "Token oluşturuldu";
         public static string ProductUpdated = "Ürün Güncellendi";
-        public static string NameAlreadyExist= "Name Already Exist";
-        public static string Added= "Added";
-        public static string Deleted="Deleted";
+        public static string NameAlreadyExist = "Name Already Exist";
+        public static string Added = "Added";
+        public static string Deleted = "Deleted";
         public static string Updated = "Updated";
-
+        public static string CarImagesLimitExceeded = "Bir araca ait en fazla 5 resim eklenebilir!";
     }
 }

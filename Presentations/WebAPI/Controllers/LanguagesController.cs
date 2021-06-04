@@ -1,10 +1,10 @@
-﻿using Business.Handlers.Languages.Queries;
+﻿using Business.Handlers.Languages.Commands;
+using Business.Handlers.Languages.Queries;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Business.Handlers.Languages.Commands;
+using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {

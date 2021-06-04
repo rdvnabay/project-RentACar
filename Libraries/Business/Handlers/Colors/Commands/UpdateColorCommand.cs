@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Business.Handlers.Brands.Commands
 {
-   public class UpdateColorCommand : IRequest<IResult>
+    public class UpdateColorCommand : IRequest<IResult>
     {
         public int Id { get; set; }
         public string Name { get; set; }

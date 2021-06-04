@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Business.BusinessAspects;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;

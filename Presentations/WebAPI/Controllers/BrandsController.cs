@@ -27,19 +27,19 @@ namespace WebAPI.Controllers
         {
             var result = await _brandService.AddAsync(brandAddDto);
             return result.Success 
-                ? Ok(result.Message) 
-                : BadRequest(result.Message);
+                ? Ok(result) 
+                : BadRequest(result);
         }
 
         [HttpPost("delete")]
         public async Task<IActionResult> Delete(int brandId)
         { 
             //TODO: GetById Asenkron
-            var brand = _brandService.GetById(brandId);
+            var brand = _brandService.GetById(brandId).Data;
             var result = await _brandService.DeleteAsync(brand);
             return result.Success 
-                ? Ok(result.Message) 
-                : BadRequest(result.Message);
+                ? Ok(result) 
+                : BadRequest(result);
         }
 
         [HttpGet("get")]
@@ -65,8 +65,8 @@ namespace WebAPI.Controllers
         {
            var result = await _brandService.UpdateAsync(brandDto);
             return result.Success
-               ? Ok(result.Message)
-               : BadRequest(result.Message);
+               ? Ok(result)
+               : BadRequest(result);
         }
     }
 }
