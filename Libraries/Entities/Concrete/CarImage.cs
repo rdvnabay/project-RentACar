@@ -11,12 +11,12 @@ namespace Entities.Concrete
     {
         public CarImage()
         {
-            Date = DateTime.Now;
+            CreatedDate = DateTime.Now;
         }
         public int Id { get; set; }
         public int CarId { get; set; }
         public string ImagePath { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         public Car Car { get; set; }
     }

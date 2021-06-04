@@ -1,7 +1,7 @@
 ﻿using Business.Abstract;
-using Entities.Concrete;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
@@ -16,15 +16,15 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(CarImageAddDto carImageAddDto)
+        public async Task<IActionResult> Add([FromBody] CarImageAddDto carImageAddDto)
         {
-            var result = _carImageService.Add(carImageAddDto);
+            var result = await _carImageService.AddAsync(carImageAddDto);
             return result.Success
                ? Ok(result)
                : BadRequest(result);
         }
 
-        [HttpPost("remove/{carId}")]
+        [HttpPost("delete/{carId}")]
         public IActionResult Delete(int carId)
         {
             var carImage = _carImageService.GetByCarId(carId).Data;
@@ -34,6 +34,15 @@ namespace WebAPI.Controllers
                : BadRequest(result);
         }
 
+        [HttpGet("getall")]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _carImageService.GetAllAsync();
+            return result.Success
+                ? Ok(result)
+                : BadRequest(result);
+        }
+
         [HttpGet("images/{carId}")]
         public IActionResult GetImagesByCarId(int carId)
         {
@@ -41,6 +50,15 @@ namespace WebAPI.Controllers
             return result.Success
                 ? Ok(result)
                 : BadRequest(result);
+        }
+
+        [HttpPut("update")]
+        public async Task<IActionResult> Update([FromBody] CarImageDto carImageDto)
+        {
+            var result = await _carImageService.UpdateAsync(carImageDto);
+            return result.Success
+               ? Ok(result)
+               : BadRequest(result);
         }
     }
 }
