@@ -35,7 +35,6 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
-
         public List<CarDto> GetAllBySearch(string search)
         {
             using (var context = new RentACarDbContext())
@@ -60,8 +59,29 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
-
-        public async Task<List<CarDto>> GetAllDto()
+        public List<CarDto> GetAllCarWithBrandNameAndColorName()
+        {
+            using (var context = new RentACarDbContext())
+            {
+                var result = from c in context.Cars
+                             join b in context.Brands
+                             on c.BrandId equals b.Id
+                             join co in context.Colors
+                             on c.ColorId equals co.Id
+                             select new CarDto
+                             {
+                                 Id = c.Id,
+                                 Name = c.Name,
+                                 DailyPrice = c.DailyPrice,
+                                 Description = c.Description,
+                                 BrandName = b.Name,
+                                 ColorName = co.Name,
+                                 ModelYear = c.ModelYear
+                             };
+                return result.ToList();
+            }
+        }
+        public async Task<List<CarDto>> GetAllCarWithBrandNameAndColorNameAsync()
         {
             using (var context = new RentACarDbContext())
             {
@@ -83,8 +103,11 @@ namespace DataAccess.Concrete.EntityFramework
                 return await result.ToListAsync();
             }
         }
-
-        public CarDto GetDetails(int carId)
+        public Task<List<CarDto>> GetAllDto()
+        {
+            throw new System.NotImplementedException();
+        }
+        public CarDto GetCarWithBrandNameAndColorName(int carId)
         {
             using (var context = new RentACarDbContext())
             {
@@ -105,6 +128,29 @@ namespace DataAccess.Concrete.EntityFramework
                                  ModelYear = c.ModelYear
                              };
                 return result.FirstOrDefault();
+            }
+        }
+        public async Task<CarDto> GetCarWithBrandNameAndColorNameAsync(int carId)
+        {
+            using (var context = new RentACarDbContext())
+            {
+                var result = from c in context.Cars
+                             join b in context.Brands
+                             on c.BrandId equals b.Id
+                             join co in context.Colors
+                             on c.ColorId equals co.Id
+                             where c.Id == carId
+                             select new CarDto
+                             {
+                                 Id = c.Id,
+                                 Name = c.Name,
+                                 DailyPrice = c.DailyPrice,
+                                 Description = c.Description,
+                                 BrandName = b.Name,
+                                 ColorName = co.Name,
+                                 ModelYear = c.ModelYear
+                             };
+                return await result.FirstOrDefaultAsync();
             }
         }
     }

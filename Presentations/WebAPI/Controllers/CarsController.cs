@@ -1,5 +1,4 @@
 ﻿using Business.Abstract;
-using Entities.Concrete;
 using Entities.Dtos.Car;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -44,31 +43,33 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getallbybrand")]
-        public IActionResult GetAllByBrand(int brandId)
+        public async Task<IActionResult> GetAllByBrand(int brandId)
         {
-            var data = _carService.GetAllByBrand(brandId);
-            return Ok(data.Data);
+            var result = await _carService.GetAllByBrandAsync(brandId);
+            return result.Success
+                ? Ok(result)
+                : BadRequest(result);
         }
 
         [HttpGet("getallbycolor")]
-        public IActionResult GetAllByColor(int colorId)
+        public async Task<IActionResult> GetAllByColor(int colorId)
         {
-            var result = _carService.GetAllByColor(colorId);
+            var result = await _carService.GetAllByColorAsync(colorId);
             return result.Success
                ? Ok(result)
                : BadRequest(result);
         }
 
         [HttpGet("getdetails")]
-        public IActionResult GetDetails(int carId)
+        public async Task<IActionResult> GetDetails(int carId)
         {
-            var result = _carService.GetDetails(carId);
+            var result = await _carService.GetDetailAsync(carId);
             return result.Success
                  ? Ok(result)
                  : BadRequest(result);
         }
 
-        [HttpPost("update")]
+        [HttpPut("update")]
         public async Task<IActionResult> Update(CarUpdateDto carUpdateDto)
         {
             var result = await _carService.UpdateAsync(carUpdateDto);

@@ -19,7 +19,7 @@ namespace Business.Concrete
         ICarImageService _carImageService;
         IMapper _mapper;
         public CarManager(
-            ICarDal carDal, 
+            ICarDal carDal,
             ICarImageService carImageService,
             IMapper mapper)
         {
@@ -28,6 +28,7 @@ namespace Business.Concrete
             _mapper = mapper;
         }
 
+        //Command
         //[SecuredOperation("admin,car-add")]
         //[ValidationAspect(typeof(CarValidator))]
         public IResult Add(CarAddDto carAddDto)
@@ -40,7 +41,6 @@ namespace Business.Concrete
             _carImageService.Add(carImage);
             return new SuccessResult();
         }
-
         public async Task<IResult> AddAsync(CarAddDto carAddDto)
         {
             var car = _mapper.Map<Car>(carAddDto);
@@ -50,71 +50,105 @@ namespace Business.Concrete
             await _carImageService.AddAsync(carImageAddDto);
             return new SuccessResult();
         }
-
-        public IResult Delete(Car car)
+        public IResult DeleteById(int carId)
         {
-            _carDal.Delete(car);
+            var car = _carDal.Get(x => x.Id == carId);
+            _carDal.DeleteAsync(car);
             return new SuccessResult();
         }
         public async Task<IResult> DeleteByIdAsync(int carId)
         {
-            var car = _carDal.Get(x => x.Id == carId);
+            var car = await _carDal.GetAsync(x => x.Id == carId);
             await _carDal.DeleteAsync(car);
             return new SuccessResult();
         }
+        public IResult Update(CarUpdateDto carUpdateDto)
+        {
+            var car = _mapper.Map<Car>(carUpdateDto);
+            _carDal.Update(car);
+            return new SuccessResult();
+        }
+        public async Task<IResult> UpdateAsync(CarUpdateDto carUpdateDto)
+        {
+            var car = _mapper.Map<Car>(carUpdateDto);
+            await _carDal.UpdateAsync(car);
+            return new SuccessResult();
+        }
+
+        //Query
         public IDataResult<List<CarDto>> GetAll()
         {
-            var cars = _carDal.GetAll();
+            var carsDto = _carDal.GetAllCarWithBrandNameAndColorName();
+            return new SuccessDataResult<List<CarDto>>(carsDto);
+        }
+        public async Task<IDataResult<List<CarDto>>> GetAllAsync()
+        {
+            var carsDto = await _carDal.GetAllCarWithBrandNameAndColorNameAsync();
+            return new SuccessDataResult<List<CarDto>>(carsDto);
+        }
+        public IDataResult<CarDto> GetById(int carId)
+        {
+            var car = _carDal.GetCarWithBrandNameAndColorName(carId);
+            return new SuccessDataResult<CarDto>(car);
+        }
+        public async Task<IDataResult<CarDto>> GetByIdAsync(int carId)
+        {
+            var car = await _carDal.GetCarWithBrandNameAndColorNameAsync(carId);
+            return new SuccessDataResult<CarDto>(car);
+        }
+        public IDataResult<List<CarDto>> GetAllByBrand(int brandId)
+        {
+            var cars = _carDal.GetAll(c => c.BrandId == brandId);
+            var carsDto = _mapper.Map<List<CarDto>>(cars);
+            return new SuccessDataResult<List<CarDto>>(carsDto);
+        }
+        public async Task<IDataResult<List<CarDto>>> GetAllByBrandAsync(int brandId)
+        {
+            var cars = await _carDal.GetAsync(x => x.BrandId == brandId);
             var carsDto = _mapper.Map<List<CarDto>>(cars);
             return new SuccessDataResult<List<CarDto>>(carsDto);
         }
 
-        public IDataResult<Car> GetById(int carId)
-        {
-            var data=_carDal.Get(c => c.Id == carId);
-            return new SuccessDataResult<Car>(data);
-        }
-
-        public IDataResult<List<Car>> GetAllByBrand(int brandId)
-        {
-            var data=_carDal.GetAll(c => c.BrandId == brandId);
-            return new SuccessDataResult<List<Car>>(data);
-        }
-
         [ValidationAspect(typeof(CarValidator))]
-        public IResult Update(Car car)
+        public IDataResult<List<CarDto>> GetAllByColor(int colorId)
         {
-            _carDal.Update(car);
-            return new SuccessResult();
-        }
-
-        public IDataResult<List<Car>> GetAllByColor(int colorId)
-        {
-            var data = _carDal.GetAll(c => c.ColorId == colorId);
-            return new SuccessDataResult<List<Car>>(data);
-        }
-
-        public IDataResult<CarDto> GetDetails(int carId)
-        {
-            var data = _carDal.GetDetails(carId);
-            return new SuccessDataResult<CarDto>(data);
-        }
-
-        public async Task<IDataResult<List<CarDto>>> GetAllAsync()
-        {
-            var carsDto = await _carDal.GetAllDto();
+            var cars = _carDal.GetAll(c => c.ColorId == colorId);
+            var carsDto = _mapper.Map<List<CarDto>>(cars);
             return new SuccessDataResult<List<CarDto>>(carsDto);
         }
-
+        public async Task<IDataResult<List<CarDto>>> GetAllByColorAsync(int colorId)
+        {
+            var cars = await _carDal.GetAsync(x => x.ColorId == colorId);
+            var carsDto = _mapper.Map<List<CarDto>>(cars);
+            return new SuccessDataResult<List<CarDto>>(carsDto);
+        }
+        public IDataResult<CarDto> GetDetail(int carId)
+        {
+            var car = _carDal.GetCarWithBrandNameAndColorName(carId);
+            return new SuccessDataResult<CarDto>(car);
+        }
+        public async Task<IDataResult<CarDto>> GetDetailAsync(int carId)
+        {
+            var car = await _carDal.GetCarWithBrandNameAndColorNameAsync(carId);
+            return new SuccessDataResult<CarDto>(car);
+        }
         public IDataResult<List<CarDto>> GetAllBySearch(string search)
         {
-             var data= _carDal.GetAllBySearch(search);
+            var data = _carDal.GetAllBySearch(search);
             return new SuccessDataResult<List<CarDto>>(data);
+        }
+        public async Task<IDataResult<List<CarDto>>> GetAllBySearchAsync(string search)
+        {
+            throw new System.NotImplementedException();
         }
         public IDataResult<List<CarDto>> GetAllByBrandIdAndColorId(int brandId, int colorId)
         {
             var carsDto = _carDal.GetAllByBrandIdAndColorId(brandId, colorId);
             return new SuccessDataResult<List<CarDto>>(carsDto);
+        }
+        public async Task<IDataResult<List<CarDto>>> GetAllByBrandIdAndColorIdAsync(int brandId, int colorId)
+        {
+            throw new System.NotImplementedException();
         }
 
         //BusinessRules
@@ -128,11 +162,12 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public async Task<IResult> UpdateAsync(CarUpdateDto carUpdateDto)
-        {
-            var car = _mapper.Map<Car>(carUpdateDto);
-            await _carDal.UpdateAsync(car);
-            return new SuccessResult();
-        }
+
+
+
+
+
+
+
     }
 }

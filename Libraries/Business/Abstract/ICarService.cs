@@ -8,20 +8,29 @@ namespace Business.Abstract
 {
     public interface ICarService
     {
+        //Command
         IResult Add(CarAddDto carAddDto);
         Task<IResult> AddAsync(CarAddDto carAddDto);
-        IResult Update(Car car);
-        Task<IResult> UpdateAsync(CarUpdateDto carUpdateDto);
-        IResult Delete(Car car);
+        IResult DeleteById(int carId);
         Task<IResult> DeleteByIdAsync(int carId);
-        IDataResult<Car> GetById(int carId);
+        IResult Update(CarUpdateDto carUpdateDto);
+        Task<IResult> UpdateAsync(CarUpdateDto carUpdateDto);
+       
+        //Query
+        IDataResult<CarDto> GetById(int carId);
+        Task<IDataResult<CarDto>> GetByIdAsync(int carId);
         IDataResult<List<CarDto>> GetAll();
         Task<IDataResult<List<CarDto>>> GetAllAsync();
-
-        IDataResult<CarDto> GetDetails(int carId);
-        IDataResult<List<Car>> GetAllByBrand(int brandId);
-        IDataResult<List<Car>>GetAllByColor(int colorId);
+        IDataResult<CarDto> GetDetail(int carId);
+        Task<IDataResult<CarDto>> GetDetailAsync(int carId);
+        IDataResult<List<CarDto>> GetAllByBrand(int brandId);
+        Task<IDataResult<List<CarDto>>> GetAllByBrandAsync(int brandId);
+        IDataResult<List<CarDto>>GetAllByColor(int colorId);
+        Task<IDataResult<List<CarDto>>> GetAllByColorAsync(int colorId);
         IDataResult<List<CarDto>>GetAllBySearch(string search);
+        Task<IDataResult<List<CarDto>>> GetAllBySearchAsync(string search);
         IDataResult<List<CarDto>> GetAllByBrandIdAndColorId(int brandId, int colorId);
+        Task<IDataResult<List<CarDto>>> GetAllByBrandIdAndColorIdAsync(int brandId, int colorId);
+
     }
 }
