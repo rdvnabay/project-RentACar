@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Core.Entities.Concrete;
 using Entities.Concrete;
+using Entities.Dtos.Car;
+using Entities.Dtos.Brand;
 using Entities.Dtos;
 
 namespace Business.Helpers
@@ -13,13 +15,17 @@ namespace Business.Helpers
             CreateMap<Brand, BrandAddDto>().ReverseMap();
             CreateMap<Car, CarDto>().ReverseMap();
             CreateMap<Car, CarAddDto>().ReverseMap();
+            CreateMap<Car, CarDetailDto>().ReverseMap();
             CreateMap<CarAddDto, CarImageAddDto>().ReverseMap();
             CreateMap<CarImage, CarImageDto>().ReverseMap();
             CreateMap<CarImage, CarImageAddDto>().ReverseMap();
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<Color, ColorDto>().ReverseMap();
             CreateMap<Color, ColorAddDto>().ReverseMap();
+            CreateMap<Customer, CustomerAddDto>().ReverseMap();
             CreateMap<OperationClaim, OperationClaimDto>().ReverseMap();
+            CreateMap<Rental, RentalAddDto>().ReverseMap();
+            CreateMap<Rental, RentalListDto>().ReverseMap();
         }
     }
 }

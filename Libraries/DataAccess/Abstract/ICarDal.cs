@@ -1,6 +1,6 @@
 ﻿using Core.DataAccess;
 using Entities.Concrete;
-using Entities.Dtos;
+using Entities.Dtos.Car;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

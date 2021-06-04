@@ -1,6 +1,6 @@
 ﻿using Core.Entities;
 
-namespace Entities.Dtos
+namespace Entities.Dtos.Car
 {
     public class CarAddDto:IDto
     {

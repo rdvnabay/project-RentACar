@@ -1,8 +1,8 @@
 ﻿using Core.Entities;
 
-namespace Entities.Dtos
+namespace Entities.Dtos.Car
 {
-    public class CarDetailDto:IDto
+    public class CarDto:IDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -11,6 +11,5 @@ namespace Entities.Dtos
         public string Description { get; set; }
         public int ModelYear { get; set; }
         public decimal DailyPrice { get; set; }
-        public string ImagePath { get; set; }
     }
 }

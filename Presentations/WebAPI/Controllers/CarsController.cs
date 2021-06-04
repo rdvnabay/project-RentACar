@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
-using Entities.Dtos;
+using Entities.Dtos.Car;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
