@@ -34,14 +34,14 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(Car car, IFormFile[] files)
+        public async Task<IActionResult> Add(CarAddDto carAddDto, IFormFile[] files)
         {
 
             if (!ModelState.IsValid)
             {
-                return View(car);
+                return View(carAddDto);
             }
-            await _carService.AddAsync(car);
+            await _carService.AddAsync(carAddDto);
             foreach (var file in files)
             {
                 var extention = Path.GetExtension(file.FileName);
@@ -54,7 +54,7 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
                 }
                 var image = new CarImage
                 {
-                    CarId = car.Id,
+                    CarId = 1,
                     ImagePath = fileName
                 };
                 //TODO: BAKILACAK

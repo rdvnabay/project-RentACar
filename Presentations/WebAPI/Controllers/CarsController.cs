@@ -2,6 +2,7 @@
 using Entities.Concrete;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
@@ -16,27 +17,27 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(CarAddDto carAddDto)
+        public async Task<IActionResult> Add(CarAddDto carAddDto)
         {
-            var result = _carService.Add(carAddDto);
+            var result = await _carService.AddAsync(carAddDto);
             return result.Success
                 ? Ok(result)
                 : BadRequest(result);
         }
 
-        [HttpPost("delete")]
-        public IActionResult Delete(Car car)
+        [HttpDelete("delete")]
+        public async Task<IActionResult> Delete(int carId)
         {
-            var result = _carService.Delete(car);
+            var result = await _carService.DeleteByIdAsync(carId);
             return result.Success
               ? Ok(result)
               : BadRequest(result);
         }
 
         [HttpGet("getall")]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var result = _carService.GetAll();
+            var result = await _carService.GetAllAsync();
             return result.Success
                           ? Ok(result)
                           : BadRequest(result);

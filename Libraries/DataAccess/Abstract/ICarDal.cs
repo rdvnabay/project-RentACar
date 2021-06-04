@@ -2,6 +2,7 @@
 using Entities.Concrete;
 using Entities.Dtos;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
@@ -11,5 +12,6 @@ namespace DataAccess.Abstract
         List<CarDto> GetAllBySearch(string search);
       //  List<CarDto> GetAllBySearch(Expression<Func<CarDto,bool>> search);
         List<CarDto> GetAllByBrandIdAndColorId(int brandId, int colorId);
+        Task<List<CarDto>> GetAllDto();
     }
 }

@@ -2,8 +2,10 @@
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.Dtos;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -56,6 +58,29 @@ namespace DataAccess.Concrete.EntityFramework
                                  ModelYear = c.ModelYear
                              };
                 return result.ToList();
+            }
+        }
+
+        public async Task<List<CarDto>> GetAllDto()
+        {
+            using (var context = new RentACarDbContext())
+            {
+                var result = from c in context.Cars
+                             join b in context.Brands
+                             on c.BrandId equals b.Id
+                             join co in context.Colors
+                             on c.ColorId equals co.Id
+                             select new CarDto
+                             {
+                                 Id = c.Id,
+                                 Name = c.Name,
+                                 DailyPrice = c.DailyPrice,
+                                 Description = c.Description,
+                                 BrandName = b.Name,
+                                 ColorName = co.Name,
+                                 ModelYear = c.ModelYear
+                             };
+                return await result.ToListAsync();
             }
         }
 

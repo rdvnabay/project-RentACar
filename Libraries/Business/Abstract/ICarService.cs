@@ -9,12 +9,13 @@ namespace Business.Abstract
     public interface ICarService
     {
         IResult Add(CarAddDto carAddDto);
-        Task<IResult> AddAsync(Car car);
+        Task<IResult> AddAsync(CarAddDto carAddDto);
         IResult Update(Car car);
         IResult Delete(Car car);
+        Task<IResult> DeleteByIdAsync(int carId);
         IDataResult<Car> GetById(int carId);
         IDataResult<List<CarDto>> GetAll();
-        Task<IDataResult<List<Car>>> GetAllAsync();
+        Task<IDataResult<List<CarDto>>> GetAllAsync();
 
         IDataResult<CarDto> GetDetails(int carId);
         IDataResult<List<Car>> GetAllByBrand(int brandId);
