@@ -118,14 +118,14 @@ namespace Business.Concrete
             _carImageDal.Update(carImage);
             return new SuccessResult();
         }
-        public async Task<IResult> UpdateAsync(CarImageDto carImageDto)
+        public async Task<IResult> UpdateAsync(CarImageUpdateDto carImageUpdateDto)
         {
-            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImageDto.CarId));
+            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImageUpdateDto.CarId));
             if (result != null)
             {
                 return result;
             }
-            var carImage = _mapper.Map<CarImage>(carImageDto);
+            var carImage = _mapper.Map<CarImage>(carImageUpdateDto);
             await _carImageDal.UpdateAsync(carImage);
             return new SuccessResult();
         }

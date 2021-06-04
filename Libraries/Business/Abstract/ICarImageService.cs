@@ -11,7 +11,7 @@ namespace Business.Abstract
         IResult Add(CarImageAddDto carImageAddDto);
         Task<IResult> AddAsync(CarImageAddDto carImageAddDto);
         IResult Update(CarImageDto carImageDto);
-        Task<IResult> UpdateAsync(CarImageDto carImageDto);
+        Task<IResult> UpdateAsync(CarImageUpdateDto carImageUpdateDto);
         IResult Delete(CarImageDto carImageDto);
         Task<IResult> DeleteAsync(CarImageDto carImageDto);
         IDataResult<List<CarImageDto>> GetAll();
