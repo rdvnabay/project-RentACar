@@ -10,7 +10,7 @@ using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using Entities.Dtos;
+using Entities.Dtos.Brand;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -60,6 +60,12 @@ namespace Business.Concrete
             var brand = _mapper.Map<Brand>(brandDto);
             await _brandDal.DeleteAsync(brand);
             return new SuccessResult(Messages.Deleted);
+        }
+        public async Task<IResult> DeleteByIdAsync(int brandId)
+        {
+            var brand = _brandDal.Get(x => x.Id == brandId);
+            await _brandDal.DeleteAsync(brand);
+            return new SuccessResult();
         }
 
         [CacheAspect]

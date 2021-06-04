@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Entities.Dtos;
+using Entities.Dtos.Brand;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,12 +31,11 @@ namespace WebAPI.Controllers
                 : BadRequest(result);
         }
 
-        [HttpPost("delete")]
+        [HttpDelete("delete")]
         public async Task<IActionResult> Delete(int brandId)
         { 
             //TODO: GetById Asenkron
-            var brand = _brandService.GetById(brandId).Data;
-            var result = await _brandService.DeleteAsync(brand);
+            var result = await _brandService.DeleteByIdAsync(brandId);
             return result.Success 
                 ? Ok(result) 
                 : BadRequest(result);

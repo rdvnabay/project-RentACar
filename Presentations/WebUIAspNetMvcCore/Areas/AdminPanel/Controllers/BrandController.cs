@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Entities.Concrete;
-using Entities.Dtos;
+using Entities.Dtos.Brand;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
