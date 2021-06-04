@@ -1,6 +1,6 @@
 ﻿using Core.Entities;
 
-namespace Entities.Dtos
+namespace Entities.Dtos.OperationClaim
 {
     public class OperationClaimDto:IDto
     {

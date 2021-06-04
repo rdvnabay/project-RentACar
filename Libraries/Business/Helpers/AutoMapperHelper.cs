@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using Core.Entities.Concrete;
 using Entities.Concrete;
-using Entities.Dtos;
-using Entities.Dtos.Car;
 using Entities.Dtos.Brand;
+using Entities.Dtos.Car;
 using Entities.Dtos.CarImage;
 using Entities.Dtos.Color;
+using Entities.Dtos.Customer;
+using Entities.Dtos.OperationClaim;
 using Entities.Dtos.Rental;
 using Entities.Dtos.User;
 

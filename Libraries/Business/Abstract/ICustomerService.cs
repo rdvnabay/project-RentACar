@@ -1,6 +1,6 @@
 ﻿using Core.Utilities.Results.Abstract;
 using Entities.Concrete;
-using Entities.Dtos;
+using Entities.Dtos.Customer;
 using System.Collections.Generic;
 
 namespace Business.Abstract

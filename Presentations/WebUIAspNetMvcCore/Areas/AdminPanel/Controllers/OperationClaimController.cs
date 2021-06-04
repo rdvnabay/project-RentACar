@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Core.Entities.Concrete;
-using Entities.Dtos;
+using Entities.Dtos.OperationClaim;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
