@@ -20,5 +20,6 @@ namespace Business.Abstract
         Task<IDataResult<CarImageDto>> GetByCarIdAsync(int carId);
         IDataResult<List<CarImageDto>> GetImagesByCarId(int carId);
         Task<IDataResult<List<CarImageDto>>> GetImagesByCarIdAsync(int carId);
+        Task<IResult> DeleteByIdAsync(int carId);
     }
 }

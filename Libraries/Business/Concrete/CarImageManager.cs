@@ -28,7 +28,8 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Add(CarImageAddDto carImageAddDto)
         {
-            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImageAddDto.CarId));
+            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImageAddDto.CarId),
+                                               CheckIfCarImageNullOrEmpty(carImageAddDto));
             if (result != null)
             {
                 return result;
@@ -39,7 +40,8 @@ namespace Business.Concrete
         }
         public async Task<IResult> AddAsync(CarImageAddDto carImageAddDto)
         {
-            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImageAddDto.CarId));
+            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImageAddDto.CarId),
+                                               CheckIfCarImageNullOrEmpty(carImageAddDto));
             if (result != null)
             {
                 return result;
@@ -60,6 +62,12 @@ namespace Business.Concrete
             await _carImageDal.DeleteAsync(carImage);
             return new SuccessResult(Messages.Deleted);
         }
+        public async Task<IResult> DeleteByIdAsync(int carId)
+        {
+            var carImage = await _carImageDal.GetAllAsync(x => x.CarId == carId);
+            await _carImageDal.DeleteAsync(carImage);
+            return new SuccessResult();
+        }
         public IDataResult<List<CarImageDto>> GetAll()
         {
             var carImages = _carImageDal.GetAll();
@@ -70,7 +78,7 @@ namespace Business.Concrete
         public async Task<IDataResult<List<CarImageDto>>> GetAllAsync()
         {
             var carImages = await _carImageDal.GetAllAsync();
-            var carImagesDto = _mapper.Map <List<CarImageDto>>(carImages);
+            var carImagesDto = _mapper.Map<List<CarImageDto>>(carImages);
             return new SuccessDataResult<List<CarImageDto>>(carImagesDto);
         }
         public IDataResult<CarImageDto> GetByCarId(int carId)
@@ -133,12 +141,11 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        private IResult CheckIfCarImageNotExists(int carId)
+        private IResult CheckIfCarImageNullOrEmpty(CarImageAddDto carImageAddDto)
         {
-            var result = _carImageDal.Get(x => x.CarId == carId);
-            if (!string.IsNullOrEmpty(result.ImagePath))
+            if (string.IsNullOrEmpty(carImageAddDto.ImagePath))
             {
-                return new ErrorResult("Resim Yok");
+                carImageAddDto.ImagePath = "default.jpg";
             }
             return new SuccessResult();
         }

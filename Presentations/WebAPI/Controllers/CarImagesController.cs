@@ -24,11 +24,10 @@ namespace WebAPI.Controllers
                : BadRequest(result);
         }
 
-        [HttpPost("delete/{carId}")]
-        public IActionResult Delete(int carId)
+        [HttpDelete("delete/{carId}")]
+        public async Task<IActionResult> Delete(int carId)
         {
-            var carImage = _carImageService.GetByCarId(carId).Data;
-            var result = _carImageService.Delete(carImage);
+            var result = await _carImageService.DeleteByIdAsync(carId);
             return result.Success
                ? Ok(result)
                : BadRequest(result);
