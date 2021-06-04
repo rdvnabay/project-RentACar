@@ -1,3 +1,4 @@
+import { CarImageAddComponent } from './components/car-image-add/car-image-add.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrandAddComponent } from './components/brand-add/brand-add.component';
@@ -23,6 +24,8 @@ children:[
   { path:'car-add',component:CarAddComponent },
   { path:'car-edit/:brandId',component:CarEditComponent },
   { path:'car-list',component:CarListComponent },
+
+  { path:'car-image-add', component:CarImageAddComponent},
 
   { path:'color-add',component:ColorAddComponent },
   { path:'color-edit/:brandId',component:ColorEditComponent },

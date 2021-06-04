@@ -71,11 +71,17 @@
                     </option>
                   </select>
                 </div>
-
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="customFile" name="files" multiple />
-                  <label class="custom-file-label" for="customFile">Resim Yükle</label>
+                <!-- <app-car-image-add></app-car-image-add> -->
+                <div class="form-group">
+                  <label class="col-form-label"> Resim </label>
+                  <input type="text" formControlName="imagePath" class="form-control"
+                    placeholder="Resim giriniz ..." />
                 </div>
+
+                <!-- <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="customFile" name="files"  multiple />
+                  <label class="custom-file-label" for="customFile">Resim Yükle</label>
+                </div> -->
               </div>
               <div class="card-footer">
                 <button class="btn btn-info btn-flat" (click)="add()">
