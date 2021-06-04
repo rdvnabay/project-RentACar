@@ -1,10 +1,12 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System.Collections.Generic;
 
 namespace Business.Concrete
@@ -12,13 +14,15 @@ namespace Business.Concrete
     public class CustomerManager:ICustomerService
     {
         private ICustomerDal _customerDal;
-        public CustomerManager(ICustomerDal customerDal)
+        private IMapper _mapper;
+        public CustomerManager(ICustomerDal customerDal, IMapper mapper)
         {
             _customerDal = customerDal;
         }
-        [ValidationAspect(typeof(CustomerValidator))]
-        public IResult Add(Customer customer)
+        //[ValidationAspect(typeof(CustomerValidator))]
+        public IResult Add(CustomerAddDto customerAddDto)
         {
+            var customer = _mapper.Map<Customer>(customerAddDto);
             _customerDal.Add(customer);
             return new SuccessResult();
         }
