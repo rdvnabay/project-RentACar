@@ -1,5 +1,5 @@
 ﻿using Entities.Concrete;
-using Entities.Dtos;
+using Entities.Dtos.Color;
 using System.Collections.Generic;
 
 namespace WebUIAspNetMvcCore.Areas.AdminPanel.Models
