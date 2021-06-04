@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
-using Entities.Dtos;
+using Entities.Dtos.Rental;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
