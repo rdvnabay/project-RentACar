@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(RentACarDbContext))]
-    [Migration("20210531210517_InitialProject")]
+    [Migration("20210604163648_InitialProject")]
     partial class InitialProject
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
