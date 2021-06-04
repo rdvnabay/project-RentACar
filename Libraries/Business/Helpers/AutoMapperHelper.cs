@@ -6,6 +6,7 @@ using Entities.Dtos.Car;
 using Entities.Dtos.Brand;
 using Entities.Dtos.CarImage;
 using Entities.Dtos.Color;
+using Entities.Dtos.User;
 
 namespace Business.Helpers
 {

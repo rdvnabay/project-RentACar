@@ -1,7 +1,5 @@
 ﻿using Business.Abstract;
-using Core.Extensions;
-using Core.Utilities.Security.Jwt;
-using Entities.Dtos;
+using Entities.Dtos.User;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;

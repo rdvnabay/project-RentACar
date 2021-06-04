@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Entities.Dtos;
+using Entities.Dtos.User;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
