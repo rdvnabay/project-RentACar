@@ -32,7 +32,7 @@ namespace Business.Handlers.Brands.Commands
                 isThereCarImageRecord.Id = request.Id;
                 isThereCarImageRecord.CarId = request.CarId;
                 isThereCarImageRecord.ImagePath = request.ImagePath;
-                isThereCarImageRecord.Date = request.Date;
+                isThereCarImageRecord.CreatedDate = request.Date;
 
                 _carImageDal.Update(isThereCarImageRecord);
                 return new SuccessResult(Messages.Updated);

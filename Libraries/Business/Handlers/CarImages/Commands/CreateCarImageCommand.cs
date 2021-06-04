@@ -15,7 +15,6 @@ namespace Business.Handlers.Brands.Commands
     {
         public int CarId { get; set; }
         public string ImagePath { get; set; }
-        public DateTime Date { get; set; }
 
         public class CreateCarImageCommandHandler : IRequestHandler<CreateCarImageCommand, IResult>
         {
@@ -37,7 +36,6 @@ namespace Business.Handlers.Brands.Commands
                 {
                     CarId = request.CarId,
                     ImagePath=request.ImagePath,
-                    Date=request.Date
                 };
                 _carImageDal.Add(addedCarImage);
                 //await _brandDal.SaveChangesAsync();
