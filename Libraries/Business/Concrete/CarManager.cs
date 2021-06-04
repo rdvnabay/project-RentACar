@@ -3,6 +3,7 @@ using Business.Abstract;
 using Business.BusinessAspects;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
@@ -16,10 +17,15 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
+        ICarImageService _carImageService;
         IMapper _mapper;
-        public CarManager(ICarDal carDal, IMapper mapper)
+        public CarManager(
+            ICarDal carDal, 
+            ICarImageService carImageService,
+            IMapper mapper)
         {
             _carDal = carDal;
+            _carImageService = carImageService;
             _mapper = mapper;
         }
 
@@ -27,8 +33,17 @@ namespace Business.Concrete
         //[ValidationAspect(typeof(CarValidator))]
         public IResult Add(CarAddDto carAddDto)
         {
+            //if (string.IsNullOrEmpty(carAddDto.ImagePath))
+            //{
+            //    carAddDto.ImagePath = "default.jpg";
+            //}
+            IResult result = BusinessRules.Run(CheckIfCarImageNullOrEmpty(carAddDto));
+            //IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(1));
             var car = _mapper.Map<Car>(carAddDto);
+            var carImage = _mapper.Map<CarImageAddDto>(carAddDto);
             _carDal.Add(car);
+            carImage.CarId = car.Id;
+            _carImageService.Add(carImage);
             return new SuccessResult();
         }
 
@@ -47,8 +62,9 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDto>> GetAll()
         {
-            var car=_carDal.GetAllDto();
-            return new SuccessDataResult<List<CarDto>>(car);
+            var cars = _carDal.GetAll();
+            var carsDto = _mapper.Map<List<CarDto>>(cars);
+            return new SuccessDataResult<List<CarDto>>(carsDto);
         }
 
         public IDataResult<Car> GetById(int carId)
@@ -88,10 +104,35 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(data);
         }
 
-        public IDataResult<List<Car>> GetAllBySearch(string search)
+        public IDataResult<List<CarDto>> GetAllBySearch(string search)
         {
-             var data= _carDal.GetAll(x => x.Name.ToLower().Contains(search));
-            return new SuccessDataResult<List<Car>>(data);
+             var data= _carDal.GetAllBySearch(search);
+            return new SuccessDataResult<List<CarDto>>(data);
+        }
+        public IDataResult<List<CarDto>> GetAllByBrandIdAndColorId(int brandId, int colorId)
+        {
+            var carsDto = _carDal.GetAllByBrandIdAndColorId(brandId, colorId);
+            return new SuccessDataResult<List<CarDto>>(carsDto);
+        }
+
+        //BusinessRules
+        private IResult CheckIfImageCountOfCarCorrect(int carId)
+        {
+            var imageCount = _carImageService.GetImagesByCarId(carId).Data.Count;
+            if (imageCount > 5)
+            {
+                return new ErrorResult();
+            }
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfCarImageNullOrEmpty(CarAddDto carAddDto)
+        {
+            if (string.IsNullOrEmpty(carAddDto.ImagePath))
+            {
+                carAddDto.ImagePath = "default.jpg";
+            }
+            return new SuccessResult();
         }
     }
 }
