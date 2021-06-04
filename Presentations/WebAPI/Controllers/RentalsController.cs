@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -40,9 +41,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Rental rental)
+        public IActionResult Add(RentalAddDto rentalAddDto)
         {
-            _rentalService.Add(rental);
+            _rentalService.Add(rentalAddDto);
             return Ok();
         }
 

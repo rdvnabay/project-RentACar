@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results.Abstract;
@@ -13,18 +14,17 @@ namespace Business.Concrete
     public class RentalManager:IRentalService
     {
         private IRentalDal _rentalDal;
-        public RentalManager(IRentalDal rentalDal)
+        private IMapper _mapper;
+        public RentalManager(IRentalDal rentalDal, IMapper mapper)
         {
             _rentalDal = rentalDal;
+            _mapper = mapper;
         }
 
         [ValidationAspect(typeof(RentalValidator))]
-        public IResult Add(Rental rental)
+        public IResult Add(RentalAddDto rentalAddDto)
         {
-            if (rental.ReturnDate!=null)
-            {
-                return new ErrorResult();
-            }
+            var rental = _mapper.Map<Rental>(rentalAddDto);
             _rentalDal.Add(rental);
             return new SuccessResult();
         }
@@ -35,10 +35,10 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IDataResult<List<Rental>> GetAll()
+        public IDataResult<List<RentalListDto>> GetAll()
         {
-            var data = _rentalDal.GetAll();
-            return new SuccessDataResult<List<Rental>>(data);
+            var data = _rentalDal.GetAllDto();
+            return new SuccessDataResult<List<RentalListDto>>(data);
         }
 
         public IDataResult<Rental> GetById(int rentalId)
