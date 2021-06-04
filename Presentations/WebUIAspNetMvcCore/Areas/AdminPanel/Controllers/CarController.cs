@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Business.ValidationRules.FluentValidation;
 using Entities.Concrete;
 using Entities.Dtos;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
@@ -58,7 +55,6 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
                 var image = new CarImage
                 {
                     CarId = car.Id,
-                    Date = DateTime.Now,
                     ImagePath = fileName
                 };
                 //TODO: BAKILACAK
@@ -122,18 +118,22 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
 
         public IActionResult List(string search)
         {
-            if (string.IsNullOrEmpty(search))
+            var result = _carService.GetAllBySearch(search);
+            if (result.Success)
             {
-                var data = _carService.GetAll().Data;
-                var model = _mapper.Map<List<CarDto>>(data);
-                return View(model);
+                return View(result.Data);
             }
-            else
-            {
-                var data = _carService.GetAllBySearch(search).Data;
-                var model = _mapper.Map<List<CarDto>>(data);
-                return View(model);
-            }
+            return View();
         }
+
+        //public IActionResult List(int brandId, int colorId)
+        //{
+        //    var result = _carService.GetAllByBrandIdAndColorId(brandId,colorId);
+        //    if (result.Success)
+        //    {
+        //        return View(result.Data);
+        //    }
+        //    return View();
+        //}
     }
 }
