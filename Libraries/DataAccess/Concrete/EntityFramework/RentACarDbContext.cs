@@ -1,4 +1,5 @@
 ﻿using Core.Entities.Concrete;
+using DataAccess.Configurations;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +10,14 @@ namespace DataAccess.Concrete.EntityFramework
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-T7I39GU; Database=RentACarDb; Trusted_Connection=true;");
+            if (!optionsBuilder.IsConfigured)
+            {
+                base.OnConfiguring(optionsBuilder.UseSqlServer("Server=DESKTOP-T7I39GU; Database=RentACarDb; Trusted_Connection=true;"));
+            }
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new BrandEntityConfiguration());
         }
 
         public DbSet<Brand> Brands { get; set; }
