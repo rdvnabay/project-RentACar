@@ -2,6 +2,7 @@
 using DataAccess.Configurations;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -17,7 +18,8 @@ namespace DataAccess.Concrete.EntityFramework
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new BrandEntityConfiguration());
+          
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
         public DbSet<Brand> Brands { get; set; }
