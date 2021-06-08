@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/auth/login/login.component';
-import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
-import { CarListComponent } from './components/car/car-list/car-list.component';
-import { LoginGuard } from './guards/login.guard';
+import { LoginComponent } from './core/components/auth/login/login.component';
+import { CarDetailComponent } from './core/components/car/car-detail/car-detail.component';
+import { CarListComponent } from './core/components/car/car-list/car-list.component';
+import { LoginGuard } from './core/guards/login.guard';
 
 const routes: Routes = [
   // { path: '', component: CarListComponent },
@@ -11,8 +11,8 @@ const routes: Routes = [
   // { path: 'cars/detail/:carId', component: CarDetailComponent },
   // { path: 'car/add', component:CarAddComponent, canActivate:[LoginGuard]},
   // { path:'login', component:LoginComponent },
-  { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },
-  { path: '', loadChildren: () => import('./modules/site/site.module').then(m => m.SiteModule) }
+  { path: 'admin', loadChildren: () => import('./core/modules/admin/admin.module').then(m => m.AdminModule) },
+  { path: '', loadChildren: () => import('./core/modules/site/site.module').then(m => m.SiteModule) }
 ];
 
 @NgModule({

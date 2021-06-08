@@ -7,20 +7,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { VatAddedPipe } from './pipes/vat-added.pipe';
-import { FilterCarsPipe } from './pipes/filter-cars.pipe';
+import { VatAddedPipe } from './core/pipes/vat-added.pipe';
+import { FilterCarsPipe } from './core/pipes/filter-cars.pipe';
 
 import { ToastrModule } from 'ngx-toastr';
-import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
-import { CustomerComponent } from './components/customer/customer.component';
-import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
-import { CarListComponent } from './components/car/car-list/car-list.component';
-import { FilterBrandsPipe } from './pipes/filter-brands.pipe';
-import { FilterColorsPipe } from './pipes/filter-colors.pipe';
-import { HeaderComponent } from './shared/components/header/header.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { CartSummaryComponent } from './core/components/cart-summary/cart-summary.component';
+import { CustomerComponent } from './core/components/customer/customer.component';
+import { CarDetailComponent } from './core/components/car/car-detail/car-detail.component';
+import { CarListComponent } from './core/components/car/car-list/car-list.component';
+import { FilterBrandsPipe } from './core/pipes/filter-brands.pipe';
+import { FilterColorsPipe } from './core/pipes/filter-colors.pipe';
+import { HeaderComponent } from './core/shared/components/header/header.component';
+import { FooterComponent } from './core/shared/components/footer/footer.component';
+import { LoginComponent } from './core/components/auth/login/login.component';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [

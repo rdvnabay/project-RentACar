@@ -67,7 +67,7 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
             var result = _carService.GetById(carId);
             if (result.Success)
             {
-                _carService.Delete(result.Data);
+               // _carService.Delete(result.Data);
             }
             return RedirectToAction("List", "Car");
         }
@@ -87,12 +87,12 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
         [HttpPost]
         public IActionResult Edit(Car car)
         {
-            var result = _carService.Update(car);
-            if (result.Success)
-            {
-                return RedirectToAction("List", "Car");
-            }
-            return View(result);
+            //var result = _carService.Update(car);
+            //if (result.Success)
+            //{
+            //    return RedirectToAction("List", "Car");
+            //}
+            return View();
         }
 
         public IActionResult GetAllByBrand(int brandId)
