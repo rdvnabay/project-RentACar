@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Car } from '../models/car';
+import { Car } from '../components/admin/car/models/car';
 import { Cart } from '../models/cart';
 import { CartItem } from '../models/cartItem';
 

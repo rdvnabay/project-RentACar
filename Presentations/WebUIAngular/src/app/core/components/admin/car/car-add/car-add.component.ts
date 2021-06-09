@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, FormControl, Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Brand } from 'src/app/core/models/brand';
-import { Color } from 'src/app/core/models/color';
-import { BrandService } from 'src/app/core/services/brand.service';
-import { CarService } from 'src/app/core/services/car.service';
-import { ColorService } from 'src/app/core/services/color.service';
+import { Brand } from 'src/app/core/components/admin/brand/models/brand';
+import { Color } from 'src/app/core/components/admin/color/models/color';
+import { BrandService } from 'src/app/core/components/admin/brand/services/brand.service';
+import { CarService } from 'src/app/core/components/admin/car/services/car.service';
+import { ColorService } from 'src/app/core/components/admin/color/services/color.service';
 
 @Component({
   selector: 'app-car-add',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Color } from 'src/app/core/models/color';
-import { ColorService } from 'src/app/core/services/color.service';
+import { Color } from 'src/app/core/components/admin/color/models/color';
+import { ColorService } from 'src/app/core/components/admin/color/services/color.service';
 
 @Component({
   selector: 'app-partial-color-list',

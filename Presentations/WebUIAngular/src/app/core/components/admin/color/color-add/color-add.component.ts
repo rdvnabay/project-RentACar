@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,FormControl,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ColorService } from 'src/app/core/services/color.service';
+import { ColorService } from 'src/app/core/components/admin/color/services/color.service';
 
 @Component({
   selector: 'app-color-add',

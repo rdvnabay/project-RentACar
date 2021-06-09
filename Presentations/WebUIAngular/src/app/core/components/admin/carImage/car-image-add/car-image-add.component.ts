@@ -5,7 +5,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { CarImageService } from './../../../../services/car-image.service';
+import { CarImageService } from '../services/car-image.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

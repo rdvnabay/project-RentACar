@@ -1,4 +1,4 @@
-import { Car } from "./car";
+import { Car } from "../components/admin/car/models/car";
 
 export class CartItem {
     car:Car;

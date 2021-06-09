@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Color } from 'src/app/core/models/color';
-import { ColorService } from 'src/app/core/services/color.service';
+import { Color } from 'src/app/core/components/admin/color/models/color';
+import { ColorService } from 'src/app/core/components/admin/color/services/color.service';
 
 @Component({
   selector: 'app-color-list',

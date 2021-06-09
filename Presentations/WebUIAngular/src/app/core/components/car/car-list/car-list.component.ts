@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Car } from 'src/app/core/models/car';
-import { CarDetail } from 'src/app/core/models/carDetail';
-import { CarService } from 'src/app/core/services/car.service';
 import { CartService } from 'src/app/core/services/cart.service';
+import { Car } from '../../admin/car/models/car';
+import { CarDetail } from '../../admin/car/models/carDetail';
+import { CarService } from '../../admin/car/services/car.service';
 
 @Component({
   selector: 'app-car-list',

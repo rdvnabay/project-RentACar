@@ -1,14 +1,14 @@
-import { CarImageAddComponent } from './components/car-image-add/car-image-add.component';
+import { CarImageAddComponent } from '../../components/admin/carImage/car-image-add/car-image-add.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BrandAddComponent } from './components/brand-add/brand-add.component';
-import { BrandEditComponent } from './components/brand-edit/brand-edit.component';
-import { BrandListComponent } from './components/brand-list/brand-list.component';
-import { CarAddComponent } from './components/car-add/car-add.component';
-import { CarEditComponent } from './components/car-edit/car-edit.component';
-import { CarListComponent } from './components/car-list/car-list.component';
-import { ColorAddComponent } from './components/color-add/color-add.component';
-import { ColorEditComponent } from './components/color-edit/color-edit.component';
+import { BrandAddComponent } from '../../components/admin/brand/brand-add/brand-add.component';
+import { BrandEditComponent } from '../../components/admin/brand/brand-edit/brand-edit.component';
+import { BrandListComponent } from '../../components/admin/brand/brand-list/brand-list.component';
+import { CarAddComponent } from '../../components/admin/car/car-add/car-add.component';
+import { CarEditComponent } from '../../components/admin/car/car-edit/car-edit.component';
+import { CarListComponent } from '../../components/admin/car/car-list/car-list.component';
+import { ColorAddComponent } from '../../components/admin/color/color-add/color-add.component';
+import { ColorEditComponent } from '../../components/admin/color/color-edit/color-edit.component';
 import { ColorListComponent } from './components/color-list/color-list.component';
 import { AdminLayoutComponent } from './shared/admin-layout/admin-layout.component';
 

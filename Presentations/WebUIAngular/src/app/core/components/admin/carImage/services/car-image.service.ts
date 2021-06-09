@@ -1,6 +1,6 @@
-import { ResponseModel } from './../models/responseModel';
+import { ResponseModel } from '../../../../models/responseModel';
 import { Observable } from 'rxjs';
-import { CarImageAddDto } from './../models/dtos/carImageAddDto';
+import { CarImageAddDto } from '../../../../models/dtos/carImageAddDto';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 

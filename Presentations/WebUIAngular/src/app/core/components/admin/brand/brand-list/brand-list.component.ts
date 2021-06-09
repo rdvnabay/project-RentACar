@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Brand } from 'src/app/core/models/brand';
-import { BrandService } from 'src/app/core/services/brand.service';
+import { Brand } from 'src/app/core/components/admin/brand/models/brand';
+import { BrandService } from 'src/app/core/components/admin/brand/services/brand.service';
 
 @Component({
   selector: 'app-brand-list',

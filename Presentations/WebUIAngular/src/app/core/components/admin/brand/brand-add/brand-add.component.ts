@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,FormControl,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { BrandService } from 'src/app/core/services/brand.service';
+import { BrandService } from 'src/app/core/components/admin/brand/services/brand.service';
 
 @Component({
   selector: 'app-brand-add',
