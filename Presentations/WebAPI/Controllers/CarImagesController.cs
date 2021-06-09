@@ -43,9 +43,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("images/{carId}")]
-        public IActionResult GetImagesByCarId(int carId)
+        public async Task<IActionResult> GetImagesByCarId(int carId)
         {
-            var result = _carImageService.GetImagesByCarId(carId);
+            var result =await _carImageService.GetImagesByCarIdAsync(carId);
             return result.Success
                 ? Ok(result)
                 : BadRequest(result);
