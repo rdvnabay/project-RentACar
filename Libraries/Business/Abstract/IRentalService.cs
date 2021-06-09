@@ -12,11 +12,13 @@ namespace Business.Abstract
         Task<IResult> AddAsync(RentalAddDto rentalAddDto);
         IResult Update(Rental rental);
         Task<IResult> UpdateAsync(RentalUpdateDto rentalUpdateDto);
-        IResult Delete(Rental rental);
-        IDataResult<Rental> GetById(int rentalId);
+        IResult DeleteById(int rentalId);
+        Task<IResult> DeleteByIdAsync(int rentalId);
+        IDataResult<RentalDto> GetById(int rentalId);
+        Task<IDataResult<RentalDto>> GetByIdAsync(int rentalId);
         IDataResult<List<RentalDto>> GetAll();
         Task<IDataResult<List<RentalDto>>> GetAllAsync();
         IDataResult<List<RentalDto>>GetRentAllByCustomer(int carId, int  customerId);
-     
+        Task<IDataResult<RentalDto>> GetRentAllByCustomerAsync(int carId, int customerId);
     }
 }

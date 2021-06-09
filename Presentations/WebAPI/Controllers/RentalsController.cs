@@ -17,10 +17,12 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("get")]
-        public IActionResult Get(int userId)
+        public async Task<IActionResult> Get(int rentalId)
         {
-            var data = _rentalService.GetById(userId);
-            return Ok(data.Data);
+            var result = await _rentalService.GetByIdAsync(rentalId);
+            return result.Success
+             ? Ok(result)
+             : BadRequest(result);
         }
 
         [HttpGet("getall")]
@@ -33,9 +35,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getrentallbycustomer")]
-        public IActionResult GetRentAllByCustomer(int carId, int customerId)
+        public async Task<IActionResult> GetRentAllByCustomer(int carId, int customerId)
         {
-            var result = _rentalService.GetRentAllByCustomer(carId, customerId);
+            var result = await _rentalService.GetRentAllByCustomerAsync(carId, customerId);
             return result.Success
                ? Ok(result)
                : BadRequest(result);
@@ -60,10 +62,12 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Rental rental)
+        public async Task<IActionResult> Delete(int rentalId)
         {
-            _rentalService.Delete(rental);
-            return Ok();
+            var result = await _rentalService.DeleteByIdAsync(rentalId);
+            return result.Success
+                ? Ok(result)
+                : BadRequest(result);
         }
     }
 }
