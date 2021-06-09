@@ -30,6 +30,13 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        public async Task<IResult> AddAsync(RentalAddDto rentalAddDto)
+        {
+            var rental = _mapper.Map<Rental>(rentalAddDto);
+            await _rentalDal.AddAsync(rental);
+            return new SuccessResult();
+        }
+
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
@@ -38,8 +45,14 @@ namespace Business.Concrete
 
         public IDataResult<List<RentalDto>> GetAll()
         {
-            var data = _rentalDal.GetAllDto();
-            return new SuccessDataResult<List<RentalDto>>(data);
+            var rentals = _rentalDal.GetAllRentalWithCustomerAndBrand();
+            return new SuccessDataResult<List<RentalDto>>(rentals);
+        }
+
+        public async Task<IDataResult<List<RentalDto>>> GetAllAsync()
+        {
+            var rentals = await _rentalDal.GetAllRentalWithCustomerAndBrandAsync();
+            return new SuccessDataResult<List<RentalDto>>(rentals);
         }
 
         public IDataResult<Rental> GetById(int rentalId)

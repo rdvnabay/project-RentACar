@@ -24,9 +24,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getall")]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var result = _rentalService.GetAll();
+            var result = await _rentalService.GetAllAsync();
             return result.Success
                ? Ok(result)
                : BadRequest(result);
@@ -42,10 +42,12 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(RentalAddDto rentalAddDto)
+        public async Task<IActionResult> Add(RentalAddDto rentalAddDto)
         {
-            _rentalService.Add(rentalAddDto);
-            return Ok();
+          var result=await _rentalService.AddAsync(rentalAddDto);
+            return result.Success
+                ? Ok(result)
+                : BadRequest(result);
         }
 
         [HttpPost("update")]
