@@ -38,7 +38,7 @@ namespace Business.Concrete
             var carImage = _mapper.Map<CarImageAddDto>(carAddDto);
             _carDal.Add(car);
             carImage.CarId = car.Id;
-            _carImageService.Add(carImage);
+           // _carImageService.Add(carImage);
             return new SuccessResult();
         }
         public async Task<IResult> AddAsync(CarAddDto carAddDto)
@@ -47,7 +47,7 @@ namespace Business.Concrete
             var carImageAddDto = _mapper.Map<CarImageAddDto>(carAddDto);
             await _carDal.AddAsync(car);
             carImageAddDto.CarId = car.Id;
-            await _carImageService.AddAsync(carImageAddDto);
+           // await _carImageService.AddAsync(carImageAddDto);
             return new SuccessResult();
         }
         public IResult DeleteById(int carId)
