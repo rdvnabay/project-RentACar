@@ -6,6 +6,5 @@ namespace Entities.Dtos.CarImage
     {
         public int Id { get; set; }
         public int CarId { get; set; }
-        public string ImagePath { get; set; }
     }
 }

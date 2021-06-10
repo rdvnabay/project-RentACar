@@ -4,11 +4,13 @@ using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
+using Core.Utilities.FileHelper;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.Dtos.CarImage;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -24,30 +26,39 @@ namespace Business.Concrete
             _mapper = mapper;
         }
 
-        //Methods
-        [ValidationAspect(typeof(CarImageValidator))]
-        public IResult Add(CarImageAddDto carImageAddDto)
+        //Command
+        //[ValidationAspect(typeof(CarImageValidator))]
+        public IResult Add(CarImageAddDto carImageAddDto, IFormFile[] files)
         {
-            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImageAddDto.CarId),
-                                               CheckIfCarImageNullOrEmpty(carImageAddDto));
+            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImageAddDto.CarId,files),
+                                               CheckIfMultipleImageUploadLimited(files),
+                                               CheckIfCarImageNullOrEmpty(carImageAddDto, files));
             if (result != null)
-            {
                 return result;
+      
+            foreach (var file in files)
+            {
+                var imagePath= ImageHelper.Save(file);
+                CarImage carImage = new() { CarId = carImageAddDto.CarId, ImagePath=imagePath};
+                _carImageDal.Add(carImage);
             }
-            var carImage = _mapper.Map<CarImage>(carImageAddDto);
-            _carImageDal.Add(carImage);
             return new SuccessResult();
         }
-        public async Task<IResult> AddAsync(CarImageAddDto carImageAddDto)
+        public async Task<IResult> AddAsync(CarImageAddDto carImageAddDto, IFormFile[] files)
         {
-            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImageAddDto.CarId),
-                                               CheckIfCarImageNullOrEmpty(carImageAddDto));
+            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImageAddDto.CarId, files),
+                                               CheckIfMultipleImageUploadLimited(files),
+                                               CheckIfCarImageNullOrEmpty(carImageAddDto, files));
             if (result != null)
-            {
                 return result;
+
+
+            foreach (var file in files)
+            {
+                var imagePath = ImageHelper.Save(file);
+                CarImage carImage = new() { CarId = carImageAddDto.CarId, ImagePath = imagePath };
+               await _carImageDal.AddAsync(carImage);
             }
-            var carImage = _mapper.Map<CarImage>(carImageAddDto);
-            await _carImageDal.AddAsync(carImage);
             return new SuccessResult(Messages.Added);
         }
         public IResult Delete(CarImageDto carImageDto)
@@ -68,13 +79,47 @@ namespace Business.Concrete
             await _carImageDal.DeleteAsync(carImage);
             return new SuccessResult();
         }
+        [ValidationAspect(typeof(CarImageValidator))]
+        public IResult Update(CarImageUpdateDto carImageUpdateDto, IFormFile[] files)
+        {
+            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImageUpdateDto.CarId, files),
+                                               CheckIfMultipleImageUploadLimited(files),
+                                               CheckIfCarImageNullOrEmpty(carImageUpdateDto, files));
+            if (result != null)
+                return result;
+
+            foreach (var file in files)
+            {
+                var imagePath = ImageHelper.Save(file);
+                CarImage carImage = new() { CarId = carImageUpdateDto.CarId, ImagePath = imagePath };
+                _carImageDal.Update(carImage);
+            }
+            return new SuccessResult();
+        }
+        public async Task<IResult> UpdateAsync(CarImageUpdateDto carImageUpdateDto, IFormFile[] files)
+        {
+            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImageUpdateDto.CarId, files),
+                                               CheckIfMultipleImageUploadLimited(files),
+                                               CheckIfCarImageNullOrEmpty(carImageUpdateDto, files));
+            if (result != null)
+                return result;
+
+            foreach (var file in files)
+            {
+                var imagePath = ImageHelper.Save(file);
+                CarImage carImage = new() { CarId = carImageUpdateDto.CarId, ImagePath = imagePath };
+                await _carImageDal.UpdateAsync(carImage);
+            }
+            return new SuccessResult();
+        }
+
+        //Query
         public IDataResult<List<CarImageDto>> GetAll()
         {
             var carImages = _carImageDal.GetAll();
             var carImagesDto = _mapper.Map<List<CarImageDto>>(carImages);
             return new SuccessDataResult<List<CarImageDto>>(carImagesDto);
         }
-
         public async Task<IDataResult<List<CarImageDto>>> GetAllAsync()
         {
             var carImages = await _carImageDal.GetAllAsync();
@@ -106,46 +151,43 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarImageDto>>(carImagesDto);
         }
 
-        [ValidationAspect(typeof(CarImageValidator))]
-        public IResult Update(CarImageDto carImageDto)
-        {
-            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImageDto.CarId));
-            if (result != null)
-            {
-                return result;
-            }
-            var carImage = _mapper.Map<CarImage>(carImageDto);
-            _carImageDal.Update(carImage);
-            return new SuccessResult();
-        }
-        public async Task<IResult> UpdateAsync(CarImageUpdateDto carImageUpdateDto)
-        {
-            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImageUpdateDto.CarId));
-            if (result != null)
-            {
-                return result;
-            }
-            var carImage = _mapper.Map<CarImage>(carImageUpdateDto);
-            await _carImageDal.UpdateAsync(carImage);
-            return new SuccessResult();
-        }
-
+    
         //Business Rules
-        private IResult CheckIfImageCountOfCarCorrect(int carId)
+        private IResult CheckIfImageCountOfCarCorrect(int carId,IFormFile[] files)
         {
             var result = _carImageDal.GetAll(c => c.CarId == carId).Count;
-            if (result >= 5)
+            var totalImageCount = result + files.Length;
+            if (totalImageCount > 5)
             {
                 return new ErrorResult(Messages.CarImagesLimitExceeded);
             }
             return new SuccessResult();
         }
-
-        private IResult CheckIfCarImageNullOrEmpty(CarImageAddDto carImageAddDto)
+        private IResult CheckIfMultipleImageUploadLimited(IFormFile[] files)
         {
-            if (string.IsNullOrEmpty(carImageAddDto.ImagePath))
+            if(files.Length > 5)
             {
-                carImageAddDto.ImagePath = "default.jpg";
+                return new ErrorResult(Messages.CarImagesLimitExceeded);
+            }
+            return new SuccessResult();
+        }
+        private IResult CheckIfCarImageNullOrEmpty(CarImageAddDto carImageAddDto, IFormFile[] files)
+        {
+            if (files.Length == 0)
+            {
+                var carImage = _mapper.Map<CarImage>(carImageAddDto);
+                carImage.ImagePath = "default.jpg";
+                _carImageDal.Add(carImage);
+            }
+            return new SuccessResult();
+        }
+        private IResult CheckIfCarImageNullOrEmpty(CarImageUpdateDto carImageUpdateDto, IFormFile[] files)
+        {
+            if (files.Length == 0)
+            {
+                var carImage = _mapper.Map<CarImage>(carImageUpdateDto);
+                carImage.ImagePath = "default.jpg";
+                _carImageDal.Add(carImage);
             }
             return new SuccessResult();
         }
