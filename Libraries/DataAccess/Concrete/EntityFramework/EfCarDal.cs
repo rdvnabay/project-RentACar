@@ -130,6 +130,31 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.FirstOrDefault();
             }
         }
+
+        public async Task<CarDetailDto> GetCarWithBrandNameAndColorNameAndImagesAsync(int carId)
+        {
+            using (var context = new RentACarDbContext())
+            {
+                var result = from c in context.Cars
+                             join b in context.Brands
+                             on c.BrandId equals b.Id
+                             join co in context.Colors
+                             on c.ColorId equals co.Id
+                             where c.Id == carId
+                             select new CarDetailDto
+                             {
+                                 Id = c.Id,
+                                 Name = c.Name,
+                                 DailyPrice = c.DailyPrice,
+                                 Description = c.Description,
+                                 BrandName = b.Name,
+                                 ColorName = co.Name,
+                                 ModelYear = c.ModelYear
+                             };
+                return await result.FirstOrDefaultAsync();
+            }
+        }
+
         public async Task<CarDto> GetCarWithBrandNameAndColorNameAsync(int carId)
         {
             using (var context = new RentACarDbContext())

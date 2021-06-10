@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Entities.Dtos.CarImage;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
@@ -18,6 +20,8 @@ namespace WebAPI.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody] CarImageAddDto carImageAddDto)
         {
+            if(carImageAddDto.ImagePath.Length==0)
+                return BadRequest();
             var result = await _carImageService.AddAsync(carImageAddDto);
             return result.Success
                ? Ok(result)
@@ -45,7 +49,7 @@ namespace WebAPI.Controllers
         [HttpGet("images/{carId}")]
         public async Task<IActionResult> GetImagesByCarId(int carId)
         {
-            var result =await _carImageService.GetImagesByCarIdAsync(carId);
+            var result = await _carImageService.GetImagesByCarIdAsync(carId);
             return result.Success
                 ? Ok(result)
                 : BadRequest(result);

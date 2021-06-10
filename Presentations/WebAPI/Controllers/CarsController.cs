@@ -60,8 +60,8 @@ namespace WebAPI.Controllers
                : BadRequest(result);
         }
 
-        [HttpGet("getdetails")]
-        public async Task<IActionResult> GetDetails(int carId)
+        [HttpGet("getdetail")]
+        public async Task<IActionResult> GetDetail(int carId)
         {
             var result = await _carService.GetDetailAsync(carId);
             return result.Success
