@@ -1,6 +1,7 @@
 using Business.Helpers;
 using Core.DependencyResolvers;
 using Core.Extensions;
+using Core.Utilities.FileHelper;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.Jwt;
@@ -33,6 +34,7 @@ namespace WebUIAspNetMvcCore
         {
             services.AddRazorPages();
             services.AddMvc();/*.AddFluentValidation();*/
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddDbContext<RentACarDbContext>();
             services.AddAutoMapper(typeof(AutoMapperHelper));
 
@@ -42,7 +44,7 @@ namespace WebUIAspNetMvcCore
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
-
+            #region JwtBearer
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -57,6 +59,7 @@ namespace WebUIAspNetMvcCore
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
+            #endregion
             services.AddDependencyResolvers(new ICoreModule[]{
             new CoreModule(),
             });

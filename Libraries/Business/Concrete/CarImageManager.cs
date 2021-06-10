@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.Adapters;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -20,10 +21,12 @@ namespace Business.Concrete
     {
         private ICarImageDal _carImageDal;
         private IMapper _mapper;
-        public CarImageManager(ICarImageDal carImageDal, IMapper mapper)
+        private IImageUploadService _imageUploadService;
+        public CarImageManager(ICarImageDal carImageDal, IMapper mapper, IImageUploadService imageUploadService)
         {
             _carImageDal = carImageDal;
             _mapper = mapper;
+            _imageUploadService = imageUploadService;
         }
 
         //Command
@@ -38,7 +41,7 @@ namespace Business.Concrete
       
             foreach (var file in files)
             {
-                var imagePath= ImageHelper.Save(file);
+                var imagePath= _imageUploadService.Upload(file);
                 CarImage carImage = new() { CarId = carImageAddDto.CarId, ImagePath=imagePath};
                 _carImageDal.Add(carImage);
             }

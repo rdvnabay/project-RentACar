@@ -37,6 +37,7 @@ namespace WebAPI
             services.AddMediatR(typeof(Startup));
             services.AddDbContext<RentACarDbContext>();
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             //services.AddCors(options =>
             //{
             //    options.AddPolicy("AllowOrigin",

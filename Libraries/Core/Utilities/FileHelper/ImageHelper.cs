@@ -35,17 +35,5 @@ namespace Core.Utilities.FileHelper
 
             return fileName.ToString();
         }
-        public static async Task<string> SaveAsync(IFormFile file)
-        {
-            string extension = Path.GetExtension(file.FileName);
-            string fileName = string.Format($"{Guid.NewGuid()}{extension}");
-            string path = Path.Combine(Directory.GetCurrentDirectory(), imageUploadFolder, fileName);
-
-            using (var stream = new FileStream(path, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-            return fileName.ToString();
-        }
     }
 }
