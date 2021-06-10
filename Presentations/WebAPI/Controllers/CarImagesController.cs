@@ -18,11 +18,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> Add([FromBody] CarImageAddDto carImageAddDto)
+        public async Task<IActionResult> Add(CarImageAddDto carImageAddDto, IFormFile[] files)
         {
-            if(carImageAddDto.ImagePath.Length==0)
-                return BadRequest();
-            var result = await _carImageService.AddAsync(carImageAddDto);
+            var result = await _carImageService.AddAsync(carImageAddDto, files);
             return result.Success
                ? Ok(result)
                : BadRequest(result);
@@ -56,9 +54,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] CarImageUpdateDto carImageUpdateDto)
+        public async Task<IActionResult> Update([FromBody] CarImageUpdateDto carImageUpdateDto,IFormFile[] files)
         {
-            var result = await _carImageService.UpdateAsync(carImageUpdateDto);
+            var result = await _carImageService.UpdateAsync(carImageUpdateDto, files);
             return result.Success
                ? Ok(result)
                : BadRequest(result);
