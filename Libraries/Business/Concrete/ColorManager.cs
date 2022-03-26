@@ -15,11 +15,11 @@ namespace Business.Concrete
 {
     public class ColorManager : IColorService
     {
-        private IColorDal _colorDal;
+        private IColorRepository _colorDal;
         private IMapper _mapper;
 
         public ColorManager(
-            IColorDal colorDal,
+            IColorRepository colorDal,
             IMapper mapper)
         {
             _colorDal = colorDal;
@@ -46,12 +46,7 @@ namespace Business.Concrete
             _colorDal.Delete(color);
             return new SuccessResult();
         }
-        public async Task<IResult> DeleteByIdAsync(int colorId)
-        {
-            var color = await _colorDal.GetAsync(x => x.Id == colorId);
-            await _colorDal.DeleteAsync(color);
-            return new SuccessResult();
-        }
+
         public IDataResult<List<ColorDto>> GetAll()
         {
             var colors= _colorDal.GetAll();
@@ -78,17 +73,11 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(ColorValidator))]
-        public IResult Update(ColorDto colorDto)
+        public IResult Update(ColorUpdateDto colorDto)
         {
             var color = _mapper.Map<Color>(colorDto);
             _colorDal.Update(color);
             return new SuccessResult();
-        }
-        public async Task<IResult> UpdateAsync(ColorUpdateDto colorUpdateDto)
-        {
-            var color = _mapper.Map<Color>(colorUpdateDto);
-            await _colorDal.UpdateAsync(color);
-            return new SuccessResult(Messages.Updated);
         }
     }
 }
