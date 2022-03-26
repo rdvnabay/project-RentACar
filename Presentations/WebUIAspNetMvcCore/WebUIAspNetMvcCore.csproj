@@ -136,6 +136,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\Business\Business.csproj" />
     <ProjectReference Include="..\..\Libraries\Entities\Entities.csproj" />
+    <ProjectReference Include="..\..\src\Business\Business.csproj" />
+    <ProjectReference Include="..\..\src\Entities\Entities.csproj" />
   </ItemGroup>
 
 </Project>
