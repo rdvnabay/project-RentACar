@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface ICarDal:IEntityRepository<Car>,IEntityAsyncRepository<Car>
+    public interface ICarRepository:IEntityRepository<Car>,IEntityAsyncRepository<Car>
     {
         List<CarDto> GetAllBySearch(string search);
       //  List<CarDto> GetAllBySearch(Expression<Func<CarDto,bool>> search);

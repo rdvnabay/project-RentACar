@@ -1,5 +1,6 @@
 ﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
+using DataAccess.Context;
 using Entities.Concrete;
 using Entities.Dtos.Car;
 using Microsoft.EntityFrameworkCore;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal : EfEntityRepositoryBase<Car, RentACarDbContext>, ICarDal
+    public class CarRepository : EfEntityRepositoryBase<Car, RentACarDbContext>, ICarRepository
     {
-        public EfCarDal(RentACarDbContext context) : base(context) { }
+        public CarRepository(RentACarDbContext context) : base(context) { }
 
         public List<CarDto> GetAllByBrandIdAndColorId(int brandId, int colorId)
         {

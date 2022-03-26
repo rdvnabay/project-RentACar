@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DataAccess.Abstract
 {
-    public interface IUserDal:IEntityRepository<User>
+    public interface IUserRepository:IEntityRepository<User>
     {
         List<OperationClaim> GetClaims(User user);
     }

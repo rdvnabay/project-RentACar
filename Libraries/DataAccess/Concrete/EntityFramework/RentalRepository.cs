@@ -1,5 +1,6 @@
 ﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
+using DataAccess.Context;
 using Entities.Concrete;
 using Entities.Dtos.Rental;
 using Microsoft.EntityFrameworkCore;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfRentalDal : EfEntityRepositoryBase<Rental, RentACarDbContext>, IRentalDal
+    public class RentalRepository : EfEntityRepositoryBase<Rental, RentACarDbContext>, IRentalRepository
     {
-        public EfRentalDal(RentACarDbContext context) : base(context) { }
+        public RentalRepository(RentACarDbContext context) : base(context) { }
 
         public List<RentalDto> GetAllRentalWithCustomerAndBrand()
         {

@@ -1,14 +1,15 @@
 ﻿using Core.DataAccess.EntityFramework;
 using Core.Entities.Concrete;
 using DataAccess.Abstract;
+using DataAccess.Context;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfUserDal : EfEntityRepositoryBase<User, RentACarDbContext>, IUserDal
+    public class UserRepository : EfEntityRepositoryBase<User, RentACarDbContext>, IUserRepository
     {
-        public EfUserDal(RentACarDbContext context) : base(context) { }
+        public UserRepository(RentACarDbContext context) : base(context) { }
         public List<OperationClaim> GetClaims(User user)
         {
             using (var context = new RentACarDbContext())

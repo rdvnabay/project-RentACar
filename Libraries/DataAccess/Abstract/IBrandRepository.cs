@@ -3,7 +3,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Abstract
 {
-    public interface ICustomerDal: IEntityRepository<Customer>,IEntityAsyncRepository<Customer>
+    public interface IBrandRepository:IEntityRepository<Brand>,IEntityAsyncRepository<Brand>
     {
     }
 }

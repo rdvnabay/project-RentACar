@@ -2,6 +2,7 @@
 using Core.Entities.Concrete;
 using Core.Entities.Dtos;
 using DataAccess.Abstract;
+using DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfTranslateDal : EfEntityRepositoryBase<Translate, RentACarDbContext>, ITranslateDal
+    public class TranslateRepository : EfEntityRepositoryBase<Translate, RentACarDbContext>, ITranslateRepository
     {
-        public EfTranslateDal(RentACarDbContext context) : base(context) { }
+        public TranslateRepository(RentACarDbContext context) : base(context) { }
         public async Task<List<TranslateDto>> GetTranslateDto()
         {
             using (var context=new RentACarDbContext())

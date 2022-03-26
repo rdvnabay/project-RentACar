@@ -2,6 +2,7 @@
 using Core.Entities.Concrete;
 using Core.Entities.Dtos;
 using DataAccess.Abstract;
+using DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfLanguageDal : EfEntityRepositoryBase<Language, RentACarDbContext>, ILanguageDal
+    public class LanguageRepository : EfEntityRepositoryBase<Language, RentACarDbContext>, ILanguageRepository
     {
-        public EfLanguageDal(RentACarDbContext context) : base(context) { }
+        public LanguageRepository(RentACarDbContext context) : base(context) { }
         public async Task<List<SelectionItem>> GetLanguagesLookUp()
         {
             using (var context = new RentACarDbContext())
