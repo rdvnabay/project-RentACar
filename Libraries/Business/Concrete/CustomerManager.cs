@@ -14,9 +14,9 @@ namespace Business.Concrete
 {
     public class CustomerManager:ICustomerService
     {
-        private ICustomerDal _customerDal;
+        private ICustomerRepository _customerDal;
         private IMapper _mapper;
-        public CustomerManager(ICustomerDal customerDal, IMapper mapper)
+        public CustomerManager(ICustomerRepository customerDal, IMapper mapper)
         {
             _customerDal = customerDal;
         }
@@ -41,22 +41,11 @@ namespace Business.Concrete
             _customerDal.Delete(customer);
             return new SuccessResult();
         }
-        public async Task<IResult> DeleteByIdAsync(int userId)
-        {
-            var customer = _customerDal.Get(x => x.UserId == userId);
-            await _customerDal.DeleteAsync(customer);
-            return new SuccessResult();
-        }
 
         [ValidationAspect(typeof(CustomerValidator))]
         public IResult Update(Customer customer)
         {
             _customerDal.Update(customer);
-            return new SuccessResult();
-        }
-        public async Task<IResult> UpdateAsync(Customer customer)
-        {
-            await _customerDal.UpdateAsync(customer);
             return new SuccessResult();
         }
 

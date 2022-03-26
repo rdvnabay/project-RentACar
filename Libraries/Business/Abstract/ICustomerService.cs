@@ -12,9 +12,7 @@ namespace Business.Abstract
         IResult Add(CustomerAddDto customerAddDto);
         Task<IResult> AddAsync(CustomerAddDto customerAddDto);
         IResult DeleteById(int userId);
-        Task<IResult> DeleteByIdAsync(int userId);
         IResult Update(Customer customer);
-        Task<IResult> UpdateAsync(Customer customer);
  
         //Query
         IDataResult<Customer> GetById(int userId);
