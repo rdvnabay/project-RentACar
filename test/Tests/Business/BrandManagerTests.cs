@@ -1,9 +1,6 @@
 using DataAccess.Abstract;
-using Entities.Dtos;
 using Moq;
 using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Tests
 {
@@ -21,7 +18,7 @@ namespace Tests
         [Test]
         public void Get_All_Brand()
         {
-          
+            Assert.AreEqual(1, 2);
         }
     }
 }
