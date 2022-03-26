@@ -19,9 +19,9 @@ namespace Business.Concrete
 {
     public class BrandManager : IBrandService
     {
-        IBrandDal _brandDal;
+        IBrandRepository _brandDal;
         IMapper _mapper;
-        public BrandManager(IBrandDal brandDal, IMapper mapper)
+        public BrandManager(IBrandRepository brandDal, IMapper mapper)
         {
             _brandDal = brandDal;
             _mapper = mapper;
@@ -55,18 +55,6 @@ namespace Business.Concrete
             _brandDal.Delete(brand);
             return new SuccessResult(Messages.Deleted);
         }
-        public async Task<IResult> DeleteAsync(BrandDto brandDto)
-        {
-            var brand = _mapper.Map<Brand>(brandDto);
-            await _brandDal.DeleteAsync(brand);
-            return new SuccessResult(Messages.Deleted);
-        }
-        public async Task<IResult> DeleteByIdAsync(int brandId)
-        {
-            var brand = _brandDal.Get(x => x.Id == brandId);
-            await _brandDal.DeleteAsync(brand);
-            return new SuccessResult();
-        }
 
         [CacheAspect]
         public IDataResult<List<BrandDto>> GetAll()
@@ -96,16 +84,10 @@ namespace Business.Concrete
 
   
         [ValidationAspect(typeof(BrandValidator))]
-        public IResult Update(BrandDto brandDto)
+        public IResult Update(BrandUpdateDto brandDto)
         {
             var brand = _mapper.Map<Brand>(brandDto);
             _brandDal.Update(brand);
-            return new SuccessResult(Messages.Updated);
-        }
-        public async Task<IResult> UpdateAsync(BrandUpdateDto brandUpdateDto)
-        {
-            var brand = _mapper.Map<Brand>(brandUpdateDto);
-            await _brandDal.UpdateAsync(brand);
             return new SuccessResult(Messages.Updated);
         }
 
