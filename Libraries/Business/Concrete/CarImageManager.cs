@@ -19,10 +19,10 @@ namespace Business.Concrete
 {
     public class CarImageManager : ICarImageService
     {
-        private ICarImageDal _carImageDal;
+        private ICarImageRepository _carImageDal;
         private IMapper _mapper;
         private IImageUploadService _imageUploadService;
-        public CarImageManager(ICarImageDal carImageDal, IMapper mapper, IImageUploadService imageUploadService)
+        public CarImageManager(ICarImageRepository carImageDal, IMapper mapper, IImageUploadService imageUploadService)
         {
             _carImageDal = carImageDal;
             _mapper = mapper;
@@ -70,18 +70,7 @@ namespace Business.Concrete
             _carImageDal.Delete(carImage);
             return new SuccessResult();
         }
-        public async Task<IResult> DeleteAsync(CarImageDto carImageDto)
-        {
-            var carImage = _mapper.Map<CarImage>(carImageDto);
-            await _carImageDal.DeleteAsync(carImage);
-            return new SuccessResult(Messages.Deleted);
-        }
-        public async Task<IResult> DeleteByIdAsync(int carId)
-        {
-            var carImage = await _carImageDal.GetAllAsync(x => x.CarId == carId);
-            await _carImageDal.DeleteAsync(carImage);
-            return new SuccessResult();
-        }
+
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Update(CarImageUpdateDto carImageUpdateDto, IFormFile[] files)
         {
@@ -96,22 +85,6 @@ namespace Business.Concrete
                 var imagePath = ImageHelper.Save(file);
                 CarImage carImage = new() { CarId = carImageUpdateDto.CarId, ImagePath = imagePath };
                 _carImageDal.Update(carImage);
-            }
-            return new SuccessResult();
-        }
-        public async Task<IResult> UpdateAsync(CarImageUpdateDto carImageUpdateDto, IFormFile[] files)
-        {
-            IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImageUpdateDto.CarId, files),
-                                               CheckIfMultipleImageUploadLimited(files),
-                                               CheckIfCarImageNullOrEmpty(carImageUpdateDto, files));
-            if (result != null)
-                return result;
-
-            foreach (var file in files)
-            {
-                var imagePath = ImageHelper.Save(file);
-                CarImage carImage = new() { CarId = carImageUpdateDto.CarId, ImagePath = imagePath };
-                await _carImageDal.UpdateAsync(carImage);
             }
             return new SuccessResult();
         }

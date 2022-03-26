@@ -1,5 +1,4 @@
 ﻿using Core.Utilities.Results.Abstract;
-using Entities.Concrete;
 using Entities.Dtos.CarImage;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
@@ -13,10 +12,7 @@ namespace Business.Abstract
         IResult Add(CarImageAddDto carImageAddDto, IFormFile[] files);
         Task<IResult> AddAsync(CarImageAddDto carImageAddDto, IFormFile[] files);
         IResult Delete(CarImageDto carImageDto);
-        Task<IResult> DeleteAsync(CarImageDto carImageDto);
-        Task<IResult> DeleteByIdAsync(int carId);
         IResult Update(CarImageUpdateDto carImageUpdateDto, IFormFile[] files);
-        Task<IResult> UpdateAsync(CarImageUpdateDto carImageUpdateDto, IFormFile[] files);
 
         //Query
         IDataResult<List<CarImageDto>> GetAll();
