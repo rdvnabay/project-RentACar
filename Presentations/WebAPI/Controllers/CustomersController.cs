@@ -44,18 +44,18 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] Customer customer)
+        public IActionResult Update([FromBody] Customer customer)
         {
-            var result = await _customerService.UpdateAsync(customer);
+            var result = _customerService.Update(customer);
             return result.Success
                ? Ok(result)
                : BadRequest(result);
         }
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete(int userId)
+        public IActionResult Delete(int userId)
         {
-            var result = await _customerService.DeleteByIdAsync(userId);
+            var result = _customerService.DeleteById(userId);
             return result.Success
                 ? Ok(result)
                 : BadRequest(result);

@@ -52,7 +52,7 @@ namespace WebUIAspNetMvcCore.Areas.AdminPanel.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(ColorDto colorDto)
+        public IActionResult Edit(ColorUpdateDto colorDto)
         {
             var result = _colorService.Update(colorDto);
             if (result.Success)

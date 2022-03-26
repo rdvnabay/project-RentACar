@@ -1,15 +1,9 @@
-﻿using AutoMapper;
-using Business.Abstract;
-using Entities.Concrete;
+﻿using Business.Abstract;
 using Entities.Dtos.Brand;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using WebUIAspNetMvcCore.Areas.AdminPanel.Models;
 
 namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
@@ -74,7 +68,7 @@ namespace WebUIAspNetMvcCore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(BrandDto brandDto)
+        public IActionResult Edit(BrandUpdateDto brandDto)
         {
             var result = _brandService.Update(brandDto);
             if (result.Success)

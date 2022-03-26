@@ -31,16 +31,6 @@ namespace WebAPI.Controllers
                 : BadRequest(result);
         }
 
-        [HttpDelete("delete")]
-        public async Task<IActionResult> Delete(int brandId)
-        { 
-            //TODO: GetById Asenkron
-            var result = await _brandService.DeleteByIdAsync(brandId);
-            return result.Success 
-                ? Ok(result) 
-                : BadRequest(result);
-        }
-
         [HttpGet("get")]
         public async Task<IActionResult> Get(int brandId)
         {
@@ -60,9 +50,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] BrandUpdateDto brandUpdateDto)
+        public IActionResult Update([FromBody] BrandUpdateDto brandUpdateDto)
         {
-           var result = await _brandService.UpdateAsync(brandUpdateDto);
+           var result = _brandService.Update(brandUpdateDto);
             return result.Success
                ? Ok(result)
                : BadRequest(result);

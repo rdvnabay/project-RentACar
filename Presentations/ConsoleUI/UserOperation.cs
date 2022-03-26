@@ -1,14 +1,14 @@
 ﻿using Business.Concrete;
 using Core.Entities.Concrete;
 using DataAccess.Concrete.EntityFramework;
-using Entities.Concrete;
+using DataAccess.Context;
 using System;
 
 namespace ConsoleUI
 {
     public class UserOperation
     {
-        UserManager userManager = new UserManager(new EfUserDal(new RentACarDbContext()));
+        UserManager userManager = new UserManager(new UserRepository(new RentACarDbContext()));
         public void DeleteToUser()
         {
             int _deleteUserId;

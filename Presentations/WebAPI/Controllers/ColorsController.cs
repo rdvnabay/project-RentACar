@@ -27,9 +27,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete(int  colorId)
+        public IActionResult Delete(int  colorId)
         {
-            var result = await _colorService.DeleteByIdAsync(colorId);
+            var result = _colorService.DeleteById(colorId);
             return result.Success
                ? Ok(result)
                : BadRequest(result);
@@ -54,9 +54,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] ColorUpdateDto colorUpdateDto)
+        public IActionResult Update([FromBody] ColorUpdateDto colorUpdateDto)
         {
-            var result = await _colorService.UpdateAsync(colorUpdateDto);
+            var result = _colorService.Update(colorUpdateDto);
             return result.Success
               ? Ok(result)
               : BadRequest(result);

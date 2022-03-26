@@ -25,9 +25,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete(int carId)
+        public  IActionResult Delete(int carId)
         {
-            var result = await _carService.DeleteByIdAsync(carId);
+            var result =  _carService.DeleteById(carId);
             return result.Success
               ? Ok(result)
               : BadRequest(result);
@@ -70,9 +70,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update(CarUpdateDto carUpdateDto)
+        public IActionResult Update(CarUpdateDto carUpdateDto)
         {
-            var result = await _carService.UpdateAsync(carUpdateDto);
+            var result = _carService.Update(carUpdateDto);
             return result.Success
                 ? Ok(result)
                 : BadRequest(result);

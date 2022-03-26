@@ -10,12 +10,12 @@ namespace Tests
     [TestFixture]
     public class BrandManagerTests
     {
-        private Mock<IBrandDal> _brandDal;
+        private Mock<IBrandRepository> _brandDal;
 
         [SetUp]
         public void Setup()
         {
-            _brandDal = new Mock<IBrandDal>();
+            _brandDal = new Mock<IBrandRepository>();
    
     }
         [Test]

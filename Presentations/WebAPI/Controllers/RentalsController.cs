@@ -53,18 +53,18 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public async Task<IActionResult> Update(RentalUpdateDto rentalUpdateDto)
+        public IActionResult Update(RentalUpdateDto rentalUpdateDto)
         {
-            var result = await _rentalService.UpdateAsync(rentalUpdateDto);
+            var result = _rentalService.Update(rentalUpdateDto);
             return result.Success
                 ? Ok(result)
                 : BadRequest(result);
         }
 
         [HttpPost("delete")]
-        public async Task<IActionResult> Delete(int rentalId)
+        public IActionResult Delete(int rentalId)
         {
-            var result = await _rentalService.DeleteByIdAsync(rentalId);
+            var result = _rentalService.DeleteById(rentalId);
             return result.Success
                 ? Ok(result)
                 : BadRequest(result);

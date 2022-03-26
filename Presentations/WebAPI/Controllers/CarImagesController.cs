@@ -26,15 +26,6 @@ namespace WebAPI.Controllers
                : BadRequest(result);
         }
 
-        [HttpDelete("delete/{carId}")]
-        public async Task<IActionResult> Delete(int carId)
-        {
-            var result = await _carImageService.DeleteByIdAsync(carId);
-            return result.Success
-               ? Ok(result)
-               : BadRequest(result);
-        }
-
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll()
         {
@@ -54,9 +45,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] CarImageUpdateDto carImageUpdateDto,IFormFile[] files)
+        public IActionResult Update([FromBody] CarImageUpdateDto carImageUpdateDto,IFormFile[] files)
         {
-            var result = await _carImageService.UpdateAsync(carImageUpdateDto, files);
+            var result = _carImageService.Update(carImageUpdateDto, files);
             return result.Success
                ? Ok(result)
                : BadRequest(result);
