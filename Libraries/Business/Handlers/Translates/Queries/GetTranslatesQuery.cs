@@ -13,10 +13,10 @@ namespace Business.Handlers.Translates.Queries
     {
         public class GetTranslatesQueryHandler : IRequestHandler<GetTranslatesQuery, IDataResult<IEnumerable<Translate>>>
         {
-            private readonly ITranslateDal _translateDal;
+            private readonly ITranslateRepository _translateDal;
             private readonly IMediator _mediator;
 
-            public GetTranslatesQueryHandler(ITranslateDal translateDal, IMediator mediator)
+            public GetTranslatesQueryHandler(ITranslateRepository translateDal, IMediator mediator)
             {
                 _translateDal = translateDal;
                 _mediator = mediator;

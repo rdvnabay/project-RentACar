@@ -16,9 +16,9 @@ namespace Business.Handlers.Brands.Commands
 
         public class CreateColorCommandHandler : IRequestHandler<CreateColorCommand, IResult>
         {
-            private readonly IColorDal _colorDal;
+            private readonly IColorRepository _colorDal;
             private readonly IMediator _mediator;
-            public CreateColorCommandHandler(IColorDal colorDal, IMediator mediator)
+            public CreateColorCommandHandler(IColorRepository colorDal, IMediator mediator)
             {
                 _colorDal = colorDal;
                 _mediator = mediator;

@@ -17,9 +17,9 @@ namespace Business.Handlers.Brands.Commands
 
         public class CreateCarImageCommandHandler : IRequestHandler<CreateCarImageCommand, IResult>
         {
-            private readonly ICarImageDal _carImageDal;
+            private readonly ICarImageRepository _carImageDal;
             private readonly IMediator _mediator;
-            public CreateCarImageCommandHandler(ICarImageDal carImageDal, IMediator mediator)
+            public CreateCarImageCommandHandler(ICarImageRepository carImageDal, IMediator mediator)
             {
                 _carImageDal = carImageDal;
                 _mediator = mediator;

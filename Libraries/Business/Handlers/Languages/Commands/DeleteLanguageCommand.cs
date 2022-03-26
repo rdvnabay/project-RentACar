@@ -14,9 +14,9 @@ namespace Business.Handlers.Languages.Commands
 
         public class DeleteLanguageCommandHandler : IRequestHandler<DeleteLanguageCommand, IResult>
         {
-            private readonly ILanguageDal _languageDal;
+            private readonly ILanguageRepository _languageDal;
             private readonly IMediator _mediator;
-            public DeleteLanguageCommandHandler(ILanguageDal languageDal,IMediator mediator)
+            public DeleteLanguageCommandHandler(ILanguageRepository languageDal,IMediator mediator)
             {
                 _languageDal = languageDal;
                 _mediator = mediator;

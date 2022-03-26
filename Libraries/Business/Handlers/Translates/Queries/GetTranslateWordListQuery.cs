@@ -13,10 +13,10 @@ namespace Business.Handlers.Translates.Queries
         public string Lang { get; set; }
         public class GetTranslateWordListQueryHandler : IRequestHandler<GetTranslateWordListQuery, IDataResult<Dictionary<string, string>>>
         {
-            private readonly ITranslateDal _translateDal;
+            private readonly ITranslateRepository _translateDal;
             private readonly IMediator _mediator;
 
-            public GetTranslateWordListQueryHandler(ITranslateDal translateDal, IMediator mediator)
+            public GetTranslateWordListQueryHandler(ITranslateRepository translateDal, IMediator mediator)
             {
                 _translateDal = translateDal;
                 _mediator = mediator;

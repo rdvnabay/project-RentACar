@@ -15,8 +15,8 @@ namespace Business.Handlers.Brands.Queries
         public class GetColorQueryHandler : IRequestHandler<GetColorQuery, IDataResult<Color>>
         {
             private readonly IMediator _mediator;
-            private readonly IColorDal _colorDal;
-            public GetColorQueryHandler(IMediator mediator, IColorDal colorDal)
+            private readonly IColorRepository _colorDal;
+            public GetColorQueryHandler(IMediator mediator, IColorRepository colorDal)
             {
                 _mediator = mediator;
                 _colorDal = colorDal;

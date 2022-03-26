@@ -15,8 +15,8 @@ namespace Business.Handlers.Brands.Commands
         public class DeleteColorCommandHandler : IRequestHandler<DeleteColorCommand, IResult>
         {
             private readonly IMediator _mediator;
-            private readonly IColorDal _colorDal;
-            public DeleteColorCommandHandler(IMediator mediator, IColorDal colorDal)
+            private readonly IColorRepository _colorDal;
+            public DeleteColorCommandHandler(IMediator mediator, IColorRepository colorDal)
             {
                 _mediator = mediator;
                 _colorDal = colorDal;

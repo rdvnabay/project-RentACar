@@ -13,10 +13,10 @@ namespace Business.Handlers.Languages.Queries
 	{
 		public class GetLanguagesLookUpQueryHandler : IRequestHandler<GetLanguagesLookUpWithCodeQuery, IDataResult<IEnumerable<SelectionItem>>>
 		{
-			private readonly ILanguageDal _languageDal;
+			private readonly ILanguageRepository _languageDal;
 			private readonly IMediator _mediator;
 
-			public GetLanguagesLookUpQueryHandler(ILanguageDal languageDal, IMediator mediator)
+			public GetLanguagesLookUpQueryHandler(ILanguageRepository languageDal, IMediator mediator)
 			{
 				_languageDal = languageDal;
 				_mediator = mediator;

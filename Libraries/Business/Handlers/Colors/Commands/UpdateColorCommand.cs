@@ -15,10 +15,10 @@ namespace Business.Handlers.Brands.Commands
 
         public class UpdateColorCommandHandler : IRequestHandler<UpdateColorCommand, IResult>
         {
-            private readonly IColorDal _colorDal;
+            private readonly IColorRepository _colorDal;
             private readonly IMediator _mediator;
 
-            public UpdateColorCommandHandler(IColorDal colorDal, IMediator mediator)
+            public UpdateColorCommandHandler(IColorRepository colorDal, IMediator mediator)
             {
                 _colorDal = colorDal;
                 _mediator = mediator;

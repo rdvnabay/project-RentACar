@@ -15,10 +15,10 @@ namespace Business.Handlers.Brands.Commands
 
         public class UpdateBrandCommandHandler : IRequestHandler<UpdateBrandCommand, IResult>
         {
-            private readonly IBrandDal _brandDal;
+            private readonly IBrandRepository _brandDal;
             private readonly IMediator _mediator;
 
-            public UpdateBrandCommandHandler(IBrandDal brandDal, IMediator mediator)
+            public UpdateBrandCommandHandler(IBrandRepository brandDal, IMediator mediator)
             {
                 _brandDal = brandDal;
                 _mediator = mediator;

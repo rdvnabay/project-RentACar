@@ -15,8 +15,8 @@ namespace Business.Handlers.Brands.Commands
         public class DeleteBrandCommandHandler : IRequestHandler<DeleteBrandCommand, IResult>
         {
             private readonly IMediator _mediator;
-            private readonly IBrandDal _brandDal;
-            public DeleteBrandCommandHandler(IMediator mediator, IBrandDal brandDal)
+            private readonly IBrandRepository _brandDal;
+            public DeleteBrandCommandHandler(IMediator mediator, IBrandRepository brandDal)
             {
                 _mediator = mediator;
                 _brandDal = brandDal;

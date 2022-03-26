@@ -11,8 +11,8 @@ namespace Business.Concrete
 {
     public class UserManager : IUserService
     {
-        private IUserDal _userDal;
-        public UserManager(IUserDal userDal)
+        private IUserRepository _userDal;
+        public UserManager(IUserRepository userDal)
         {
             _userDal = userDal;
         }

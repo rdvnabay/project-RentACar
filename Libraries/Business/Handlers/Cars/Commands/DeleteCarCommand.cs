@@ -15,8 +15,8 @@ namespace Business.Handlers.Brands.Commands
         public class DeleteCarCommandHandler : IRequestHandler<DeleteCarCommand, IResult>
         {
             private readonly IMediator _mediator;
-            private readonly ICarDal _carDal;
-            public DeleteCarCommandHandler(IMediator mediator, ICarDal carDal)
+            private readonly ICarRepository _carDal;
+            public DeleteCarCommandHandler(IMediator mediator, ICarRepository carDal)
             {
                 _mediator = mediator;
                 _carDal = carDal;

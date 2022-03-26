@@ -18,10 +18,10 @@ namespace Business.Handlers.Brands.Commands
 
         public class UpdateCarImageCommandHandler : IRequestHandler<UpdateCarImageCommand, IResult>
         {
-            private readonly ICarImageDal _carImageDal;
+            private readonly ICarImageRepository _carImageDal;
             private readonly IMediator _mediator;
 
-            public UpdateCarImageCommandHandler(ICarImageDal carImageDal, IMediator mediator)
+            public UpdateCarImageCommandHandler(ICarImageRepository carImageDal, IMediator mediator)
             {
                 _carImageDal = carImageDal;
                 _mediator = mediator;

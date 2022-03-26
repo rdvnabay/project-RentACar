@@ -14,10 +14,10 @@ namespace Business.Handlers.Languages.Queries
 
         public class GetLanguageQueryHandler : IRequestHandler<GetLanguageQuery, IDataResult<Language>>
         {
-            private readonly ILanguageDal _languagDal;
+            private readonly ILanguageRepository _languagDal;
             private readonly IMediator _mediator;
 
-            public GetLanguageQueryHandler(ILanguageDal languagDal, IMediator mediator)
+            public GetLanguageQueryHandler(ILanguageRepository languagDal, IMediator mediator)
             {
                 _languagDal = languagDal;
                 _mediator = mediator;

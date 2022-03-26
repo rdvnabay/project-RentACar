@@ -17,9 +17,9 @@ namespace Business.Handlers.Languages.Commands
 
         public class CreateLanguageCommandHandler : IRequestHandler<CreateLanguageCommand, IResult>
         {
-            private readonly ILanguageDal _languageDal;
+            private readonly ILanguageRepository _languageDal;
             private readonly IMediator _mediator;
-            public CreateLanguageCommandHandler(ILanguageDal languageDal,IMediator mediator)
+            public CreateLanguageCommandHandler(ILanguageRepository languageDal,IMediator mediator)
             {
                 _languageDal = languageDal;
                 _mediator = mediator;

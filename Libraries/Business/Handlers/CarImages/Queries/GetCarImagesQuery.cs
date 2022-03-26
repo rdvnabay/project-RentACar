@@ -20,8 +20,8 @@ namespace Business.Handlers.CarImages.Queries
         public class GetCarImagesQueryHandler : IRequestHandler<GetCarImagesQuery, IDataResult<IEnumerable<CarImage>>>
         {
             private readonly IMediator _mediator;
-            private readonly ICarImageDal _carImageDal;
-            public GetCarImagesQueryHandler(IMediator mediator, ICarImageDal carImageDal)
+            private readonly ICarImageRepository _carImageDal;
+            public GetCarImagesQueryHandler(IMediator mediator, ICarImageRepository carImageDal)
             {
                 _mediator = mediator;
                 _carImageDal = carImageDal;

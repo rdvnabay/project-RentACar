@@ -7,8 +7,8 @@ namespace Business.Rules
 {
     public class BrandManagerRules
     {
-        private IBrandDal _brandDal;
-        public BrandManagerRules(IBrandDal brandDal)
+        private IBrandRepository _brandDal;
+        public BrandManagerRules(IBrandRepository brandDal)
         {
             _brandDal = brandDal;
         }

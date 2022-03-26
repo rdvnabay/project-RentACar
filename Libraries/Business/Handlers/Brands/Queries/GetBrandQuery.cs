@@ -15,8 +15,8 @@ namespace Business.Handlers.Brands.Queries
         public class GetBrandQueryHandler : IRequestHandler<GetBrandQuery, IDataResult<Brand>>
         {
             private readonly IMediator _mediator;
-            private readonly IBrandDal _brandDal;
-            public GetBrandQueryHandler(IMediator mediator, IBrandDal brandDal)
+            private readonly IBrandRepository _brandDal;
+            public GetBrandQueryHandler(IMediator mediator, IBrandRepository brandDal)
             {
                 _mediator = mediator;
                 _brandDal = brandDal;

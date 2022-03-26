@@ -17,10 +17,10 @@ namespace Business.Handlers.Languages.Commands
 
         public class UpdateLanguageCommandHandler : IRequestHandler<UpdateLanguageCommand, IResult>
         {
-            private readonly ILanguageDal _languageDal;
+            private readonly ILanguageRepository _languageDal;
             private readonly IMediator _mediator;
 
-            public UpdateLanguageCommandHandler(ILanguageDal languageDal, IMediator mediator)
+            public UpdateLanguageCommandHandler(ILanguageRepository languageDal, IMediator mediator)
             {
                 _languageDal = languageDal;
                 _mediator = mediator;

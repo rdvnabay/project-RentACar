@@ -17,10 +17,10 @@ namespace Business.Handlers.Translates.Commands
 
         public class UpdateTranslateCommandHandler : IRequestHandler<UpdateTranslateCommand, IResult>
         {
-            private readonly ITranslateDal _translateDal;
+            private readonly ITranslateRepository _translateDal;
             private readonly IMediator _mediator;
 
-            public UpdateTranslateCommandHandler(ITranslateDal translateDal, IMediator mediator)
+            public UpdateTranslateCommandHandler(ITranslateRepository translateDal, IMediator mediator)
             {
                 _translateDal = translateDal;
                 _mediator = mediator;

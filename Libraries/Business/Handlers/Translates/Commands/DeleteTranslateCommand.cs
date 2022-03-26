@@ -14,10 +14,10 @@ namespace Business.Handlers.Translates.Commands
 
         public class DeleteTranslateCommandHandler : IRequestHandler<DeleteTranslateCommand, IResult>
         {
-            private readonly ITranslateDal _translateDal;
+            private readonly ITranslateRepository _translateDal;
             private readonly IMediator _mediator;
 
-            public DeleteTranslateCommandHandler(ITranslateDal translateDal, IMediator mediator)
+            public DeleteTranslateCommandHandler(ITranslateRepository translateDal, IMediator mediator)
             {
                 _translateDal = translateDal;
                 _mediator = mediator;

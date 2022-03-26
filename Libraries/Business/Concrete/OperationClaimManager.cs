@@ -9,8 +9,8 @@ namespace Business.Concrete
 {
     public class OperationClaimManager : IOperationClaimService
     {
-        IOperationClaimDal _operationClaimDal;
-        public OperationClaimManager(IOperationClaimDal operationClaimDal)
+        IOperationClaimRepository _operationClaimDal;
+        public OperationClaimManager(IOperationClaimRepository operationClaimDal)
         {
             _operationClaimDal = operationClaimDal;
         }

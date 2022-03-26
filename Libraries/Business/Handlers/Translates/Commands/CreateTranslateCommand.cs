@@ -19,9 +19,9 @@ namespace Business.Handlers.Translates.Commands
 
         public class CreateTranslateCommandHandler : IRequestHandler<CreateTranslateCommand, IResult>
         {
-            private readonly ITranslateDal _translateDal;
+            private readonly ITranslateRepository _translateDal;
             private readonly IMediator _mediator;
-            public CreateTranslateCommandHandler(ITranslateDal translateDal, IMediator mediator)
+            public CreateTranslateCommandHandler(ITranslateRepository translateDal, IMediator mediator)
             {
                 _translateDal = translateDal;
                 _mediator = mediator;
