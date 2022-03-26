@@ -10,10 +10,8 @@ namespace Business.Abstract
     {
         IResult Add(RentalAddDto rentalAddDto);
         Task<IResult> AddAsync(RentalAddDto rentalAddDto);
-        IResult Update(Rental rental);
-        Task<IResult> UpdateAsync(RentalUpdateDto rentalUpdateDto);
+        IResult Update(RentalUpdateDto rentalDto);
         IResult DeleteById(int rentalId);
-        Task<IResult> DeleteByIdAsync(int rentalId);
         IDataResult<RentalDto> GetById(int rentalId);
         Task<IDataResult<RentalDto>> GetByIdAsync(int rentalId);
         IDataResult<List<RentalDto>> GetAll();

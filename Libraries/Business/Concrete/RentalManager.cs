@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class RentalManager:IRentalService
+    public class RentalManager : IRentalService
     {
-        private IRentalDal _rentalDal;
+        private IRentalRepository _rentalDal;
         private IMapper _mapper;
-        public RentalManager(IRentalDal rentalDal, IMapper mapper)
+        public RentalManager(IRentalRepository rentalDal, IMapper mapper)
         {
             _rentalDal = rentalDal;
             _mapper = mapper;
@@ -43,12 +43,6 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public async Task<IResult> DeleteByIdAsync(int rentalId)
-        {
-            var rental = await _rentalDal.GetAsync(x => x.Id == rentalId);
-            await _rentalDal.DeleteAsync(rental);
-            return new SuccessResult();
-        }
 
         public IDataResult<List<RentalDto>> GetAll()
         {
@@ -68,7 +62,7 @@ namespace Business.Concrete
         }
         public async Task<IDataResult<RentalDto>> GetByIdAsync(int rentalId)
         {
-            var rentalDto =await _rentalDal.GetRentalWithCustomerAndBrandAsync(rentalId);
+            var rentalDto = await _rentalDal.GetRentalWithCustomerAndBrandAsync(rentalId);
             return new SuccessDataResult<RentalDto>(rentalDto);
         }
         public IDataResult<List<RentalDto>> GetRentAllByCustomer(int carId, int customerId)
@@ -83,15 +77,10 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(RentalValidator))]
-        public IResult Update(Rental rental)
+        public IResult Update(RentalUpdateDto rentalDto)
         {
+            var rental = _mapper.Map<Rental>(rentalDto);
             _rentalDal.Update(rental);
-            return new SuccessResult();
-        }
-        public async Task<IResult> UpdateAsync(RentalUpdateDto rentalUpdateDto)
-        {
-            var rental = _mapper.Map<Rental>(rentalUpdateDto);
-            await _rentalDal.UpdateAsync(rental);
             return new SuccessResult();
         }
     }
