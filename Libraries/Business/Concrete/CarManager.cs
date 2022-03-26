@@ -15,11 +15,11 @@ namespace Business.Concrete
 {
     public class CarManager : ICarService
     {
-        ICarDal _carDal;
+        ICarRepository _carDal;
         ICarImageService _carImageService;
         IMapper _mapper;
         public CarManager(
-            ICarDal carDal,
+            ICarRepository carDal,
             ICarImageService carImageService,
             IMapper mapper)
         {
@@ -53,25 +53,14 @@ namespace Business.Concrete
         public IResult DeleteById(int carId)
         {
             var car = _carDal.Get(x => x.Id == carId);
-            _carDal.DeleteAsync(car);
+            _carDal.Delete(car);
             return new SuccessResult();
         }
-        public async Task<IResult> DeleteByIdAsync(int carId)
-        {
-            var car = await _carDal.GetAsync(x => x.Id == carId);
-            await _carDal.DeleteAsync(car);
-            return new SuccessResult();
-        }
+
         public IResult Update(CarUpdateDto carUpdateDto)
         {
             var car = _mapper.Map<Car>(carUpdateDto);
             _carDal.Update(car);
-            return new SuccessResult();
-        }
-        public async Task<IResult> UpdateAsync(CarUpdateDto carUpdateDto)
-        {
-            var car = _mapper.Map<Car>(carUpdateDto);
-            await _carDal.UpdateAsync(car);
             return new SuccessResult();
         }
 
